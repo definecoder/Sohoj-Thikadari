@@ -5,6 +5,8 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LoginPage from './pages/loginPage'
 import SignUpPage from './pages/signupPage'
 import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
+import MyFirmsPage from './pages/MyFirmsPage'
 
 function App() {
   /* create homepage */
@@ -16,6 +18,8 @@ function App() {
           <Route path="/login" element = {<LoginPage />} />
           <Route path="/signup" element = {<SignUpPage />} />
           <Route path="/home" element = {<HomePage />} />
+          <Route path="/profile" element = {<ProfilePage />} />
+          <Route path="/firms" element = {<MyFirmsPage />} />
         </Routes>
       </BrowserRouter>
     </>

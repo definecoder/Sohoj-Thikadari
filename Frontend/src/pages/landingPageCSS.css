@@ -1,4 +1,15 @@
-.landingPageButtonContainer{
+.mainContainerLandingPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    font-size: 0.9rem;
+}
+
+.paddingUpLanding {
+    height: 15vh;
+}
+
+.landingPageButtonContainer{    
     margin: 5vh;
     display: flex;
     gap: 30vh;
@@ -6,7 +17,7 @@
 }
 
 .LandingLogo{
-    height: 20vh;
+    height: 22vh;
     width: auto;
-    margin: 5vh;    
+    margin: 7vh;    
 }

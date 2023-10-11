@@ -1,7 +1,7 @@
 .leftNavbar {
     width: 25vw;
     height: 100vh;
-    background-color: aqua;
+    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,4 +22,8 @@
 
 .navLogo img{
     width: 20vw;
+}
+
+.activeNavItem {
+    color: #FF3D00;
 }

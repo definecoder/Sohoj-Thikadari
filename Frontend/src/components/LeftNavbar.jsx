@@ -12,18 +12,18 @@ function BasicButton(props) {
                     <img src={landingLogo} alt="logo" />
                 </div>
                 <div className='navItems'>                
-                    <div>
+                    <div className={curPage == 'home' ? 'activeNavItem' : 'nullll'}>
                         <Link to="/home"> HOME </Link>
                     </div>                    
-                    <div>                    
+                    <div className={curPage == 'profile' ? 'activeNavItem' : 'nullll'}>                    
                         <Link to="/profile"> PROFILE </Link>
                     </div>
                     
-                    <div>
+                    <div className={curPage == 'firms' ? 'activeNavItem' : 'nullll'}>
                         <Link to="/firms"> MY FIRMS </Link>
                     </div>
-                    <div>
-                        <Link to="/logout"> LOG OUT </Link>
+                    <div className={curPage == 'logout' ? 'activeNavItem' : 'nullll'}>
+                        <Link to="/"> LOG OUT </Link>
                     </div>
                 </div>
             </div>
