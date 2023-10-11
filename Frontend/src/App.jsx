@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import './App.css'
+import './pages/landingPage'
+import LandingPage from './pages/landingPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  /* create homepage */
   return (
     <>
-      <div>
-          <h1>Sohoj Thikadari</h1>
-      </div>
+      <LandingPage />
     </>
   )
 }

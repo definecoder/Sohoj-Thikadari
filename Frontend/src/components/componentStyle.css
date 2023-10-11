@@ -1,0 +1,17 @@
+.BasicButton{
+    background-color: #FF3D0017;
+    color: black;
+    font-size: 25px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-weight: bold;
+    border-width: 3px;
+    border-color: black;
+}
+
+.BasicButton:hover {
+    background-color: rgba(0, 0, 0, 0.56);
+    color: wheat;
+}
