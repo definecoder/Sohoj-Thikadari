@@ -15,3 +15,34 @@
     background-color: rgba(0, 0, 0, 0.56);
     color: wheat;
 }
+
+.form__group {
+    position: relative;
+    padding: 20px 0 0;
+    width: 50%;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #000000;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 500;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+  }
+  
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }

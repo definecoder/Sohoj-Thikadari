@@ -1,0 +1,25 @@
+.leftNavbar {
+    width: 25vw;
+    height: 100vh;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navItems {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 2.2em;
+    font-weight: 650;
+}
+
+.navLogo {
+    height: 22vh;
+}
+
+.navLogo img{
+    width: 20vw;
+}

@@ -1,0 +1,16 @@
+*{
+    border: 0;
+}
+
+.homepageCanvas {
+    height: 100vh;
+    width: 100vw; 
+    display: flex;   
+}
+
+
+.rightCanvas{
+    background-color: brown;
+    width: 75vw;
+    height: 100vh;
+}
