@@ -1,14 +1,18 @@
-import { useState } from 'react'
 import './App.css'
+import './pages/landingPage'
+import LandingPage from './pages/landingPage'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  /* create homepage */
   return (
     <>
-      <div>
-          <h1>Sohoj Thikadari</h1>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element = {<LandingPage />} />
+          <Route path="/login" element = {<LandingPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

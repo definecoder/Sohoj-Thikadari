@@ -1,0 +1,11 @@
+.landingPageButtonContainer{
+    margin: 5vh;
+    display: flex;
+    gap: 30vh;
+    justify-content: center;
+}
+
+.LandingLogo{
+    height: 20vh;
+    width: auto;
+}
