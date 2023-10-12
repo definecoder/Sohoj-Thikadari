@@ -22,8 +22,14 @@ const createUser = async (req, res) => {
 
 const getUser = (req, res) => {
 
+    try {
+        res.json({ email: req.params.email })
+    }
+    catch (err) {
+        res.json({ msg: err })
+    }
 
-    res.json({ email: req.params.email })
+
 }
 
 
