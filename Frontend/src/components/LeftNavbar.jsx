@@ -13,17 +13,17 @@ function BasicButton(props) {
                 </div>
                 <div className='navItems'>                
                     <div className={curPage == 'home' ? 'activeNavItem' : 'nullll'}>
-                        <Link to="/home"> HOME </Link>
+                        <Link to="/home"> ড্যাশবোর্ড </Link>
                     </div>                    
                     <div className={curPage == 'profile' ? 'activeNavItem' : 'nullll'}>                    
-                        <Link to="/profile"> PROFILE </Link>
+                        <Link to="/profile"> প্রোফাইল </Link>
                     </div>
                     
                     <div className={curPage == 'firms' ? 'activeNavItem' : 'nullll'}>
-                        <Link to="/firms"> MY FIRMS </Link>
+                        <Link to="/firms"> ফার্মসমূহ </Link>
                     </div>
                     <div className={curPage == 'logout' ? 'activeNavItem' : 'nullll'}>
-                        <Link to="/"> LOG OUT </Link>
+                        <Link to="/"> লগ আউট </Link>
                     </div>
                 </div>
             </div>

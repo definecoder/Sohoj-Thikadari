@@ -21,28 +21,28 @@ function SignUpPage() {
                 <div></div>
                 <div className='signupForm'>                    
                     <div className='signupLabel'>
-                        <h3>Username : &nbsp;&nbsp;&nbsp; </h3>
-                        <InputTextField inputLabel = 'Enter you Username' fieldName = 'username'/>
+                        <h3>ইউজারনেম : &nbsp;&nbsp;&nbsp; </h3>
+                        <InputTextField inputLabel = 'ইউজারনেম প্রদান করুন' fieldName = 'username'/>
                     </div>
                     <div className='signupLabel'>
-                        <h3>Contact No : &nbsp;&nbsp;&nbsp; </h3>
-                        <InputTextField inputLabel = 'Enter you Username' fieldName = 'username'/>
+                        <h3>ফোন নম্বর : &nbsp;&nbsp;&nbsp; </h3>
+                        <InputTextField inputLabel = 'ফোন নম্বর দিন' fieldName = 'username'/>
                     </div>
                     <div className='signupLabel'>
-                        <h3>Email : &nbsp;&nbsp;&nbsp; </h3>
-                        <InputTextField inputLabel = 'Enter you Username' fieldName = 'username'/>
+                        <h3>ইমেইল : &nbsp;&nbsp;&nbsp; </h3>
+                        <InputTextField inputLabel = 'ইমেইল প্রদান করুন' fieldName = 'username'/>
                     </div>
                     <div className='signupLabel'>
-                        <h3>Password : &nbsp;&nbsp;&nbsp; </h3>
-                        <PasswordField inputLabel = 'Enter you Username' fieldName = 'username'/>
+                        <h3>পাসওয়ার্ড : &nbsp;&nbsp;&nbsp; </h3>
+                        <PasswordField inputLabel = 'পাসওয়ার্ড দিন' fieldName = 'username'/>
                     </div>
                     <div className='signupLabel'>
-                        <h3>Confirm Password : &nbsp;&nbsp;&nbsp; </h3>
-                        <PasswordField inputLabel = 'Enter you Username' fieldName = 'username'/>
+                        <h3>পুনরায় পাসওয়ার্ড : &nbsp;&nbsp;&nbsp; </h3>
+                        <PasswordField inputLabel = 'পুনরায় পাসওয়ার্ড দিন' fieldName = 'username'/>
                     </div>
                 </div>      
                 <div></div>          
-                <BasicButton  buttonText = 'SIGN UP' onClick = {() => {}} routePath = "/home" /> 
+                <BasicButton  buttonText = 'নিবন্ধন করুন' onClick = {() => {}} routePath = "/home" /> 
                 <div></div>
             </div>
         </div>        

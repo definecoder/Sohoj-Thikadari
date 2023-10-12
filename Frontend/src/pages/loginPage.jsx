@@ -17,16 +17,16 @@ function LoginPage() {
             </div>
             <div className='loginRight'>
                 <div></div>                
-                <h1>SIGN IN TO YOUR ACCOUNT</h1>
+                <h1>আপনার একাউন্ট এ প্রবেশ করুন</h1>
                 <div className='loginForm'>
-                    <h2>Email or Username</h2>
-                    <InputTextField inputLabel = 'Enter you Email or Username' fieldName = 'emailusername'/>
+                    <h2>ইমেইল অথবা ইউজারনেম</h2>
+                    <InputTextField inputLabel = 'আপনার ইমেল অথবা ইউজারনেম দিন' fieldName = 'emailusername'/>
                     <div></div>
-                    <h2 className='passwordTitle'>Password</h2>
-                    <PasswordField inputLabel = 'Enter your password' fieldName = 'password'/>                    
+                    <h2 className='passwordTitle'>পাসওয়ার্ড</h2>
+                    <PasswordField inputLabel = 'পাসওয়ার্ড প্রদান করুন' fieldName = 'password'/>                    
                 </div>                
-                <BasicButton  buttonText = 'SIGN IN' onClick = {() => {}} routePath = "/home" /> 
-                <div>Forgot Password? Click Here</div>
+                <BasicButton  buttonText = 'প্রবেশ করুন' onClick = {() => {}} routePath = "/home" /> 
+                <div>পাসওয়ার্ড ভুলে গেছেন? এখানে <b>ক্লিক করুন</b></div>
             </div>
         </div>        
       </>

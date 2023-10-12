@@ -15,7 +15,7 @@ function HomePage() {
             <LeftNavBar curPage = "home" />
             <div className='rightCanvas'>
               <div className='welcomeUser'>
-                  <h2 style={{color : '#FF3D00',}}>WELCOME</h2>
+                  <h2 style={{color : '#FF3D00',}}>স্বাগতম</h2>
                   <span style={{fontSize : '1.2em', fontWeight: '500'}}>মোহাম্মদ মেহরাজুল ইসলাম</span>
               </div>
               <div>

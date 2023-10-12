@@ -15,7 +15,7 @@ function ProfilePage() {
             <LeftNavBar curPage = "profile" />
             <div className='rightCanvas'>
               <div className='welcomeUser'>
-                  <h2 style={{color : '#FF3D00',}}>USERNAME</h2>
+                  <h2 style={{color : '#FF3D00',}}>নাম</h2>
                   <span style={{fontSize : '1.2em', fontWeight: '500'}}>মোহাম্মদ মেহরাজুল ইসলাম</span>
               </div>
               <div>

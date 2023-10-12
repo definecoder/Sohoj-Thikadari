@@ -16,8 +16,8 @@ function LandingPage() {
         </div>        
         <h1>সহজ ঠিকাদারী তে আপনাকে স্বাগতম</h1>
         <div className="landingPageButtonContainer">
-            <BasicButton  buttonText = 'LOG IN' onClick = {() => {}} routePath = "/login" />
-            <BasicButton  buttonText = 'SIGN UP' onClick = {() => {}} routePath = "/signup" />    
+            <BasicButton  buttonText = 'প্রবেশ করুন' onClick = {() => {}} routePath = "/login" />
+            <BasicButton  buttonText = 'নিবন্ধন করুন' onClick = {() => {}} routePath = "/signup" />    
         </div>
         </div>        
       </>

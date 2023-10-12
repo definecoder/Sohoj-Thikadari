@@ -16,7 +16,7 @@ function MyFirmsPage() {
             <div className='rightCanvasMyFirms'>
               
               <div className="firmList">
-                <h1>YOUR FIRMS</h1>
+                <h1>আপনার ফার্মসমূহ</h1>
                 <BasicButton  buttonText = 'M/s Balaka Overseas Ltd' onClick = {() => {}} routePath = "/firmName" />
                 <BasicButton  buttonText = 'M/s Musa And Brothers Ltd' onClick = {() => {}} routePath = "/firmName" />
                 <BasicButton  buttonText = 'M/s Alifa Enterprise Ltd' onClick = {() => {}} routePath = "/firmName" />
@@ -24,7 +24,7 @@ function MyFirmsPage() {
               </div>
 
               <div className="addNewFirm">
-                <BasicButton  buttonText = 'ADD FIRM' onClick = {() => {}} routePath = "/addFirm" />
+                <BasicButton  buttonText = 'নতুন ফার্ম যুক্ত করুন' onClick = {() => {}} routePath = "/addFirm" />
               </div>
 
             </div>
