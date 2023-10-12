@@ -13,7 +13,20 @@ function ProfilePage() {
       <>
         <div className='homepageCanvas'>
             <LeftNavBar curPage = "profile" />
-            <div className='rightCanvas'>sdaf</div>
+            <div className='rightCanvas'>
+              <div className='welcomeUser'>
+                  <h2 style={{color : '#FF3D00',}}>USERNAME</h2>
+                  <span style={{fontSize : '1.2em', fontWeight: '500'}}>মোহাম্মদ মেহরাজুল ইসলাম</span>
+              </div>
+              <div>
+                  <h2 style={{color : 'black',}}>ফোন নম্বর</h2>
+                  <span style={{fontSize : '2em', fontWeight: '700', color : '#FF3D00'}}>০১৭৬৪৬৫৩১১২</span>
+              </div>
+              <div>
+                  <h2 style={{color : 'black',}}>ইমেইল</h2>
+                  <span style={{fontSize : '2em', fontWeight: '700', color : '#FF3D00'}}>mehraj74@student.sust</span>
+              </div>              
+            </div>
         </div>    
       </>
     )

@@ -13,7 +13,24 @@ function HomePage() {
       <>
         <div className='homepageCanvas'>
             <LeftNavBar curPage = "home" />
-            <div className='rightCanvas'>sdaf</div>
+            <div className='rightCanvas'>
+              <div className='welcomeUser'>
+                  <h2 style={{color : '#FF3D00',}}>WELCOME</h2>
+                  <span style={{fontSize : '1.2em', fontWeight: '500'}}>মোহাম্মদ মেহরাজুল ইসলাম</span>
+              </div>
+              <div>
+                  <h2 style={{color : 'black',}}>মোট প্রোগ্রাম</h2>
+                  <span style={{fontSize : '2em', fontWeight: '700', color : '#FF3D00'}}>৫৬</span>
+              </div>
+              <div>
+                  <h2 style={{color : 'black',}}>মোট কিলোমিটার</h2>
+                  <span style={{fontSize : '2em', fontWeight: '700', color : '#FF3D00'}}>৫৬</span>
+              </div>
+              <div>
+                  <h2 style={{color : 'black',}}>মোট পন্য (মেঃ টন)</h2>
+                  <span style={{fontSize : '2em', fontWeight: '700', color : '#FF3D00'}}>৫৬</span>
+              </div>
+            </div>
         </div>    
       </>
     )

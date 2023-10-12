@@ -1,5 +1,5 @@
 // TODO : ADD BG
-import './HomePageCSS.css';
+import './MyFirmsPageCSS.css';
 
 import BasicButton from "../components/BasicButton"
 import landingLogo from "../assets/appLogo.png"
@@ -13,7 +13,21 @@ function MyFirmsPage() {
       <>
         <div className='homepageCanvas'>
             <LeftNavBar curPage = "firms" />
-            <div className='rightCanvas'>sdaf</div>
+            <div className='rightCanvasMyFirms'>
+              
+              <div className="firmList">
+                <h1>YOUR FIRMS</h1>
+                <BasicButton  buttonText = 'M/s Balaka Overseas Ltd' onClick = {() => {}} routePath = "/firmName" />
+                <BasicButton  buttonText = 'M/s Musa And Brothers Ltd' onClick = {() => {}} routePath = "/firmName" />
+                <BasicButton  buttonText = 'M/s Alifa Enterprise Ltd' onClick = {() => {}} routePath = "/firmName" />
+                <BasicButton  buttonText = 'M/s Rahima and Nabil Enterprise' onClick = {() => {}} routePath = "/firmName" />
+              </div>
+
+              <div className="addNewFirm">
+                <BasicButton  buttonText = 'ADD FIRM' onClick = {() => {}} routePath = "/addFirm" />
+              </div>
+
+            </div>
         </div>    
       </>
     )
