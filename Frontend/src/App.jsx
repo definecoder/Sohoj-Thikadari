@@ -7,6 +7,8 @@ import SignUpPage from './pages/signupPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import MyFirmsPage from './pages/MyFirmsPage'
+import FirmsProfilePage from './pages/FirmsProfilePage'
+import AddNewFirmPage from './pages/AddNewFirm'
 
 function App() {
   /* create homepage */
@@ -20,6 +22,8 @@ function App() {
           <Route path="/home" element = {<HomePage />} />
           <Route path="/profile" element = {<ProfilePage />} />
           <Route path="/firms" element = {<MyFirmsPage />} />
+          <Route path="/firmName" element = {<FirmsProfilePage />} />
+          <Route path="/addFirm" element = {<AddNewFirmPage />} />
         </Routes>
       </BrowserRouter>
     </>
