@@ -20,7 +20,7 @@ model User {
 
 model Firm {
     id           String  @id @default(uuid())
-    neg_no       String?
+    regNo        String?
     name         String
     proprietor   String?
     phone        String?

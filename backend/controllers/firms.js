@@ -1,28 +1,40 @@
+const { StatusCodes } = require('http-status-codes')
 const { pool } = require('../database/database')
 
 const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 
-const primsa = new PrismaClient()
 const createFirm = async (req, res) => {
     try {
-
-        const { reg_no, name, proprietor, nominee, phone, email, trade_license, uid } = req.body
-
-
-        let sql = `
-            INSERT INTO firm (reg_no, name, proprietor, nominee, phone, email, trade_license, uid)
-            VALUES("${reg_no}", "${name}", "${proprietor}", "${nominee}", "${phone}", "${email}", "${trade_license}", "${uid}")
-        `;
-
-        await pool.query(sql);
-
-        res.status(200).send('firm added successfully')
+        req.body.userID = req.user.id
+        const newFirm = await prisma.firm.create({ data: req.body })
+        res.status(StatusCodes.CREATED).json(newFirm)
     }
     catch (err) {
-        res.json({ msg: "Error adding firm in the database: " + err })
+        console.log(err)
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: "Couldn\'t create the firm" })
+    }
+}
+
+const getFirms = async (req, res) => {
+    try {
+        firms = await prisma.user.findMany({
+            where: {
+                id: req.user.id
+            },
+            select: {
+                Firm: true
+            }
+        })
+
+        res.status(StatusCodes.OK).json(firms)
+
+    } catch (err) {
+        console.log(err)
+        res.status(StatusCodes.NOT_IMPLEMENTED).json({ msg: "Couldn\'t fetch firms" })
     }
 }
 
 
-module.exports = { createFirm }
+module.exports = { createFirm, getFirms }

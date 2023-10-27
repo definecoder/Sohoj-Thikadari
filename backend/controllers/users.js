@@ -51,7 +51,11 @@ const getUser = (req, res) => {
 const getAllUsers = async (req, res) => {
 
     try {
-        const allUsers = await prisma.user.findMany()
+        const allUsers = await prisma.user.findMany({
+            include: {
+                Firm: true
+            }
+        })
         res.status(StatusCodes.OK).json(allUsers)
     }
     catch (err) {

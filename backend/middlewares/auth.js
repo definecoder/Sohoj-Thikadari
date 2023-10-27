@@ -18,7 +18,7 @@ const authenticationMiddleware = async (req, res, next) => {
         req.user = { id, phone }
         next()
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: error })
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'authentication failed' })
     }
 }
 
