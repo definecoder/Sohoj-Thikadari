@@ -43,6 +43,20 @@ const updateReceivingInfo = async (req, res) => {
 }
 
 const updateRateAndDistance = async (req, res) => {
+    try {
+
+        const invoice = await prisma.invoice.update({
+            data: req.body,
+            where: {
+                invoiceNo: parseInt(req.params.id)
+            }
+        })
+        res.status(StatusCodes.OK).json(invoice)
+
+    } catch (err) {
+        console.log(err)
+        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t update rate and distance' })
+    }
 
 }
 
@@ -59,6 +73,31 @@ const getAllInvoice = async (req, res) => {
 }
 
 const getAllInvoiceForBill = async (req, res) => {
+    try {
+
+        const invoices = await prisma.firm.findUnique({
+            where: {
+                id: req.params.firmId
+            },
+            select: {
+                Invoice: {
+                    where: {
+                        NOT: {
+                            receivingDate: {
+                                equals: null
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        res.status(StatusCodes.OK).json(invoices)
+
+    } catch (err) {
+        console.log(err)
+        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t get invoices for bill' })
+    }
 
 }
 
@@ -98,5 +137,6 @@ module.exports = {
     updateBill,
     getInvoice,
     getAllInvoice,
-    getAllOnlySending
+    getAllOnlySending,
+    getAllInvoiceForBill
 }
