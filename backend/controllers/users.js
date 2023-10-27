@@ -7,12 +7,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
-/*
-const token = jwt.sign({ id, email }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
-    })
-*/
-
 const prisma = new PrismaClient();
 
 const createUser = async (req, res) => {
@@ -36,18 +30,6 @@ const createUser = async (req, res) => {
 
 }
 
-const getUser = (req, res) => {
-
-    try {
-        res.json({ email: req.params.email })
-    }
-    catch (err) {
-        res.json({ msg: err })
-    }
-
-
-}
-
 const getAllUsers = async (req, res) => {
 
     try {
@@ -59,6 +41,7 @@ const getAllUsers = async (req, res) => {
         res.status(StatusCodes.OK).json(allUsers)
     }
     catch (err) {
+        console.log(err)
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t fetch users' })
     }
 
@@ -70,6 +53,5 @@ const getAllUsers = async (req, res) => {
 
 module.exports = {
     createUser,
-    getUser,
     getAllUsers
 }

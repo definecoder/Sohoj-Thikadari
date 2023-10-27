@@ -69,8 +69,8 @@ model Program {
 model Invoice {
     invoiceNo Int @id
 
-    bill   Bill   @relation(fields: [billID], references: [id])
-    billID String
+    bill   Bill?   @relation(fields: [billID], references: [id])
+    billID String?
 
     firm   Firm   @relation(fields: [firmID], references: [id])
     firmID String
@@ -78,7 +78,7 @@ model Invoice {
     program   Program @relation(fields: [programNo], references: [programNo])
     programNo Int
 
-    truckNo              Int?
+    truckNo              String?
     sendingDate          DateTime
     sendingNetSlack      Int
     sendingNetQuantity   Float
