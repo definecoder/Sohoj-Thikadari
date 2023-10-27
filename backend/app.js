@@ -3,6 +3,7 @@ const app = express();
 const users = require('./routes/users')
 const firms = require('./routes/firms')
 const login = require('./routes/auth')
+const authToken = require('./middlewares/auth')
 
 // middleware
 
@@ -10,8 +11,8 @@ app.use(express.json())
 
 // routes
 app.use('/api/v1/users', users)
-app.use('/api/v1/firms', firms)
-app.use('/login', login)
+app.use('/api/v1/firms', authToken, firms)
+app.use('/api/v1/login', login)
 
 
 // api/v1/users - post // create a new user

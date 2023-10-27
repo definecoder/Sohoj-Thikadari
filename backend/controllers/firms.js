@@ -1,5 +1,9 @@
 const { pool } = require('../database/database')
 
+const { PrismaClient } = require('@prisma/client')
+
+
+const primsa = new PrismaClient()
 const createFirm = async (req, res) => {
     try {
 

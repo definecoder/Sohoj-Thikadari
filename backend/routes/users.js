@@ -3,10 +3,11 @@ const router = express.Router()
 
 const authToken = require('../middlewares/auth')
 
-const { createUser, getUser } = require('../controllers/users')
+const { createUser, getUser, getAllUsers } = require('../controllers/users')
 
 
-router.route('/').post(createUser)
+router.route('/').post(createUser).get(getAllUsers);
+
 router.route('/:email').get(authToken, getUser) // maybe, let me see if I can do it with ID
 
 

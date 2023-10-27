@@ -1,29 +1,41 @@
 
 const jwt = require('jsonwebtoken')
+const { PrismaClient } = require('@prisma/client')
+const bcrypt = require('bcrypt')
+const { StatusCodes } = require('http-status-codes')
+
+
+const prisma = new PrismaClient()
 
 const login = async (req, res) => {
 
-    // res.send('login page')
+    try {
+        const { phone, password } = req.body
+        if (!phone || !password) {
+            throw new Error('Please provide email and password')
+        }
 
-    const { email, password } = req.body
+        const user = await prisma.user.findUniqueOrThrow({
+            where: { phone: phone }
+        })
 
+        const passwordMatched = await bcrypt.compare(password, user.hashedPassword)
 
-    if (!email || !password) {
-        throw new Error('Please provide email and password')
+        if (!passwordMatched) {
+            throw new Error("Password Did not matched!!")
+        }
+
+        const token = jwt.sign({ id: user.id, phone: user.phone }, process.env.JWT_SECRET, {
+            expiresIn: '30d',
+        })
+
+        res.status(StatusCodes.ACCEPTED).json({ token })
     }
-
-    //just for demo, normally provided by DB!!!!
-    const id = new Date().getDate()
-    // get user id from the data base using email and password
-
-    // try to keep payload small, better experience for user
-    // just for demo, in production use long, complex and unguessable string value!!!!!!!!!
-    const token = jwt.sign({ id, email }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
-    })
-
-    res.status(200).json({ msg: 'user created', token })
+    catch (err) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: err.message })
+    }
 }
+
 
 
 module.exports = login

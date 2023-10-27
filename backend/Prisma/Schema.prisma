@@ -1,0 +1,102 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id             String   @id @default(uuid())
+    username       String
+    phone          String   @unique
+    email          String   @unique
+    hashedPassword String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+    Firm           Firm[]
+}
+
+model Firm {
+    id           String  @id @default(uuid())
+    neg_no       String?
+    name         String
+    proprietor   String?
+    phone        String?
+    email        String?
+    tradeLicense String?
+
+    user   User   @relation(fields: [userID], references: [id])
+    userID String
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    Bill      Bill[]
+    Invoice   Invoice[]
+}
+
+model Bill {
+    id     String @id @default(uuid())
+    firm   Firm   @relation(fields: [firmID], references: [id])
+    firmID String
+
+    billNo       String
+    date         DateTime
+    amount       Float
+    commodity    String?
+    submittedTo  String?
+    govtBillNo   String?
+    govtBillDate DateTime?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+    Invoice      Invoice[]
+}
+
+model Program {
+    programNo       Int       @id
+    programDate     DateTime?
+    programQuantity Float?
+    commodity       String
+    sendingPoint    String
+    receivingPoint  String
+    status          Int       @default(0)
+    createdAt       DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
+    Invoice         Invoice[]
+}
+
+model Invoice {
+    invoiceNo Int @id
+
+    bill   Bill   @relation(fields: [billID], references: [id])
+    billID String
+
+    firm   Firm   @relation(fields: [firmID], references: [id])
+    firmID String
+
+    program   Program @relation(fields: [programNo], references: [programNo])
+    programNo Int
+
+    truckNo              Int?
+    sendingDate          DateTime
+    sendingNetSlack      Int
+    sendingNetQuantity   Float
+    sendingGrossQuantity Float
+
+    receivingDate          DateTime?
+    receivingNetSlack      Int?
+    receivingGrossSlack    Int?
+    receivingNetQuantity   Float?
+    receivingGrossQuantity Float?
+
+    shortage Float?
+    distance Float?
+
+    pricePerTon Float?
+
+    status Int @default(0)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
