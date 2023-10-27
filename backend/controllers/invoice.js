@@ -43,15 +43,22 @@ const updateReceivingInfo = async (req, res) => {
 }
 
 const updateRateAndDistance = async (req, res) => {
-    try {
 
-        const invoice = await prisma.invoice.update({
-            data: req.body,
-            where: {
-                invoiceNo: parseInt(req.params.id)
-            }
+    try {
+        const updatedInvoices = req.body.invoices.map((invoice) => {
+            return prisma.invoice.update({
+                data: {
+                    distance: invoice.distance,
+                    pricePerTon: invoice.pricePerTon
+                },
+                where: {
+                    invoiceNo: invoice.id
+                }
+            })
         })
-        res.status(StatusCodes.OK).json(invoice)
+
+        const updatedInvoicesP = await Promise.all(updatedInvoices)
+        res.status(StatusCodes.OK).json(updatedInvoicesP)
 
     } catch (err) {
         console.log(err)
@@ -86,6 +93,9 @@ const getAllInvoiceForBill = async (req, res) => {
                             receivingDate: {
                                 equals: null
                             }
+                        },
+                        distance: {
+                            equals: null
                         }
                     }
                 }

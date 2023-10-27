@@ -11,7 +11,7 @@ router.route('/sending/:firmId').get(getAllOnlySending)
 router.route('/receiving/:id').put(updateReceivingInfo)
 router.route('/:id').get(getInvoice)
 router.route('/all').get(getAllInvoice)
-router.route('/rateAndDistance/:id').put(updateRateAndDistance)
+router.route('/rateAndDistance/').put(updateRateAndDistance)
 router.route('/addbill/:firmId').put(updateBill)
 router.route('/forbill/:firmId').get(getAllInvoiceForBill)
 
