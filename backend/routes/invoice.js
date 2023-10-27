@@ -4,7 +4,8 @@ const router = express.Router()
 const { addSendingInfo, updateReceivingInfo, updateRateAndDistance, updateBill, getInvoice, getAllInvoice, getAllOnlySending } = require('../controllers/invoice')
 
 
-router.route('/sending').post(addSendingInfo).get(getAllOnlySending)
+router.route('/sending').post(addSendingInfo)
+router.route('/sending/:firmId').get(getAllOnlySending)
 router.route('/receiving/:id').put(updateReceivingInfo)
 router.route('/:id').get(getInvoice)
 router.route('/all').get(getAllInvoice)

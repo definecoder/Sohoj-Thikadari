@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes')
 const { PrismaClient } = require('@prisma/client')
+const { where } = require('sequelize')
 const prisma = new PrismaClient()
 
 const addSendingInfo = async (req, res) => {
@@ -57,17 +58,28 @@ const getAllInvoice = async (req, res) => {
 
 }
 
+const getAllInvoiceForBill = async (req, res) => {
+
+}
+
 const getAllOnlySending = async (req, res) => {
     try {
 
-        const invoices = await prisma.invoice.findMany({
+        const invoices = await prisma.firm.findUnique({
+
             where: {
-                receivingDate: {
-                    equals: null
+                id: req.params.firmId
+            },
+            select: {
+                Invoice: {
+                    where: {
+                        receivingDate: {
+                            equals: null
+                        }
+                    }
                 }
             }
         })
-
 
         res.status(StatusCodes.OK).json(invoices)
 
