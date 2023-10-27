@@ -1,6 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
 const { PrismaClient } = require('@prisma/client')
-const { where } = require('sequelize')
 const prisma = new PrismaClient()
 
 const addSendingInfo = async (req, res) => {
