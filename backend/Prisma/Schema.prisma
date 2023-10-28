@@ -43,7 +43,7 @@ model Bill {
 
     billNo       String
     date         DateTime
-    amount       Float
+    amount       Float?
     commodity    String?
     submittedTo  String?
     govtBillNo   String?
