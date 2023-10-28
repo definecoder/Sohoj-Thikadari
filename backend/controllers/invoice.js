@@ -1,70 +1,106 @@
 const { StatusCodes } = require('http-status-codes')
 const { PrismaClient } = require('@prisma/client')
+const asyncWrapper = require('../middlewares/asyncWrapper')
 const prisma = new PrismaClient()
 
-const addSendingInfo = async (req, res) => {
-    try {
-        const newInvoice = await prisma.invoice.create({
-            data: req.body
-        })
-        res.status(StatusCodes.OK).json(newInvoice)
+const addSendingInfo = asyncWrapper(async (req, res) => {
+    const newInvoice = await prisma.invoice.create({
+        data: req.body
+    })
+    res.status(StatusCodes.OK).json(newInvoice)
 
-    } catch (err) {
-        console.log(err)
-        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t add Sending Info' })
-    }
-}
+}, { msg: 'Couldn\'t add Sending Info' })
 
-const updateReceivingInfo = async (req, res) => {
-    try {
-        const invoiceExist = await prisma.invoice.count({
-            where: {
-                invoiceNo: parseInt(req.params.id)
-            }
-        })
-        if (!invoiceExist) {
-            res.status(StatusCodes.NOT_FOUND).json({ msg: 'invoice not found' })
-            return
+const updateReceivingInfo = asyncWrapper(async (req, res) => {
+
+    const invoiceExist = await prisma.invoice.count({
+        where: {
+            invoiceNo: parseInt(req.params.id)
         }
-        const invoice = await prisma.invoice.update({
-            data: req.body,
+    })
+    if (!invoiceExist) {
+        res.status(StatusCodes.NOT_FOUND).json({ msg: 'invoice not found' })
+        return
+    }
+    const invoice = await prisma.invoice.update({
+        data: req.body,
+        where: {
+            invoiceNo: parseInt(req.params.id)
+        }
+    })
+
+    res.status(StatusCodes.OK).json(invoice)
+
+
+}, { msg: 'Couldn\'t update receiving Info' })
+
+const updateRateAndDistance = asyncWrapper(async (req, res) => {
+
+    const updatedInvoices = req.body.invoices.map((invoice) => {
+        return prisma.invoice.update({
+            data: {
+                distance: invoice.distance,
+                pricePerTon: invoice.pricePerTon
+            },
             where: {
-                invoiceNo: parseInt(req.params.id)
+                invoiceNo: invoice.id
             }
         })
+    })
 
-        res.status(StatusCodes.OK).json(invoice)
+    const updatedInvoicesP = await Promise.all(updatedInvoices)
+    res.status(StatusCodes.OK).json(updatedInvoicesP)
 
-    } catch (err) {
-        console.log(err)
-        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t update receiving Info' })
-    }
-}
 
-const updateRateAndDistance = async (req, res) => {
+}, { msg: 'Couldn\'t update rate and distance' })
 
-    try {
-        const updatedInvoices = req.body.invoices.map((invoice) => {
-            return prisma.invoice.update({
-                data: {
-                    distance: invoice.distance,
-                    pricePerTon: invoice.pricePerTon
-                },
+
+
+const getAllInvoiceForBill = asyncWrapper(async (req, res) => {
+
+    const invoices = await prisma.firm.findUnique({
+        where: {
+            id: req.params.firmId
+        },
+        select: {
+            Invoice: {
                 where: {
-                    invoiceNo: invoice.id
+                    NOT: {
+                        receivingDate: {
+                            equals: null
+                        }
+                    },
+                    distance: {
+                        equals: null
+                    }
                 }
-            })
-        })
+            }
+        }
+    })
 
-        const updatedInvoicesP = await Promise.all(updatedInvoices)
-        res.status(StatusCodes.OK).json(updatedInvoicesP)
+    res.status(StatusCodes.OK).json(invoices)
 
-    } catch (err) {
-        console.log(err)
-        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t update rate and distance' })
-    }
+}, { msg: 'Couldn\'t get invoices for bill' })
 
-}
+const getAllOnlySending = asyncWrapper(async (req, res) => {
+
+    const invoices = await prisma.firm.findUnique({
+        where: {
+            id: req.params.firmId
+        },
+        select: {
+            Invoice: {
+                where: {
+                    receivingDate: {
+                        equals: null
+                    }
+                }
+            }
+        }
+    })
+    res.status(StatusCodes.OK).json(invoices)
+
+}, { msg: 'Couldn\'t fetch Sending invoice' })
 
 const updateBill = async (req, res) => {
 
@@ -77,67 +113,6 @@ const getInvoice = async (req, res) => {
 const getAllInvoice = async (req, res) => {
 
 }
-
-const getAllInvoiceForBill = async (req, res) => {
-    try {
-
-        const invoices = await prisma.firm.findUnique({
-            where: {
-                id: req.params.firmId
-            },
-            select: {
-                Invoice: {
-                    where: {
-                        NOT: {
-                            receivingDate: {
-                                equals: null
-                            }
-                        },
-                        distance: {
-                            equals: null
-                        }
-                    }
-                }
-            }
-        })
-
-        res.status(StatusCodes.OK).json(invoices)
-
-    } catch (err) {
-        console.log(err)
-        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t get invoices for bill' })
-    }
-
-}
-
-const getAllOnlySending = async (req, res) => {
-    try {
-
-        const invoices = await prisma.firm.findUnique({
-
-            where: {
-                id: req.params.firmId
-            },
-            select: {
-                Invoice: {
-                    where: {
-                        receivingDate: {
-                            equals: null
-                        }
-                    }
-                }
-            }
-        })
-
-        res.status(StatusCodes.OK).json(invoices)
-
-    } catch (err) {
-        console.log(err)
-        req.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Couldn\'t fetch Sending invoice' })
-    }
-}
-
-
 
 module.exports = {
     addSendingInfo,
