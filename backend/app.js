@@ -6,6 +6,7 @@ const login = require('./routes/auth')
 const program = require('./routes/program')
 const authToken = require('./middlewares/auth')
 const invoice = require('./routes/invoice')
+const bills = require('./routes/bills')
 
 // middleware
 
@@ -18,6 +19,7 @@ app.use('/api/v1/firms', authToken, firms)
 
 app.use('/api/v1/program', authToken, program)
 app.use('/api/v1/invoice', authToken, invoice)
+app.use('/api/v1/bills', authToken, bills)
 
 
 // api/v1/users - post // create a new user
