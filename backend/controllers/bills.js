@@ -10,7 +10,8 @@ const createBill = asyncWrapper(async (req, res) => {
         data: {
             firmID: req.body.firmID,
             billNo: req.body.billNo,
-            date: req.body.date
+            date: req.body.date,
+            submittedTo: req.body.submittedTo
         }
     })
 
@@ -31,7 +32,7 @@ const createBill = asyncWrapper(async (req, res) => {
 
     const updatedInvoicesP = await Promise.all(updatedInvoices)
 
-    // calculate amount here from invoice rate and distances (I don't know how it works)
+    // calculate amount here from invoice rate and distances and update bill amount (I don't know how it works)
 
 
     res.status(StatusCodes.CREATED).json({ newBill, updatedInvoicesP })
@@ -39,7 +40,7 @@ const createBill = asyncWrapper(async (req, res) => {
 }, { msg: 'Couldn\'t, create the bill' })
 
 const getBill = asyncWrapper(async (req, res) => {
-    bill = await prisma.bill.findUnique({
+    const bill = await prisma.bill.findUnique({
         include: {
             Invoice: {
                 include: {
@@ -55,9 +56,27 @@ const getBill = asyncWrapper(async (req, res) => {
 
 }, { code: 404, msg: "Couldn\'t get the bill" })
 
+const getAllBills = asyncWrapper(async (req, res) => {
 
+    const bills = await prisma.bill.findMany({
+        include: {
+            Invoice: {
+                include: {
+                    program: true
+                }
+            }
+        },
+        where: {
+            firmID: req.params.firmId
+        }
+    })
+
+    res.status(StatusCodes.OK).json(bills)
+
+}, { code: 404, msg: "Couldn\'t get bills" })
 
 module.exports = {
     createBill,
-    getBill
+    getBill,
+    getAllBills
 }
