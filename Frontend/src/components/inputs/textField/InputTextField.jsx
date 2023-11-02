@@ -1,4 +1,4 @@
-import './componentStyle.css'
+import './InputTextField.css';
 
 function InputTextField(props) {    
   

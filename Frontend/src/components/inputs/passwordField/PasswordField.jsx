@@ -1,4 +1,4 @@
-import './componentStyle.css'
+import './PasswordField.css';
 
 function PasswordField(props) {    
   
