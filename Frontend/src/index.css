@@ -10,21 +10,10 @@ a {
   color: inherit;
 }
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;  
-  font-family: 'Anek Bangla', sans-serif;
-  font-size: 18;
+  font-family: 'Anek Bangla', sans-serif;  
 }
