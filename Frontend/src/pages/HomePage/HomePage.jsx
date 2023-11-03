@@ -52,7 +52,14 @@ export default function HomePage() {
           </div>
           <div className="home-content-canvas">
             <div className="home-recent-program-canvas">ami</div>
-            <div className="home-user-status-canvas"></div>
+            <div className="home-user-status-canvas">
+              <div className="user-status-card">মোট প্রোগ্রাম <br />
+              <span>১২৯</span></div>
+              <div className="user-status-card">মোট বিল <br />
+              <span>২৬</span></div>
+              <div className="user-status-card">মোট ফার্ম <br />
+              <span>৩</span></div>
+            </div>
           </div>
         </div>
       </div>
