@@ -5,8 +5,9 @@ import newsData from "./newsData";
 import "./HomePage.css";
 import NewsCard from "./NewsCard";
 
-import CallIcon from '@mui/icons-material/Call';
-import EmailIcon from '@mui/icons-material/Email';
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import UserStatusCard from "./UserStatusCard";
 
 export default function HomePage() {
   // getting uid from login or signup :v
@@ -40,25 +41,34 @@ export default function HomePage() {
             <div className="home-profile-info-section">
               <div className="home-profile-info-card">
                 <div className="profile-info-card-upper-section">
-                  <CallIcon /> &nbsp; ফোন নম্বর</div>
-                <div className="profile-info-card-lower-section">+8801913112522</div>
+                  <CallIcon /> &nbsp; ফোন নম্বর
+                </div>
+                <div className="profile-info-card-lower-section">
+                  +8801913112522
+                </div>
               </div>
               <div className="home-profile-info-card">
-              <div className="profile-info-card-upper-section">
-                  <EmailIcon /> &nbsp; ইমেইল</div>
-                <div className="profile-info-card-lower-section"> codermehraj@gmail.com</div>
+                <div className="profile-info-card-upper-section">
+                  <EmailIcon /> &nbsp; ইমেইল
+                </div>
+                <div className="profile-info-card-lower-section">
+                  {" "}
+                  codermehraj@gmail.com
+                </div>
               </div>
             </div>
           </div>
           <div className="home-content-canvas">
-            <div className="home-recent-program-canvas">ami</div>
+            <div className="home-recent-program-canvas">
+              <div className="home-recent-program-title">সাম্প্রতিক প্রোগ্রাম সমুহ</div>
+              <div className="home-recent-program-cards-container">
+                <div className="recent-program-card"> program 1  </div>
+              </div>
+            </div>
             <div className="home-user-status-canvas">
-              <div className="user-status-card">মোট প্রোগ্রাম <br />
-              <span>১২৯</span></div>
-              <div className="user-status-card">মোট বিল <br />
-              <span>২৬</span></div>
-              <div className="user-status-card">মোট ফার্ম <br />
-              <span>৩</span></div>
+              <UserStatusCard title={'মোট প্রোগ্রাম'} number={'১২৯'}/>
+              <UserStatusCard title={'মোট বিল'} number={'২৬'}/>
+              <UserStatusCard title={'মোট ফার্ম'} number={'৩'}/>
             </div>
           </div>
         </div>
