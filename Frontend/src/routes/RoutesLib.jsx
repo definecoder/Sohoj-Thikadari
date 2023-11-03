@@ -2,7 +2,7 @@ import LandingPage from '../pages/landingPage/LandingPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LoginPage from '../pages/loginPage/loginPage';
 import SignUpPage from '../pages/signUpPage/SignUpPage';
-import HomePage from '../pages/HomePage/HomePage';
+import HomePage from '../pages/homePage/HomePage';
 import FirmProfilePage from '../pages/FirmProfilePage/FirmProfilePage';
 
 //import SignUpPage from '../pages/signupPage'
