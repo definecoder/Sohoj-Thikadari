@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LoginPage from '../pages/loginPage/loginPage';
 import SignUpPage from '../pages/signUpPage/SignUpPage';
 import HomePage from '../pages/homePage/HomePage';
+import FirmProfilePage from '../pages/FirmProfilePage/FirmProfilePage';
 
 //import SignUpPage from '../pages/signupPage'
 //import HomePage from '../pages/HomePage'
@@ -20,10 +21,10 @@ function RoutesLib () {
           <Route path="/login" element = {<LoginPage />} />
           <Route path="/signup" element = {<SignUpPage />} />
           <Route path="/home" element = {<HomePage />} />
+          <Route path="/firm/:firmId" element = {<FirmProfilePage />} />
           {/*                     
           <Route path="/profile" element = {<ProfilePage />} />
-          <Route path="/firms" element = {<MyFirmsPage />} />
-          <Route path="/firmName" element = {<FirmsProfilePage />} />
+          <Route path="/firms" element = {<MyFirmsPage />} />          
           <Route path="/addFirm" element = {<AddNewFirmPage />} /> */}
         </Routes>
       </BrowserRouter>
