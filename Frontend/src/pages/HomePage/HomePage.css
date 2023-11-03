@@ -1,3 +1,11 @@
-*{
+.home-canvas {
     background-color: #EDEDED;
+    width: 100vw;
+    height: 83vh;
+    overflow: scroll;    
 }
+
+.home-canvas::-webkit-scrollbar {
+    display: none;
+  }
+
