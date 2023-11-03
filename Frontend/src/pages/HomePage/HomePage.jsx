@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navBar/NavBar";
 import newsData from "./newsData";
+import recentProgramList from './recentProgramList';
 
 import "./HomePage.css";
 import NewsCard from "./NewsCard";
@@ -8,6 +9,7 @@ import NewsCard from "./NewsCard";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import UserStatusCard from "./UserStatusCard";
+import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
 
 export default function HomePage() {
   // getting uid from login or signup :v
@@ -62,7 +64,9 @@ export default function HomePage() {
             <div className="home-recent-program-canvas">
               <div className="home-recent-program-title">সাম্প্রতিক প্রোগ্রাম সমুহ</div>
               <div className="home-recent-program-cards-container">
-                <div className="recent-program-card"> program 1  </div>
+                {recentProgramList.map((program) => {
+                    return <RecentProgramInfoCard {...program} key={program.programId}/>;
+                })}                                
               </div>
             </div>
             <div className="home-user-status-canvas">
