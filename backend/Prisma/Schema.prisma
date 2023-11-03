@@ -63,7 +63,6 @@ model Program {
     status          Int       @default(0)
     createdAt       DateTime  @default(now())
     updatedAt       DateTime  @updatedAt
-    Invoice         Invoice[]
 }
 
 model Invoice {
@@ -75,8 +74,11 @@ model Invoice {
     firm   Firm   @relation(fields: [firmID], references: [id])
     firmID String
 
-    program   Program @relation(fields: [programNo], references: [programNo])
-    programNo Int
+    programNo      Int
+    programDate    DateTime?
+    commodity      String
+    sendingPoint   String
+    receivingPoint String
 
     truckNo              String?
     sendingDate          DateTime
