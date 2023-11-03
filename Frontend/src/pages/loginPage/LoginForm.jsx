@@ -23,7 +23,7 @@ const LoginForm = () => {
     else {
       alert(JSON.stringify(user));
       navigate("/home", {state: {
-        uid: 1,
+        user
       }});
     }
   };
