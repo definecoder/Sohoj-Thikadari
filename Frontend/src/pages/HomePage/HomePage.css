@@ -1,3 +1,78 @@
-*{
-    background-color: #EDEDED;
+.home-canvas {
+  background-color: #ededed;
+  width: 100vw;
+  height: 83vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+}
+
+.home-canvas::-webkit-scrollbar {
+  display: none;
+}
+
+.home-news-canvas::-webkit-scrollbar {
+  display: none;
+}
+
+.home-news-canvas {
+  background-color: rgba(128, 255, 0, 0.338);
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;  
+  overflow: scroll;
+}
+
+
+.home-news-title {
+    margin: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.news-card-canvas {
+    width: 85%;    
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: 8px;
+    padding: 10px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.news-card-canvas:hover {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background-color: #002d38;
+}
+
+.home-right-canvas {
+  background-color: rgba(0, 255, 255, 0.396);
+  width: 75vw;
+}
+
+.home-profile-canvas {
+  height: 25vh;
+  background-color: rgba(0, 0, 255, 0.407);
+}
+
+.home-content-canvas {
+  display: flex;
+  flex-direction: row;
+  height: 58vh;
+}
+
+.home-recent-program-canvas {
+  width: 55vw;
+  background-color: rgba(165, 42, 42, 0.391);
+}
+
+.home-user-status-canvas {
+  background-color: rgba(210, 105, 30, 0.379);
+  flex-grow: 1;
 }
