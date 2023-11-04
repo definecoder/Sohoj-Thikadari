@@ -1,0 +1,33 @@
+.ps-main-wrapper {
+    background-color: #ededed;
+    width: 100vw;
+    height: 83vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+
+.ps-header{
+    margin: 0px 200px;
+    font-size: 2em;
+    /* border: 1px solid red; */
+    align-self:flex-end
+}
+
+.ps-grid-wrapper{
+    margin-top: 50px;
+    margin-left: 100px;
+    height: 100%;
+    /* border: 1px solid blue; */
+    display: grid;
+    grid-template-columns: min-content min-content;
+    grid-auto-rows: min-content;
+    gap: 10px;
+    overflow: auto;
+    justify-content: space-evenly;
+    /* align-items: center; */
+}
+.ps-program{
+    width:650px;
+}
