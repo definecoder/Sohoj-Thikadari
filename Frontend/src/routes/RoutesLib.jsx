@@ -4,13 +4,8 @@ import LoginPage from '../pages/loginPage/loginPage';
 import SignUpPage from '../pages/signUpPage/SignUpPage';
 import HomePage from '../pages/homePage/HomePage';
 import FirmProfilePage from '../pages/FirmProfilePage/FirmProfilePage';
-
-//import SignUpPage from '../pages/signupPage'
-//import HomePage from '../pages/HomePage'
-//import ProfilePage from '../pages/ProfilePage'
-//import MyFirmsPage from '../pages/MyFirmsPage'
-//import FirmsProfilePage from '../pages/FirmsProfilePage'
-//import AddNewFirmPage from '../pages/AddNewFirm'
+import MyFirmsPage from '../pages/myFirmsPage/MyFirmsPage';
+import AddNewFirmPage from '../pages/addNewFirmPage/AddNewFirmPage';
 
 
 function RoutesLib () {
@@ -22,10 +17,8 @@ function RoutesLib () {
           <Route path="/signup" element = {<SignUpPage />} />
           <Route path="/home" element = {<HomePage />} />
           <Route path="/firm/:firmId" element = {<FirmProfilePage />} />
-          {/*                     
-          <Route path="/profile" element = {<ProfilePage />} />
-          <Route path="/firms" element = {<MyFirmsPage />} />          
-          <Route path="/addFirm" element = {<AddNewFirmPage />} /> */}
+          <Route path="/firms" element = {<MyFirmsPage />} />
+          <Route path="/addNewFirm" element = {<AddNewFirmPage /> } />          
         </Routes>
       </BrowserRouter>
     </>;
