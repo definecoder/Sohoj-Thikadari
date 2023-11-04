@@ -3,10 +3,14 @@
 }
 
 .light-btn {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
     background-color: #FFFFFF24;
     color: black;
     font-size: 28px;
-    padding: 0px 20px;
+    padding: 0px 40px;
     border-radius: 40px;
     margin: 10px 0px;
     cursor: pointer;

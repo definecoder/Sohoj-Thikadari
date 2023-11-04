@@ -2,7 +2,16 @@ import NavBar from "../../components/navBar/NavBar";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import LightIconButton from "../../components/light_button/LightIconButton";
 import LightIconButtonStyled from "../../components/light_button/LightIconButtonStyled";
-import { PlusSquareOutlined, FileDoneOutlined } from "@ant-design/icons";
+import {
+  PlusSquareOutlined,
+  FileDoneOutlined,
+  ProfileOutlined,
+  DollarOutlined,
+  CheckCircleOutlined,
+  ReadOutlined,
+  FileTextOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import "./FirmProfilePage.css";
 
 export default function FirmProfilePage() {
@@ -20,16 +29,17 @@ export default function FirmProfilePage() {
           </div>
           <div className="fp-left-btn-wrapper">
             <LightIconButtonStyled
-              buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+              buttonText="আমার বিলসমূহ"
               onClick={() => {}}
-              IconComponent={PlusSquareOutlined}
+              // <FontAwesomeIcon icon="fa-light fa-receipt" />
+              IconComponent={FileTextOutlined}
               routePath="forbidden"
               type="submit"
             />
             <LightIconButtonStyled
-              buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+              buttonText="ফার্মের তথ্য পরিবর্তন"
               onClick={() => {}}
-              IconComponent={PlusSquareOutlined}
+              IconComponent={EditOutlined}
               routePath="forbidden"
               type="submit"
             />
@@ -44,37 +54,37 @@ export default function FirmProfilePage() {
             type="submit"
           />
           <LightIconButton
-            buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+            buttonText="প্রাপ্তির তথ্য যুক্ত করুন"
             onClick={() => {}}
             IconComponent={FileDoneOutlined}
             routePath="forbidden"
             type="submit"
           />
           <LightIconButton
-            buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+            buttonText="চলমান প্রোগ্রামসমূহ"
             onClick={() => {}}
-            IconComponent={PlusSquareOutlined}
+            IconComponent={ProfileOutlined}
             routePath="forbidden"
             type="submit"
           />
           <LightIconButton
-            buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+            buttonText="বিল তৈরি করুন"
             onClick={() => {}}
-            IconComponent={PlusSquareOutlined}
+            IconComponent={DollarOutlined}
             routePath="forbidden"
             type="submit"
           />
           <LightIconButton
-            buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+            buttonText="সরকারী বিল নম্বর যুক্ত করূন"
             onClick={() => {}}
-            IconComponent={PlusSquareOutlined}
+            IconComponent={CheckCircleOutlined}
             routePath="forbidden"
             type="submit"
           />
           <LightIconButton
-            buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
+            buttonText="মুভমেন্ট রেজিস্টার"
             onClick={() => {}}
-            IconComponent={PlusSquareOutlined}
+            IconComponent={ReadOutlined}
             routePath="forbidden"
             type="submit"
           />
