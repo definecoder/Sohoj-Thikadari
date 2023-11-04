@@ -42,10 +42,8 @@ export default function AddNewProgramForm() {
     else if (!newprogramInfo.receivingPoint) alert("প্রাপক কেন্দ্র দিন");
     else {
       alert(JSON.stringify(newprogramInfo));
-      navigate("/home", {
-        state: {
-          uid: 1,
-        },
+      navigate("/addInvoiceInfo", {
+        state: newprogramInfo,
       });
     }
   };

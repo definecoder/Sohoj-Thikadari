@@ -8,6 +8,8 @@ import MyFirmsPage from '../pages/myFirmsPage/MyFirmsPage';
 import AddNewFirmPage from '../pages/addNewFirmPage/AddNewFirmPage';
 import ProgramSelectionPage from "../pages/program_selection_page/ProgramSelectionPage";
 import AddNewProgram from '../pages/addNewProgram/AddNewProgram';
+import AddNewIvoicePage from '../pages/addNewIvoicePage/AddNewIvoicePage';
+import AddRecievingInfoPage from '../pages/addRecievingInfo/AddRecievingInfoPage';
 
 function RoutesLib() {
   return (
@@ -23,6 +25,8 @@ function RoutesLib() {
           <Route path="/addNewFirm" element = {<AddNewFirmPage /> } />          
           <Route path="firm/:firmId/receiving-programs" element={<ProgramSelectionPage /> } />
           <Route path="/addNewProgram" element={<AddNewProgram /> } />
+          <Route path="/addInvoiceInfo" element={<AddNewIvoicePage /> } />
+          <Route path="/addRecievingInfo" element={<AddRecievingInfoPage /> } />          
         </Routes>
       </BrowserRouter>
     </>
