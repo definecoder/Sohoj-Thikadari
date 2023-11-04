@@ -1,0 +1,62 @@
+.addnewfirm-canvas {
+    width: 100vw;
+    height: 83vh;
+    background-color: #ededed;
+}
+
+.addnewfirm-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 15px;
+    padding-right: 50px;
+    text-align: right;
+}
+
+.add-new-firm-form {       
+    display: flex;    
+    flex-direction: column;
+    align-items: start;   
+    margin-top: 4px;         
+}
+
+.addfirm-main-form {
+    display: flex;    
+    flex-direction: row;
+    align-items: start;   
+}
+
+.addfirm-form-left {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    
+}
+.addfirm-form-right {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+}
+
+.addfirm-form-row {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+    margin-right: 3vw;
+}
+
+.addfirm-form-input {
+    width: 35vw;    
+}
+
+.addfirm-form-label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.registerbtn {
+    align-self: center;
+    margin: 2vh;
+}
