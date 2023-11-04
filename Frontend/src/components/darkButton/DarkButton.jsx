@@ -2,24 +2,24 @@ import { Link } from "react-router-dom";
 import "./DarkButton.css";
 
 function DarkButton(props) {
-  const { buttonText, onClick, routePath, type = "button"} = props;  
+  const { buttonText, onClick, routePath, type = "button" } = props;
 
-  if(routePath === "forbidden") {
+  if (routePath === "forbidden") {
     return (
       <>
         <div>
           <button onClick={onClick} type={type} className="DarkButton">
-              {buttonText}
-            </button>          
+            {buttonText}
+          </button>
         </div>
       </>
-    );  
+    );
   }
 
   return (
     <>
       <div>
-        <Link to={routePath}>          
+        <Link to={routePath}>
           <button onClick={onClick} type={type} className="DarkButton">
             {buttonText}
           </button>

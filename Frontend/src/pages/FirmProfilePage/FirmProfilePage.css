@@ -1,0 +1,16 @@
+.fp-main-wrapper{
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fp-left-section-wrapper{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    justify-content: space-around;
+}
+
+.fp-btn-wrapper{
+    /* border: 1px solid red; */
+}
