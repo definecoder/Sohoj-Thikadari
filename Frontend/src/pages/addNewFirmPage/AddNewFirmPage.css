@@ -26,7 +26,7 @@
 }
 
 .addfirm-form-left {
-    width: 50vw;
+    width: 55vw;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -34,7 +34,7 @@
     
 }
 .addfirm-form-right {
-    width: 50vw;
+    width: 45vw;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -44,16 +44,17 @@
 .addfirm-form-row {
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
-    margin-right: 3vw;
+    padding-right: 8vw;
 }
 
 .addfirm-form-input {
-    width: 35vw;    
+    width: 30vw; 
 }
 
 .addfirm-form-label {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
+    text-align: right;
 }
 
 .registerbtn {

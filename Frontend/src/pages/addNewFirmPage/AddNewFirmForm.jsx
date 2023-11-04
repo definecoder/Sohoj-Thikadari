@@ -1,20 +1,21 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space, Switch } from "antd";
+import { Input, InputNumber, Space, Switch } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import "./AddNewFirmPage.css";
 
 export default function AddNewFirmForm() {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    username: "",
+  const [newFirmInfo, setNewFirmInfo] = useState({
+    regNo: "",
+    name: "",
+    proprietor: "",
     phone: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    tradeLicense: "",
+    address: "",
   });
-  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
     if (
@@ -25,25 +26,20 @@ export default function AddNewFirmForm() {
       )
     )
       return;
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setNewFirmInfo({ ...newFirmInfo, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user.username) alert("ইউজারনেম দিন");
-    else if (!user.phone) alert("ফোন নম্বর দিন");
-    else if (!user.email) alert("ইমেইল দিন");
-    else if (!user.password) alert("পাসওয়ার্ড দিন");
-    else if (user.password !== user.confirmPassword)
-      alert("পাসওয়ার্ড দুইটি একই হয়নি");
-    else {
-      var retVal = {
-        username: user.username,
-        phone: user.phone,
-        email: user.email,
-        password: user.password,
-      };
-      alert(JSON.stringify(retVal));
+    if (!newFirmInfo.regNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
+    else if (!newFirmInfo.name) alert("ফার্মের নাম দিন");
+    else if (!newFirmInfo.proprietor) alert("প্রোপ্রাইটর এর নাম দিন");
+    else if (!newFirmInfo.tradeLicense) alert("ট্রেড লাইসেন্স দিন");
+    else if (!newFirmInfo.phone) alert("ফোন নম্বর দিন");
+    else if (!newFirmInfo.email) alert("ইমেইল দিন");
+    else if (!newFirmInfo.address) alert("ঠিকানা");
+    else {      
+      alert(JSON.stringify(newFirmInfo));
       navigate("/home", {
         state: {
           uid: 1,
@@ -56,121 +52,129 @@ export default function AddNewFirmForm() {
     <div>
       <form className="add-new-firm-form" onSubmit={handleSubmit}>
         <div className="addfirm-main-form">
-        <div className="addfirm-form-left">
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="name" className="addfirm-form-label">
-                ইউজারনেম
-              </label>
-              <Input
-                size="large"
-                placeholder="আপনার ইউজারনেম দিন"
-                className="addfirm-form-input"
-                id="username"
-                name="username"
-                value={user.username}
-                onChange={handleChange}
-              />
-            </Space>
+          <div className="addfirm-form-left">
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="name" className="addfirm-form-label">
+                  ফার্মের রেজিস্ট্রেশন নম্বর &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="আপনার ফার্মের রেজিস্ট্রেশন নম্বর দিন"
+                  className="addfirm-form-input"
+                  id="regNo"
+                  name="regNo"
+                  value={newFirmInfo.regNo}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
+
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="name" className="addfirm-form-label">
+                  ফার্মের নাম &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="আপনার ফার্মের নাম দিন"
+                  className="addfirm-form-input"
+                  id="name"
+                  name="name"
+                  value={newFirmInfo.name}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
+
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="password" className="addfirm-form-label">
+                  প্রোপাইটর &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="প্রোপাইটর এর নাম দিন"
+                  className="addfirm-form-input"
+                  id="proprietor"
+                  name="proprietor"
+                  value={newFirmInfo.proprietor}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
+
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="password" className="addfirm-form-label">
+                  ট্রেড লাইসেন্স &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="ট্রেড লাইসেন্স নম্বর দিন"
+                  className="addfirm-form-input"
+                  id="tradeLicense"
+                  name="tradeLicense"
+                  value={newFirmInfo.tradeLicense}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
           </div>
 
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="name" className="addfirm-form-label">
-                ফোন নম্বর
-              </label>
-              <Input
-                size="large"
-                placeholder="ফোন নম্বর দিন"
-                className="addfirm-form-input"
-                id="phone"
-                name="phone"
-                value={user.phone}
-                onChange={handleChange}
-              />
-            </Space>
-          </div>
+          <div className="addfirm-form-right">
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="name" className="addfirm-form-label">
+                  ফোন নম্বর &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="ফোন নম্বর দিন"
+                  className="addfirm-form-input"
+                  id="phone"
+                  name="phone"
+                  value={newFirmInfo.phone}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
 
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="name" className="addfirm-form-label">
-                ইমেইল
-              </label>
-              <Input
-                size="large"
-                placeholder="আপনার ইমেইল দিন"
-                className="addfirm-form-input"
-                id="email"
-                name="email"
-                value={user.email}
-                onChange={handleChange}
-              />
-            </Space>
-          </div>
-
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="password" className="addfirm-form-label">
-                পাসওয়ার্ড
-              </label>
-              <Input.Password
-                size="large"
-                placeholder="পাসওয়ার্ড দিন"
-                className="addfirm-form-input"
-                id="password"
-                name="password"
-                value={user.password}
-                onChange={handleChange}
-                visibilityToggle={{
-                  onVisibleChange: setPasswordVisible,
-                }}
-              />
-            </Space>
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="password" className="addfirm-form-label">
+                  ইমেইল &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="আপনার ইমেইল দিন"
+                  className="addfirm-form-input"
+                  id="email"
+                  name="email"
+                  value={newFirmInfo.email}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
+            <div className="addfirm-form-row">
+              <Space direction="horizontal">
+                <label htmlFor="password" className="addfirm-form-label">
+                  ঠিকানা &nbsp;
+                </label>
+                <Input
+                  size="large"
+                  placeholder="আপনার ঠিকানা দিন"
+                  className="addfirm-form-input"
+                  id="address"
+                  name="address"
+                  value={newFirmInfo.address}
+                  onChange={handleChange}
+                />
+              </Space>
+            </div>
           </div>
         </div>
 
-        <div className="addfirm-form-right">
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="password" className="addfirm-form-label">
-                পাসওয়ার্ড নিশ্চায়ন
-              </label>
-              <Input.Password
-                size="large"
-                placeholder="পুনরায় আপনার পাসওয়ার্ড দিন"
-                className="addfirm-form-input"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={user.confirmPassword}
-                onChange={handleChange}
-                visibilityToggle={{
-                  onVisibleChange: setPasswordVisible,
-                }}
-              />
-            </Space>
-          </div>
-          <div className="addfirm-form-row">
-            <Space direction="horizontal">
-              <label htmlFor="password" className="addfirm-form-label">
-                পাসওয়ার্ড নিশ্চায়ন
-              </label>
-              <Input.Password
-                size="large"
-                placeholder="পুনরায় আপনার পাসওয়ার্ড দিন"
-                className="addfirm-form-input"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={user.confirmPassword}
-                onChange={handleChange}
-                visibilityToggle={{
-                  onVisibleChange: setPasswordVisible,
-                }}
-              />
-            </Space>
-          </div>
-        </div>
-        </div>
-                
         <div className="registerbtn">
           <DarkButton
             buttonText="সংরক্ষন করুন"
@@ -179,8 +183,7 @@ export default function AddNewFirmForm() {
             type="submit"
           />
         </div>
-
-      </form>      
+      </form>
     </div>
   );
 }
