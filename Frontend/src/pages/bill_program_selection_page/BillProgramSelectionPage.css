@@ -1,0 +1,33 @@
+.bps-main-wrapper {
+    background-color: #ededed;
+    width: 100vw;
+    height: 83vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.bps-header{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.bps-header-left{
+    display: flex;
+    font-size: 2em;
+    justify-content: center;
+    align-items: end;
+}
+.bps-header-text{
+    margin-left: 10px;
+    /* align-self: flex-end; */
+}
+
+.bps-body{
+    width: 90%;
+}
