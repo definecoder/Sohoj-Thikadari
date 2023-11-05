@@ -24,10 +24,19 @@ export default function BillProgramSelectionPage() {
   }
 
   function handleSubmitClick() {
-    alert(JSON.stringify(selectList));
+    const newProgramList = [];
+
+    for (var i = 0; i < selectList.length; i++) {
+      if (selectList[i]) {
+        newProgramList.push(programList[i]);
+      }
+    }
+
+    console.log(newProgramList);
+    alert(newProgramList);
     navigate("/home", {
       state: {
-        selectList,
+        newProgramList,
       },
     });
   }
