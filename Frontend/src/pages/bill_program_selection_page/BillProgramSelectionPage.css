@@ -1,0 +1,9 @@
+.bps-main-wrapper {
+    background-color: #ededed;
+    width: 100vw;
+    height: 83vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
