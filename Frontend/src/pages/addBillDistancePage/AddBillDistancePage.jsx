@@ -102,6 +102,7 @@ export default function AddBillDistancePage() {
                       </td>
                       <td>
                         <Input
+                          size="large"
                           name="distance"
                           value={distance}
                           onChange={(e) => onChangeInput(e, index)}
@@ -110,6 +111,7 @@ export default function AddBillDistancePage() {
                       </td>
                       <td>
                         <Input
+                          size="large"
                           name="pricePerTon"
                           value={pricePerTon}
                           onChange={(e) => onChangeInput(e, index)}
