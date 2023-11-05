@@ -1,65 +1,104 @@
-.recent-program-card {
-    width: 80%;  
-    background-color: white;
-    margin: 8px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+.gov-bill-input-card {
+  width: 50%;
+  background-color: white;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+  max-width: 800px;
+}
 
-  .recent-program-card:hover {
-    background-color: azure;
-    cursor: pointer;
-  }
+.gov-bill-input-card:hover {
+  background-color: azure;
+  cursor: pointer;
+}
 
-  .recent-program-card-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 8px;
-    padding-bottom: 0px;
-    font-size: 1.2em;
-  }
+.gov-bill-input-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  padding-bottom: 0px;
+  font-size: 1.5em;
+}
 
-  .program-no-style {
-    color: #005163;
-    font-weight: bold;
-  }
+.gov-bill-input-card-header-right {
+  color: #005163;
+  font-style: italic;
+  font-weight: bold;    
+  letter-spacing: 2px;
+}
 
-  .recent-program-card-header-right {
-    color: #005163;
-    font-style: italic;    
-  }
+.gov-bill-input-card-title{
+  text-align: left;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 1.9em;
+  font-weight: bold;
+}
 
-  .recent-program-card-title{
-    text-align: left;
-    padding: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    font-size: 1.9em;
-    font-weight: bold;
-  }
+.gov-bill-input-card-subtitle {
+  text-align: left;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  font-size: 1.4em;
+  color: #005163;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 
-  .recent-program-card-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.gov-bill-input-card-footer {
+  display: flex;
+  flex-direction: row;
+}
 
-  .recent-program-card-footer-left {
-    text-align: left;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    font-size: 1.1em;
-  }
+.gov-bill-input-card-footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-size: 1.1em;
+  flex-grow: 1;
+}
 
-  .recent-program-card-footer-right {
-    text-align: right;
-    font-size: 1.7em;
-    font-weight: bold;
-    padding: 10px;
-    color: #005163;
-  }
+.gov-bill-input-canvas {      
+  width: 90%;
+  margin: 5px 15px 5px 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+.gov-bill-input-canvas span{
+  margin-right: 10px;
+}
+
+.gov-bill-input-textfield {
+  width: 70%;
+  box-shadow: 1.5px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.gov-bill-input-card-footer-right {    
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  font-weight: bold;
+  margin: 10px;
+  
+}
+
+.savebtn-addgovbill {
+  font-size: 1.3em !important;    
+  font-weight: normal;
+  letter-spacing: 1px;
+  height: auto !important;
+  padding: 5px 15px 5px 15px !important;    
+  background-color: #005163;
+}

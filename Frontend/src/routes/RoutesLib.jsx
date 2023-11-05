@@ -14,6 +14,7 @@ import AddBillDistancePage from "../pages/addBillDistancePage/AddBillDistancePag
 import AddBillHeadings from "../pages/addBillHeadings/AddBillHeadings";
 import BillDownloadPage from "../pages/billDownloadPage/BillDownloadPage";
 import BillProgramSelectionPage from "../pages/bill_program_selection_page/BillProgramSelectionPage";
+import AddGovBillNumPage from "../pages/addGovBillNumPage/AddGovBillNumPage";
 
 function RoutesLib() {
   return (
@@ -40,6 +41,10 @@ function RoutesLib() {
           <Route
             path="firm/:firmId/bill/invoices"
             element={<BillProgramSelectionPage />}
+          />
+          <Route
+            path="firm/:firmId/addgovbillnum"
+            element={<AddGovBillNumPage />}
           />
         </Routes>
       </BrowserRouter>
