@@ -13,17 +13,12 @@ export default function ProgramSelectionCard({
   receivingDate,
   comodity,
   programId,
+  selected,
+  handleClick,
 }) {
-  const [selected, setSelected] = useState(false);
-
   return (
     <>
-      <div
-        onClick={() => {
-          selected ? setSelected(false) : setSelected(true);
-        }}
-        className="psc-main-wrapper"
-      >
+      <div onClick={handleClick} className="psc-main-wrapper">
         <div className="psc-checkbox">
           {selected ? <SelectedCircle /> : <BlankCircle />}
         </div>
