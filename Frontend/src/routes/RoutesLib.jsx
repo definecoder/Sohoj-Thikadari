@@ -10,6 +10,7 @@ import ProgramSelectionPage from "../pages/program_selection_page/ProgramSelecti
 import AddNewProgram from '../pages/addNewProgram/AddNewProgram';
 import AddNewIvoicePage from '../pages/addNewIvoicePage/AddNewIvoicePage';
 import AddRecievingInfoPage from '../pages/addRecievingInfo/AddRecievingInfoPage';
+import AddBillDistancePage from '../pages/addBillDistancePage/AddBillDistancePage';
 
 function RoutesLib() {
   return (
@@ -26,7 +27,8 @@ function RoutesLib() {
           <Route path="firm/:firmId/receiving-programs" element={<ProgramSelectionPage /> } />
           <Route path="/addNewProgram" element={<AddNewProgram /> } />
           <Route path="/addInvoiceInfo" element={<AddNewIvoicePage /> } />
-          <Route path="/addRecievingInfo" element={<AddRecievingInfoPage /> } />          
+          <Route path="/addRecievingInfo" element={<AddRecievingInfoPage /> } />
+          <Route path="/addBillDistance" element={<AddBillDistancePage />} /> 
         </Routes>
       </BrowserRouter>
     </>
