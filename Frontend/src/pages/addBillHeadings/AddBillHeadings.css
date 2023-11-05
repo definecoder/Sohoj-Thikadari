@@ -1,0 +1,59 @@
+.addbillheadings-canvas {
+    height: 83vh;
+    width: 100%;
+}
+
+.addbillheadings-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 15px;
+    padding-bottom: 10px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+.add-bill-heading-form {       
+    display: flex;    
+    flex-direction: column;
+    align-items: start;   
+    margin-top: 4px;         
+}
+
+.makebill-main-form {
+    display: flex;    
+    flex-direction: row;
+    align-items: start;   
+}
+
+.makebill-form-left {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    padding-right: 25vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    
+}
+
+.makebill-form-row {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+    padding-right: 8vw;
+}
+
+.makebill-form-input {
+    width: 30vw; 
+}
+
+.makebill-form-label {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.makebill-btn {
+    align-self: center;
+    margin: 2vh;
+}

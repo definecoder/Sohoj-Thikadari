@@ -17,3 +17,7 @@ a {
   list-style: none;  
   font-family: 'Anek Bangla', sans-serif;  
 }
+
+body {
+  background-color: #ededed;
+}
