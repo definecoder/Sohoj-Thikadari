@@ -33,7 +33,7 @@ export default function BillProgramSelectionPage() {
     }
 
     console.log(newProgramList);
-    alert(newProgramList);
+    alert(JSON.stringify(newProgramList));
     navigate("/home", {
       state: {
         newProgramList,
