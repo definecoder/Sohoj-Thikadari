@@ -37,7 +37,7 @@ export default function AddBillHeadings() {
     else if (!newFirmInfo.date) alert("প্রোপ্রাইটর এর নাম দিন");    
     else {
       alert(JSON.stringify(newFirmInfo));
-      navigate("/home", {
+      navigate("/billDownloadPage", {
         state: {
           uid: 1,
         },

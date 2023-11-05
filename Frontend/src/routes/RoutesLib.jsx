@@ -12,6 +12,7 @@ import AddNewIvoicePage from '../pages/addNewIvoicePage/AddNewIvoicePage';
 import AddRecievingInfoPage from '../pages/addRecievingInfo/AddRecievingInfoPage';
 import AddBillDistancePage from '../pages/addBillDistancePage/AddBillDistancePage';
 import AddBillHeadings from '../pages/addBillHeadings/AddBillHeadings';
+import BillDownloadPage from '../pages/billDownloadPage/BillDownloadPage';
 
 function RoutesLib() {
   return (
@@ -30,7 +31,8 @@ function RoutesLib() {
           <Route path="/addInvoiceInfo" element={<AddNewIvoicePage /> } />
           <Route path="/addRecievingInfo" element={<AddRecievingInfoPage /> } />
           <Route path="/addBillDistance" element={<AddBillDistancePage />} />
-          <Route path="/addBillHeadings" element={< AddBillHeadings />} />           
+          <Route path="/addBillHeadings" element={< AddBillHeadings />} />                     
+          <Route path="/billDownloadPage" element={<BillDownloadPage/> } />  
         </Routes>
       </BrowserRouter>
     </>
