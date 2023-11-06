@@ -1,0 +1,40 @@
+.rp-main-wrapper {
+    background-color: #ededed;
+    width: 100vw;
+    height: 83vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rp-header {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.rp-header-right{
+    padding: 0;
+}
+
+.rp-header-left {
+    display: flex;
+    font-size: 2em;
+    justify-content: center;
+    align-items: end;
+}
+
+.rp-header-text {
+    margin-left: 10px;
+}
+
+.rp-body {
+    padding-right: 0;
+    width: 80%;
+}
+.rp-col{
+    display: flex;
+    justify-content: center;
+}
