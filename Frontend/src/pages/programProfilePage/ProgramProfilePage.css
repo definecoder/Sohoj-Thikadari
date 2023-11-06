@@ -1,0 +1,182 @@
+.program-profile-page-canvas {
+    height: 83vh;
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.program-profile-left-section {
+    width: 50vw;
+}
+
+.program-profile-left-section-1{
+    height: 40%;    
+    padding: 4%;
+    padding-bottom: 0%;
+    padding-top: 4%;
+}
+.pp-ls-1-card{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 30px 10px 30px;
+    display: flex;    
+    flex-direction: column;
+    justify-content: space-around; 
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 100%;    
+    transition: box-shadow 0.3s, transform 0.3s;
+    overflow: scroll;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15); 
+}
+
+.pp-ls-1-card:hover{
+    cursor: pointer;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    background-color: #96ecff24;
+}
+
+.pp-ls-1-card::-webkit-scrollbar {
+    display: none;
+}
+
+.sending-reciving-programprofile-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;    
+}
+
+.sen-rec-programprofile-header-left {
+    font-size: 2.3em;
+    font-style: italic;
+    color: #4b0c6b;
+    letter-spacing: 1px;
+}
+
+.sen-rec-programprofile-header-right {
+    font-size: 2.7em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #005163;
+}
+
+
+.sending-reciving-programprofile-card-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+}
+
+.program-profile-left-section-3{
+    height: 20%;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 8% 5% 8%;
+    font-size: 1.5em;
+}
+
+.program-profile-right-section {
+    width: 50vw;
+}
+
+.program-profile-right-section-1{
+    height: 25%;
+    
+}
+.program-profile-right-section-2{
+    height: 40%;    
+    padding: 3%;    
+    padding-top: 0;
+}
+
+.pp-invoice-info-card {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 30px 10px 30px;
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;   
+    align-items: start;
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 100%;    
+    transition: box-shadow 0.3s, transform 0.3s;
+    overflow: scroll;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15); 
+}
+
+.pp-invoice-info-card::-webkit-scrollbar {
+    display: none;
+}
+
+.pp-invoice-info-card:hover{
+    cursor: pointer;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    background-color: #96ecff24;
+}
+
+.pp-invoice-card-1{
+    font-size: 1.8em;
+
+}
+.pp-invoice-card-2{
+    font-size: 3em;  
+    font-weight: bold;     
+    color: #005163;
+}
+.pp-invoice-card-3{
+    font-size: 1.8em;       
+}
+.pp-invoice-card-4{
+    font-size: 1.3em;   
+    font-style: italic; 
+}
+
+.program-profile-right-section-3{
+    height: 20%;
+    padding: 0% 3% 3% 3%;
+}
+
+
+.pp-billno-card{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 30px 10px 30px;
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;     
+    align-items: start;    
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 100%;    
+    transition: box-shadow 0.3s, transform 0.3s;
+    overflow: scroll;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
+    font-size: 1.5em;
+}
+
+.pp-billno-card::-webkit-scrollbar {
+    display: none;
+}
+
+.pp-billno-card:hover{
+    cursor: pointer;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    background-color: #96ecff24;
+}
+
+.program-profile-right-section-4{
+    height: 15%;
+    font-size: 1.8em;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    padding-right: 10%;
+    padding-top: 1%;
+}

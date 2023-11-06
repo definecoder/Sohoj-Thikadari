@@ -1,0 +1,33 @@
+.gov-bill-num-add-page-canvas{
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.gov-bill-num-add-page-canvas::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.add-gov-bill-num-page-title {
+
+    font-size: 2.5em;
+    font-weight: bold;
+    padding-bottom: 10px;
+
+}
+
+.main-content-gov-bill-add {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    width: 100%;
+}
+
+.main-content-gov-bill-add::-webkit-scrollbar {
+    display: none;
+}
