@@ -61,8 +61,15 @@ export default function ProgramProfilePage() {
                 <span className="pp-invoice-card-4">প্রোগ্রামের তারিখঃ  <b>১৫/১২/২০২২</b></span>
             </div>
           </div>
-          <div className="program-profile-right-section-3">3</div>
-          <div className="program-profile-right-section-4">4</div>
+          <div className="program-profile-right-section-3">
+            <div className="pp-billno-card">
+            <span>সরকারি বিল নম্বর :  <b>৭৭৪৯</b></span>
+            <span>বিল নং :  <b>৩৭০৬১৫১</b></span>
+            </div>
+          </div>
+          <div className="program-profile-right-section-4">
+            <b>ট্রাক নংঃ&nbsp;</b> <i>২৪১২৩</i>
+          </div>
         </div>
       </div>
     </>

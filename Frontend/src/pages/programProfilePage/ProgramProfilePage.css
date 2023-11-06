@@ -90,7 +90,7 @@
     
 }
 .program-profile-right-section-2{
-    height: 35%;    
+    height: 40%;    
     padding: 3%;    
     padding-top: 0;
 }
@@ -100,7 +100,8 @@
     padding: 10px 30px 10px 30px;
     display: flex;    
     flex-direction: column;
-    justify-content: space-evenly;     
+    justify-content: center;   
+    align-items: start;
     border: 2px solid black;
     border-radius: 20px;
     height: 100%;    
@@ -121,26 +122,61 @@
 }
 
 .pp-invoice-card-1{
-    font-size: 1.7em;
+    font-size: 1.8em;
 
 }
 .pp-invoice-card-2{
-    font-size: 2.3em;  
+    font-size: 3em;  
     font-weight: bold;     
+    color: #005163;
 }
 .pp-invoice-card-3{
-    font-size: 1.7em;   
+    font-size: 1.8em;       
 }
 .pp-invoice-card-4{
-    font-size: 1.2em;    
+    font-size: 1.3em;   
+    font-style: italic; 
 }
 
 .program-profile-right-section-3{
-    height: 25%;
-    background-color: rgba(91, 20, 9, 0.307);
+    height: 20%;
+    padding: 0% 3% 3% 3%;
+}
+
+
+.pp-billno-card{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 30px 10px 30px;
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;     
+    align-items: start;    
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 100%;    
+    transition: box-shadow 0.3s, transform 0.3s;
+    overflow: scroll;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
+    font-size: 1.5em;
+}
+
+.pp-billno-card::-webkit-scrollbar {
+    display: none;
+}
+
+.pp-billno-card:hover{
+    cursor: pointer;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    background-color: #96ecff24;
 }
 
 .program-profile-right-section-4{
     height: 15%;
-    background-color: rgba(181, 111, 100, 0.163);
+    font-size: 1.8em;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    padding-right: 10%;
+    padding-top: 1%;
 }
