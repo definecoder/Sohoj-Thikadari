@@ -73,7 +73,8 @@ const signupForm = () => {
           "http://localhost:8888/api/v1/users",
           retVal
         );
-        setModalText(`Congratulations! ${retVal.username}`);
+        setModalText(`Congratulations! ${response.data.token}`);
+        localStorage.setItem('token', "Bearer " + response.data.token);
         setModalTitle("Your registrations is successfull");
         setModalRoute("/home");
         showModal();

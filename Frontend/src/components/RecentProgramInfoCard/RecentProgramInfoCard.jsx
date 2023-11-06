@@ -4,19 +4,22 @@ export default function RecentProgramInfoCard({
   programNo,
   programDate,
   sendingPoint,
-  recievingPoint,
-  noOfSlacks,
+  receivingPoint,
+  sendingNetSlack,
   sendingDate,
-  programStatus,
-  comodity,
-  programId,
+  status,
+  commodity,
+  invoiceNo,
 }) {
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
+   sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
+   programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
   return (
     <>
       <div
         className="recent-program-card"
         onClick={() => {
-          alert(programId);
+          alert(invoiceNo);
         }}
       >
         <div className="recent-program-card-header">
@@ -27,15 +30,15 @@ export default function RecentProgramInfoCard({
           <div className="recent-program-card-header-right">{programDate}</div>
         </div>
         <div className="recent-program-card-title">
-          {sendingPoint} - {recievingPoint}
+          {sendingPoint} - {receivingPoint}
         </div>
         <div className="recent-program-card-footer">
           <div className="recent-program-card-footer-left">
-            <b>{noOfSlacks} বস্তা</b> - &nbsp; <i>{comodity}</i>
+            <b>{sendingNetSlack} বস্তা</b> - &nbsp; <i>{commodity}</i>
             <br /> <b>প্রেরনঃ</b> &nbsp; {sendingDate}{" "}
           </div>
           <div className="recent-program-card-footer-right">
-            {programStatus}
+            {status}
           </div>
         </div>
       </div>
