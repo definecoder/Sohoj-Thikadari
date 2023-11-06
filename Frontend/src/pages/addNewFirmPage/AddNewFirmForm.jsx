@@ -2,6 +2,7 @@ import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, InputNumber, Space, Switch } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import "./AddNewFirmPage.css";
 
@@ -29,7 +30,7 @@ export default function AddNewFirmForm() {
     setNewFirmInfo({ ...newFirmInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newFirmInfo.regNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
     else if (!newFirmInfo.name) alert("ফার্মের নাম দিন");
@@ -38,9 +39,22 @@ export default function AddNewFirmForm() {
     else if (!newFirmInfo.phone) alert("ফোন নম্বর দিন");
     else if (!newFirmInfo.email) alert("ইমেইল দিন");
     else if (!newFirmInfo.address) alert("ঠিকানা");
-    else {      
+    else {
       alert(JSON.stringify(newFirmInfo));
-      navigate("/home", {
+      try {
+        const response = await axios.post(
+          "http://localhost:8888/api/v1/firms",
+          newFirmInfo,
+          {
+            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0NWM2NDM1LWI4Y2MtNGQwNi1iMGYyLWU1ZDdjNmVlMzdhMSIsInBob25lIjoiMTMyNDEzMiIsImlhdCI6MTY5OTI3NjAzMywiZXhwIjoxNzAxODY4MDMzfQ.inYDpt8oh3-sBwnqEk-5_5UWVqm-edMj1qIVLpUxn4Q` },
+          }
+        ); 
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
+      navigate("/firms", {
         state: {
           uid: 1,
         },

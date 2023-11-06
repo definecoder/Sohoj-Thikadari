@@ -7,7 +7,7 @@ export default function ProgramSelectionCard({
   programNo,
   programDate,
   sendingPoint,
-  recievingPoint,
+  receivingPoint,
   noOfSlacks,
   sendingDate,
   receivingDate,
@@ -31,7 +31,7 @@ export default function ProgramSelectionCard({
             <div className="psc-header-right">{programDate}</div>
           </div>
           <div className="psc-title">
-            {sendingPoint} - {recievingPoint}
+            {sendingPoint} - {receivingPoint}
           </div>
           <div className="psc-footer">
             <div className="psc-footer-left">

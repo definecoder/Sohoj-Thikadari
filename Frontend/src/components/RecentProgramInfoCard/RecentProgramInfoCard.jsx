@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./RecentProgramInfoCard.css";
 
 export default function RecentProgramInfoCard({
@@ -10,7 +11,9 @@ export default function RecentProgramInfoCard({
   status,
   commodity,
   invoiceNo,
+  route
 }) {
+  const navigate = useNavigate();
   const options = { year: "numeric", month: "numeric", day: "numeric" };
    sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
    programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
@@ -19,7 +22,7 @@ export default function RecentProgramInfoCard({
       <div
         className="recent-program-card"
         onClick={() => {
-          alert(invoiceNo);
+          route ? navigate(route)  : navigate("/program/"+invoiceNo);
         }}
       >
         <div className="recent-program-card-header">

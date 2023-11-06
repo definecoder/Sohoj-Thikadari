@@ -2,6 +2,7 @@ import NavBar from "../../components/navBar/NavBar";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import LightIconButton from "../../components/light_button/LightIconButton";
 import LightIconButtonStyled from "../../components/light_button/LightIconButtonStyled";
+import { useParams } from "react-router-dom";
 import {
   PlusSquareOutlined,
   FileDoneOutlined,
@@ -15,6 +16,7 @@ import {
 import "./FirmProfilePage.css";
 
 export default function FirmProfilePage() {
+  let { firmId } = useParams();
   return (
     <>
       <NavBar />
@@ -33,7 +35,7 @@ export default function FirmProfilePage() {
               onClick={() => {}}
               // <FontAwesomeIcon icon="fa-light fa-receipt" />
               IconComponent={FileTextOutlined}
-              routePath="forbidden"
+              routePath={"/firm/"+ firmId +"/bills"}
               type="submit"
             />
             <LightIconButtonStyled
@@ -50,42 +52,42 @@ export default function FirmProfilePage() {
             buttonText="নতুন প্রোগ্রাম যুক্ত করুন"
             onClick={() => {}}
             IconComponent={PlusSquareOutlined}
-            routePath="forbidden"
+            routePath={"/firm/" + firmId + "/addNewProgram"}
             type="submit"
           />
           <LightIconButton
             buttonText="প্রাপ্তির তথ্য যুক্ত করুন"
             onClick={() => {}}
             IconComponent={FileDoneOutlined}
-            routePath="forbidden"
+            routePath={"/firm/" + firmId + "/receiving-programs"}
             type="submit"
           />
           <LightIconButton
             buttonText="চলমান প্রোগ্রামসমূহ"
             onClick={() => {}}
             IconComponent={ProfileOutlined}
-            routePath="forbidden"
+            routePath={"/firm/"+firmId+"/programs"}
             type="submit"
           />
           <LightIconButton
             buttonText="বিল তৈরি করুন"
             onClick={() => {}}
             IconComponent={DollarOutlined}
-            routePath="forbidden"
+            routePath={"/firm/" + firmId + "/bill/invoices"}
             type="submit"
           />
           <LightIconButton
             buttonText="সরকারী বিল নম্বর যুক্ত করূন"
             onClick={() => {}}
             IconComponent={CheckCircleOutlined}
-            routePath="forbidden"
+            routePath={"/firm/" + firmId + "/addgovbillnum"}
             type="submit"
           />
           <LightIconButton
             buttonText="মুভমেন্ট রেজিস্টার"
             onClick={() => {}}
             IconComponent={ReadOutlined}
-            routePath="forbidden"
+            routePath={"/firm/" + firmId + "/movement-register"}
             type="submit"
           />
         </div>

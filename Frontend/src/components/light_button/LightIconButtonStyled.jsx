@@ -26,8 +26,7 @@ function LightIconButtonStyled(props) {
 
   return (
     <>
-      <div>
-        <IconComponent />
+      <div>        
         <Link to={routePath}>
           <button onClick={onClick} type={type} className="light-btn-styled">
             <IconComponent className="lb-icon" />

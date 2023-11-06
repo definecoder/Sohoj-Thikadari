@@ -1,17 +1,21 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, DatePicker, Space, Switch } from "antd";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import "./AddBillHeadings.css";
 import NavBar from "../../components/navBar/NavBar";
 
 export default function AddBillHeadings() {
   const navigate = useNavigate();
+  let { firmId } = useParams();
+  const billEntryList = useLocation().state;
   const [newFirmInfo, setNewFirmInfo] = useState({
     billNo: "",
     submittedTo: "",
     date: "",
+    invoices: billEntryList,
   });
 
   const handleChange = (e) => {
@@ -36,11 +40,14 @@ export default function AddBillHeadings() {
     else if (!newFirmInfo.submittedTo) alert("ফার্মের নাম দিন");
     else if (!newFirmInfo.date) alert("প্রোপ্রাইটর এর নাম দিন");    
     else {
+      // setNewFirmInfo({
+      //   ...newFirmInfo,
+      //   invoices: billEntryList,
+      // });
+      //console.log(newFirmInfo);
       alert(JSON.stringify(newFirmInfo));
-      navigate("/billDownloadPage", {
-        state: {
-          uid: 1,
-        },
+      navigate("/firm/" + firmId + "/bill/billDownloadPage", {
+        state: newFirmInfo,
       });
     }
   };

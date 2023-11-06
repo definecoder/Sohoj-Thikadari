@@ -36,12 +36,12 @@ function RoutesLib() {
             path="firm/:firmId/receiving-programs"
             element={<ProgramSelectionPage />}
           />
-          <Route path="/addNewProgram" element={<AddNewProgram />} />
-          <Route path="/addInvoiceInfo" element={<AddNewIvoicePage />} />
-          <Route path="/addRecievingInfo" element={<AddRecievingInfoPage />} />
-          <Route path="/addBillDistance" element={<AddBillDistancePage />} />
-          <Route path="/addBillHeadings" element={<AddBillHeadings />} />
-          <Route path="/billDownloadPage" element={<BillDownloadPage />} />
+          <Route path="/firm/:firmId/addNewProgram" element={<AddNewProgram />} />
+          <Route path="/firm/:firmId/addInvoiceInfo" element={<AddNewIvoicePage />} />
+          <Route path="/firm/:invoiceNo/addRecievingInfo" element={<AddRecievingInfoPage />} />
+          <Route path="firm/:firmId/bill/addBillDistance" element={<AddBillDistancePage />} />
+          <Route path="firm/:firmId/bill/addBillHeadings" element={<AddBillHeadings />} />
+          <Route path="firm/:firmId/bill/billDownloadPage" element={<BillDownloadPage />} />
           <Route
             path="firm/:firmId/bill/invoices"
             element={<BillProgramSelectionPage />}
