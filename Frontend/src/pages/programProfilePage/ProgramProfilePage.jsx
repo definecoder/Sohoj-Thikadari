@@ -1,3 +1,4 @@
+import FirmInfo from "../../components/firm_info/FirmInfo";
 import NavBar from "../../components/navBar/NavBar";
 import "./ProgramProfilePage.css";
 
@@ -49,8 +50,17 @@ export default function ProgramProfilePage() {
           </div>
         </div>
         <div className="program-profile-right-section">
-          <div className="program-profile-right-section-1">1</div>
-          <div className="program-profile-right-section-2">2</div>
+          <div className="program-profile-right-section-1">
+            <FirmInfo firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"} firmAddress={"২১৪, শেখ মুজিব রোড, চট্টগ্রাম"} ProprietorName={"মোঃ জহিরুল ইসলাম"}/>
+          </div>
+          <div className="program-profile-right-section-2">
+            <div className="pp-invoice-info-card">
+                <span className="pp-invoice-card-1">ইনভয়েস  নং :  <b>৩৭০৬১৫১</b></span>
+                <span className="pp-invoice-card-2">চাউল</span>
+                <span className="pp-invoice-card-3">প্রোগ্রাম নং :  <b>৭৭৪৯</b></span>
+                <span className="pp-invoice-card-4">প্রোগ্রামের তারিখঃ  <b>১৫/১২/২০২২</b></span>
+            </div>
+          </div>
           <div className="program-profile-right-section-3">3</div>
           <div className="program-profile-right-section-4">4</div>
         </div>
