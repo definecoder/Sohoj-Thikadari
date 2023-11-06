@@ -15,6 +15,7 @@ import AddBillHeadings from "../pages/addBillHeadings/AddBillHeadings";
 import BillDownloadPage from "../pages/billDownloadPage/BillDownloadPage";
 import BillProgramSelectionPage from "../pages/bill_program_selection_page/BillProgramSelectionPage";
 import AddGovBillNumPage from "../pages/addGovBillNumPage/AddGovBillNumPage";
+import ProgramProfilePage from "../pages/programProfilePage/ProgramProfilePage";
 
 function RoutesLib() {
   return (
@@ -45,6 +46,10 @@ function RoutesLib() {
           <Route
             path="firm/:firmId/addgovbillnum"
             element={<AddGovBillNumPage />}
+          />
+          <Route
+            path="program/:pid"
+            element={<ProgramProfilePage />}
           />
         </Routes>
       </BrowserRouter>

@@ -10,7 +10,7 @@ export default function AddGovBillNumPage() {
       billDate: "১০/০৩/২০২৩",
     },
     {
-      billNo: "চাউল / ২৬ / ২০২১-২২২৩",
+      billNo: "চাউল / ২৭ / ২০২১-২২২৩",
       amount: "২৪২০৫৬",
       billDate: "১০/০৩/২০২৩",
     },
