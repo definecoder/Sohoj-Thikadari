@@ -1,0 +1,41 @@
+.bp-main-wrapper {
+    background-color: #ededed;
+    width: 100vw;
+    height: 83vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bp-header {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.bp-header-right {
+    padding: 0;
+}
+
+.bp-header-left {
+    display: flex;
+    font-size: 2em;
+    justify-content: center;
+    align-items: end;
+}
+
+.bp-header-text {
+    margin-left: 10px;
+}
+
+.bp-body {
+    padding-right: 0;
+    width: 80%;
+}
+
+.bp-col {
+    display: flex;
+    justify-content: center;
+}
