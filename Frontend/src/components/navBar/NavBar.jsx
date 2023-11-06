@@ -22,7 +22,6 @@ export default function NavBar() {
           <div
             className="navElement"
             onClick={() => {
-              alert("123");
               navigate("/home");
             }}
           >
@@ -30,15 +29,16 @@ export default function NavBar() {
             <span className="dashboadNavText">ড্যাশবোর্ড</span>
           </div>
 
-          <div className="navElement" onClick={() => {
-              alert("123");
+          <div className="navElement" onClick={() => {              
               navigate("/firms");
             }}>
             <FormatListBulletedIcon fontSize="large" />
             <span className="firmsNavText">ফার্মসমূহ</span>
           </div>
 
-          <div className="navButton">
+          <div className="navButton" onClick={() => {              
+              navigate("/");
+            }}>
             <LogoutIcon fontSize="large" />
             <span className="logoutNavText">লগআউট</span>
           </div>

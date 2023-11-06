@@ -8,8 +8,10 @@ import { SelectOutlined } from "@ant-design/icons";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function BillProgramSelectionPage() {
+  let { firmId } = useParams();
   const navigate = useNavigate();
   const [selectList, setSelectList] = useState(
     Array(programList.length).fill(false)
@@ -32,9 +34,9 @@ export default function BillProgramSelectionPage() {
       }
     }
 
-    console.log(newProgramList);
-    alert(JSON.stringify(newProgramList));
-    navigate("/home", {
+    //console.log(newProgramList);
+    //alert(JSON.stringify(newProgramList));
+    navigate("/firm/" + firmId + "/bill/addBillDistance", {
       state: {
         newProgramList,
       },

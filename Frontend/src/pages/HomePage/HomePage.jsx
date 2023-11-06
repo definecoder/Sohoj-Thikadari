@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navBar/NavBar";
 import newsData from "./newsData";
-import recentProgramList from './recentProgramList';
+import recentProgramList from "./recentProgramList";
 
 import "./HomePage.css";
 import NewsCard from "./NewsCard";
@@ -10,10 +10,32 @@ import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import UserStatusCard from "./UserStatusCard";
 import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function HomePage() {
   // getting uid from login or signup :v
   //console.log(useLocation().state?.user);
+
+  //console.log(localStorage.getItem('token'));
+
+  const [homepageProgramList, setHomepageProgramList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8888/api/v1/invoice/sending/3c2e9c32-1ade-4ae3-974b-33fea8497f0d",
+          {
+            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhQGIuY29tIiwiaWF0IjoxNjk3MjA1NDg3LCJleHAiOjE2OTk3OTc0ODd9.T3pAYAydzVO22xp_HvjilE5dNMz9XV_JYfop4mhGRPY` },
+          }
+        );
+        console.log(res.data);
+        setHomepageProgramList(res.data.Invoice);
+      } catch (error) {}
+    };
+    fetchData();    
+  }, []);
 
   return (
     <>
@@ -62,17 +84,24 @@ export default function HomePage() {
           </div>
           <div className="home-content-canvas">
             <div className="home-recent-program-canvas">
-              <div className="home-recent-program-title">সাম্প্রতিক প্রোগ্রাম সমুহ</div>
+              <div className="home-recent-program-title">
+                সাম্প্রতিক প্রোগ্রাম সমুহ
+              </div>
               <div className="home-recent-program-cards-container">
-                {recentProgramList.map((program) => {
-                    return <RecentProgramInfoCard {...program} key={program.programId}/>;
-                })}                                
+                {homepageProgramList.map((program) => {
+                  return (
+                    <RecentProgramInfoCard
+                      {...program}
+                      key={program.invoiceNo}
+                    />
+                  );
+                })}
               </div>
             </div>
             <div className="home-user-status-canvas">
-              <UserStatusCard title={'মোট প্রোগ্রাম'} number={'১২৯'}/>
-              <UserStatusCard title={'মোট বিল'} number={'২৬'}/>
-              <UserStatusCard title={'মোট ফার্ম'} number={'৩'}/>
+              <UserStatusCard title={"মোট প্রোগ্রাম"} number={"১২৯"} />
+              <UserStatusCard title={"মোট বিল"} number={"২৬"} />
+              <UserStatusCard title={"মোট ফার্ম"} number={"৩"} />
             </div>
           </div>
         </div>

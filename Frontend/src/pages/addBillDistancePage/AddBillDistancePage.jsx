@@ -5,7 +5,9 @@ import _ from "lodash";
 
 import { Space, Table, Input, Rate } from "antd";
 import DarkButton from "../../components/darkButton/DarkButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { alertClasses } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const data = [
   {
@@ -44,16 +46,20 @@ const data = [
 
 export default function AddBillDistancePage() {
   const navigate = useNavigate();
-  const [employeeData, setEmployeeData] = useState(data);
+  const billMakingInvoices = useLocation().state?.newProgramList;
+  let { firmId } = useParams();
+  //alert(JSON.stringify());
+  const [billEntries, setBillEntries] = useState(billMakingInvoices);  
+  console.log(billMakingInvoices);
 
   const onChangeInput = (e, index) => {
     const { name, value } = e.target;
 
-    const editData = employeeData.map((item, i) =>
+    const editData = billEntries.map((item, i) =>
       i === index ? { ...item, [name]: value } : item
     );
 
-    setEmployeeData(editData);
+    setBillEntries(editData);
   };
 
   return (
@@ -75,7 +81,7 @@ export default function AddBillDistancePage() {
                 </tr>
               </thead>
               <tbody>
-                {employeeData.map(
+                {billEntries.map(
                   (
                     {
                       invoiceNo,
@@ -128,9 +134,9 @@ export default function AddBillDistancePage() {
             <DarkButton
               buttonText="সংরক্ষন করুন"
               onClick={() => {
-                alert(JSON.stringify(employeeData));
-                navigate("/addBillHeadings", {
-                  state: employeeData,
+                alert(JSON.stringify(billEntries));
+                navigate("/firm/" + firmId + "/bill/addBillHeadings", {
+                  state: billEntries,
                 });
               }}
               routePath="forbidden"

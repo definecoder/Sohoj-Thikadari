@@ -1,12 +1,15 @@
 import DarkButton from "../../components/darkButton/DarkButton";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import billImg from "../../assets/billLogo.png";
 
 import "./BillDownloadPage.css";
 import NavBar from "../../components/navBar/NavBar";
 
 export default function BillDownloadPage() {
+  let { firmId } = useParams();
   const navigate = useNavigate();
+  const billData = useLocation().state;
+  console.log(billData.invoices);
   return (
     <>
       <NavBar />
