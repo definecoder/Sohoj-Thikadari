@@ -7,7 +7,7 @@ import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
 import programList from "./ProgramList";
 
-export default function HomePage() {
+export default function RunningProgramsPage() {
   // getting uid from login or signup :v
   //console.log(useLocation().state?.user);
 
