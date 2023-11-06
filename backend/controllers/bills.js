@@ -42,11 +42,7 @@ const createBill = asyncWrapper(async (req, res) => {
 const getBill = asyncWrapper(async (req, res) => {
     const bill = await prisma.bill.findUnique({
         include: {
-            Invoice: {
-                include: {
-                    program: true
-                }
-            }
+            Invoice: true
         },
         where: {
             id: req.params.billId
