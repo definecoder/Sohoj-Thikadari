@@ -1,12 +1,14 @@
 import NavBar from "../../components/navBar/NavBar";
+import { PDFDownloadLink } from '@react-pdf/renderer'
 
 import "./MovementRegisterPage.css";
 
 import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
-import DarkButton from "../../components/darkButton/DarkButton";
+// import DarkButton from "../../components/darkButton/DarkButton";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
 import programList from "./ProgramList";
+import PdfFile from "../../components/PdfGenerator/PdfFile";
 
 export default function MovementRegisterPage() {
   // getting uid from login or signup :v
@@ -19,11 +21,11 @@ export default function MovementRegisterPage() {
         <div className="mr-header">
           <div className="mr-header-left">
             <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
-            <DarkButton
-              buttonText={"ডাউনলোড"}
-              routePath={"forbidden"}
-              onClick={() => {}}
-            />
+              <PDFDownloadLink document={<PdfFile />} fileName="Movement_Register.pdf">
+                {({loading }) =>
+                  loading ? 'লোডিং...' : 'ডাউনলোড'
+                }
+                </PDFDownloadLink>
           </div>
           <div className="mr-header-right">
             <FirmInfo
