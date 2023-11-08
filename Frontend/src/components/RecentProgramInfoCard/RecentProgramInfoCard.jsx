@@ -11,24 +11,24 @@ export default function RecentProgramInfoCard({
   status,
   commodity,
   invoiceNo,
-  route
+  route,
 }) {
   const navigate = useNavigate();
   const options = { year: "numeric", month: "numeric", day: "numeric" };
-   sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
-   programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
+  sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
+  programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
   return (
     <>
       <div
         className="recent-program-card"
         onClick={() => {
-          route ? navigate(route)  : navigate("/program/"+invoiceNo);
+          route ? navigate(route) : navigate("/program/" + invoiceNo);
         }}
       >
         <div className="recent-program-card-header">
           <div className="recent-program-card-header-left">
-            প্রোগ্রাম নংঃ &nbsp;{" "}
-            <span className="program-no-style">{programNo}</span>
+            ইনভয়েস নংঃ &nbsp;{" "}
+            <span className="program-no-style">{invoiceNo}</span>
           </div>
           <div className="recent-program-card-header-right">{programDate}</div>
         </div>
@@ -40,9 +40,7 @@ export default function RecentProgramInfoCard({
             <b>{sendingNetSlack} বস্তা</b> - &nbsp; <i>{commodity}</i>
             <br /> <b>প্রেরনঃ</b> &nbsp; {sendingDate}{" "}
           </div>
-          <div className="recent-program-card-footer-right">
-            {status}
-          </div>
+          <div className="recent-program-card-footer-right">{status}</div>
         </div>
       </div>
     </>
