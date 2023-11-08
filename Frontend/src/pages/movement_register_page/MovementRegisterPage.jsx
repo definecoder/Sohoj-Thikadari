@@ -21,7 +21,7 @@ export default function MovementRegisterPage() {
         <div className="mr-header">
           <div className="mr-header-left">
             <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
-              <PDFDownloadLink document={<PdfFile />} fileName="Movement_Register.pdf">
+              <PDFDownloadLink document={<PdfFile />} fileName="মুভমেন্ট রেজিস্টার.pdf">
                 {({loading }) =>
                   loading ? 'লোডিং...' : 'ডাউনলোড'
                 }
