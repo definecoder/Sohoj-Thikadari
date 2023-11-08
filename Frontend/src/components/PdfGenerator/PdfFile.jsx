@@ -61,19 +61,14 @@ const styles = StyleSheet.create({
   },
   table: {
     display: 'table',
-    width: '100%',
     borderStyle: 'solid',
     borderWidth: 1,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
   },
-  tableRow: { margin: 'auto', flexDirection: 'row' },
+  tableRow: {  flexDirection: 'row' },
   tableCol: {
-    width: '10%',
+    width: '6.667%',
     borderStyle: 'solid',
     borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
   }
 });
 
@@ -85,9 +80,9 @@ const PdfFile = () => (
 
         {/* This is Header  */}
         <View style={styles.headerbox}>
-          <Text style={styles.heading}>মেসার্স বলাকা ওভারসীজ ট্রেডিং</Text>
+          <Text style={styles.heading}>{data.name} </Text>
           <Text style={styles.subheading}>সরকারি খাদ্য পরিবহন ঠিকাদার</Text>
-          <Text style={styles.description}> ৪৬৪/এ, ডি.টি. রোড, কদমতলী, চট্টগ্রাম।</Text>
+          <Text style={styles.description}> {data.address} </Text>
         </View>
         {/* Down Header  */}
         <View style={styles.namebox}>
@@ -97,7 +92,7 @@ const PdfFile = () => (
         
         {/* Phone Number  */}
         <View style={styles.phoneNumber}>
-          <Text>ফোনঃ ০১২৩৪৫৬৭৮৯</Text>
+          <Text>ফোনঃ {data.phone} </Text>
         </View>
 
 
@@ -107,7 +102,7 @@ const PdfFile = () => (
             <View key={rowIndex} style={styles.tableRow}>
               {Object.values(row).map((item) => (
                 <View key={item} style={styles.tableCol}>
-                  <Text style={styles.cellText}>{item }</Text>
+                  <center><Text style={styles.cellText}>{item }</Text></center>
                 </View>
               ))}
               <br></br> 

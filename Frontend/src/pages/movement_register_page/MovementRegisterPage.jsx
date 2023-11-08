@@ -26,6 +26,7 @@ export default function MovementRegisterPage() {
                   loading ? 'লোডিং...' : 'ডাউনলোড'
                 }
                 </PDFDownloadLink>
+                {/* <PdfFile/> */}
           </div>
           <div className="mr-header-right">
             <FirmInfo
