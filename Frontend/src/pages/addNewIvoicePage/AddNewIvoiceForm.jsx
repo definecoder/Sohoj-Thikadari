@@ -9,7 +9,7 @@ import "./AddNewIvoicePage.css";
 
 export default function AddNewInvoiceFrom() {
   const navigate = useNavigate();  
-  let {firm_Id} = useParams();
+  let {firmId} = useParams();  
 
   //console.log(useLocation().state);
   const prevData = useLocation().state;
@@ -58,7 +58,7 @@ export default function AddNewInvoiceFrom() {
       newprogramInfo.sendingNetQuantity = parseFloat(newprogramInfo.sendingNetQuantity);
       newprogramInfo.sendingGrossQuantity = parseFloat(newprogramInfo.sendingGrossQuantity);
 
-      alert(JSON.stringify(newprogramInfo));
+      //alert(JSON.stringify(newprogramInfo));
       try {
         const response = await axios.post(
           "http://localhost:8888/api/v1/invoice/sending",
@@ -68,13 +68,16 @@ export default function AddNewInvoiceFrom() {
           }
         );
         console.log(response.data);
-        navigate("/firm/" + firm_Id, {
+        navigate("/firm/" + firmId, {
           state: {},
         });
       } catch (error) {
         console.log(error);
         console.log(newprogramInfo);
         alert(error);
+        navigate("/firm/" + firmId, {
+          state: {},
+        });
       }      
     }
   };

@@ -43,7 +43,7 @@ export default function AddNewProgramForm() {
     else if (!newprogramInfo.sendingPoint) alert("প্রেরক কেন্দ্র দিন");
     else if (!newprogramInfo.receivingPoint) alert("প্রাপক কেন্দ্র দিন");
     else {
-      alert(JSON.stringify(newprogramInfo));
+      //alert(JSON.stringify(newprogramInfo));
       navigate("/firm/" + firmId + "/addInvoiceInfo", {
         state: newprogramInfo,
       });

@@ -45,7 +45,7 @@ export default function FirmProfilePage() {
                 <RecentProgramInfoCard
                   // className="ps-program"
                   {...program}
-                  route={"/firm/"+program.invoiceNo+"/addRecievingInfo"}
+                  route={"/firm/"+ firmId +"/addRecievingInfo/" + program.invoiceNo}
                   key={program.invoiceNo}
                 />
               </div>
