@@ -24,13 +24,12 @@ export default function MyFirmsPage() {
   ]);
 
   useEffect(() => {
-    console.log("hi");
     const fetchData = async () => {
       try {
         const res = await axios.get(
           "http://localhost:8888/api/v1/firms",
           {
-            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0NWM2NDM1LWI4Y2MtNGQwNi1iMGYyLWU1ZDdjNmVlMzdhMSIsInBob25lIjoiMTMyNDEzMiIsImlhdCI6MTY5OTI3NjAzMywiZXhwIjoxNzAxODY4MDMzfQ.inYDpt8oh3-sBwnqEk-5_5UWVqm-edMj1qIVLpUxn4Q` },
+            headers: { Authorization: localStorage.getItem('token') },
           }
         );
         console.log(res.data[0].Firm);

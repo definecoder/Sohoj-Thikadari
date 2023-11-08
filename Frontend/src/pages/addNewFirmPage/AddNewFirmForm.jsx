@@ -46,7 +46,7 @@ export default function AddNewFirmForm() {
           "http://localhost:8888/api/v1/firms",
           newFirmInfo,
           {
-            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0NWM2NDM1LWI4Y2MtNGQwNi1iMGYyLWU1ZDdjNmVlMzdhMSIsInBob25lIjoiMTMyNDEzMiIsImlhdCI6MTY5OTI3NjAzMywiZXhwIjoxNzAxODY4MDMzfQ.inYDpt8oh3-sBwnqEk-5_5UWVqm-edMj1qIVLpUxn4Q` },
+            headers: { Authorization: localStorage.getItem('token') },
           }
         ); 
         console.log(response.data);
