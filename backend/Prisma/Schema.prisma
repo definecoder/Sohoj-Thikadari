@@ -26,6 +26,7 @@ model Firm {
     phone        String?
     email        String?
     tradeLicense String?
+    address      String?
 
     user   User   @relation(fields: [userID], references: [id])
     userID String
@@ -76,6 +77,7 @@ model Invoice {
 
     programNo      Int
     programDate    DateTime?
+    programQuantity Float?
     commodity      String
     sendingPoint   String
     receivingPoint String
