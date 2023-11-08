@@ -46,9 +46,9 @@ export default function AddNewFirmForm() {
           "http://localhost:8888/api/v1/firms",
           newFirmInfo,
           {
-            headers: { Authorization: localStorage.getItem('token') },
+            headers: { Authorization: localStorage.getItem("token") },
           }
-        ); 
+        );
         console.log(response.data);
       } catch (error) {
         console.log(error);

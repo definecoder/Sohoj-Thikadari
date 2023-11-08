@@ -1,0 +1,7 @@
+STATUS OF AN INVOICE
+
+0 : UNDEFINED 
+1 : SENT প্রেরিত
+2 : RECIVED প্রাপ্ত
+3 : BILL DONE বিল করা হয়েছে
+4 : BILL RECIVED বিল শেষ

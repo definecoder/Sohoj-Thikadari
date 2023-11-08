@@ -1,17 +1,19 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, DatePicker, Space, Select } from "antd";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 import "./AddNewIvoicePage.css";
 
 export default function AddNewInvoiceFrom() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
+  let {firm_Id} = useParams();
 
   //console.log(useLocation().state);
   const prevData = useLocation().state;
-  console.log(prevData);
+  //console.log(prevData);
 
   const [newprogramInfo, setNewprogramInfo] = useState({
     ...prevData,
@@ -21,6 +23,7 @@ export default function AddNewInvoiceFrom() {
     sendingNetSlack: "",
     sendingNetQuantity: "",
     sendingGrossQuantity: "",
+    status: 1,
   });
 
   const handleChange = (e) => {
@@ -36,10 +39,10 @@ export default function AddNewInvoiceFrom() {
   };
 
   const handleDateChange = (date, dateString) => {
-    setNewprogramInfo({ ...newprogramInfo, sendingDate: dateString });
+    setNewprogramInfo({ ...newprogramInfo, sendingDate: date.toISOString() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newprogramInfo.invoiceNo) alert("ইনভয়েস নম্বর দিন");
     else if (!newprogramInfo.sendingDate) alert("প্রেরণের তারিখ দিন");
@@ -48,10 +51,31 @@ export default function AddNewInvoiceFrom() {
     else if (!newprogramInfo.sendingNetQuantity) alert("প্রেরিত নেট পরিমান দিন");
     else if (!newprogramInfo.sendingGrossQuantity) alert("প্রেরিত গ্রস পরিমান দিন");
     else {
+
+      newprogramInfo.programQuantity = parseFloat(newprogramInfo.programQuantity);
+      newprogramInfo.invoiceNo = parseFloat(newprogramInfo.invoiceNo);
+      newprogramInfo.sendingNetSlack = parseFloat(newprogramInfo.sendingNetSlack);
+      newprogramInfo.sendingNetQuantity = parseFloat(newprogramInfo.sendingNetQuantity);
+      newprogramInfo.sendingGrossQuantity = parseFloat(newprogramInfo.sendingGrossQuantity);
+
       alert(JSON.stringify(newprogramInfo));
-      navigate("/firm/1", {
-        state: "নাইস",
-      });
+      try {
+        const response = await axios.post(
+          "http://localhost:8888/api/v1/invoice/sending",
+          newprogramInfo,
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
+        console.log(response.data);
+        navigate("/firm/" + firm_Id, {
+          state: {},
+        });
+      } catch (error) {
+        console.log(error);
+        console.log(newprogramInfo);
+        alert(error);
+      }      
     }
   };
 
