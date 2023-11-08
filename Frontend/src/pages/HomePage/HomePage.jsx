@@ -27,9 +27,10 @@ export default function HomePage() {
         const res = await axios.get(
           "http://localhost:8888/api/v1/invoice/sending/3c2e9c32-1ade-4ae3-974b-33fea8497f0d",
           {
-            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhQGIuY29tIiwiaWF0IjoxNjk3MjA1NDg3LCJleHAiOjE2OTk3OTc0ODd9.T3pAYAydzVO22xp_HvjilE5dNMz9XV_JYfop4mhGRPY` },
+            headers: { Authorization: localStorage.getItem('token') },
           }
         );
+        console.log(localStorage.getItem('token'));
         console.log(res.data);
         setHomepageProgramList(res.data.Invoice);
       } catch (error) {}
