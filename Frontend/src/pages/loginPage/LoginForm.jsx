@@ -62,7 +62,7 @@ const LoginForm = () => {
           user
         );
         console.log(response);
-        setModalText(`Congratulations! ${response.data.token}`);
+        setModalText(`Congratulations! Press OK to go to home page`);
         localStorage.setItem("token", "Bearer " + response.data.token);
         setModalTitle("Your login is successfull");
         setModalRoute("/home");

@@ -6,10 +6,37 @@ import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/Recent
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
 import programList from "./ProgramList";
+import {useParams} from "react-router-dom";
+import {useState, useEffect} from "react";
+import axios from "axios";
 
 export default function RunningProgramsPage() {
   // getting uid from login or signup :v
   //console.log(useLocation().state?.user);
+
+  let { firmId } = useParams();
+
+  const [sendingPrograms, setSendingPrograms] = useState([...programList]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8888/api/v1/invoice/sending/" + firmId,
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
+        // console.log(localStorage.getItem('token'));
+        console.log(res.data.Invoice);
+        setSendingPrograms(res.data.Invoice);
+        //console.log(sendingPrograms);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -29,10 +56,17 @@ export default function RunningProgramsPage() {
         </div>
         <div className="rp-body">
           <Row>
-            {programList.map((program) => {
+            {sendingPrograms.map((program) => {
               return (
-                <Col className="rp-col" span={12} key={program.programId}>
-                  <RecentProgramInfoCard {...program} key={program.programId} />
+                <Col className="rp-col" span={12} key={program.invoiceNo}>
+                  <RecentProgramInfoCard
+                    {...program}
+                    route={
+                      "/program/" +                      
+                      program.invoiceNo
+                    }
+                    key={program.invoiceNo}
+                  />
                 </Col>
               );
             })}

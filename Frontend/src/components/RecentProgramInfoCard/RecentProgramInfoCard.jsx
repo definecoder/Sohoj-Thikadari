@@ -27,8 +27,8 @@ export default function RecentProgramInfoCard({
       >
         <div className="recent-program-card-header">
           <div className="recent-program-card-header-left">
-            প্রোগ্রাম নংঃ &nbsp;{" "}
-            <span className="program-no-style">{programNo}</span>
+            ইনভয়েস নংঃ &nbsp;{" "}
+            <span className="program-no-style">{invoiceNo}</span>
           </div>
           <div className="recent-program-card-header-right">{programDate}</div>
         </div>

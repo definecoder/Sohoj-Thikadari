@@ -75,7 +75,7 @@ model Invoice {
     firm   Firm   @relation(fields: [firmID], references: [id])
     firmID String
 
-    programNo      Int
+    programNo      String
     programDate    DateTime?
     programQuantity Float?
     commodity      String
