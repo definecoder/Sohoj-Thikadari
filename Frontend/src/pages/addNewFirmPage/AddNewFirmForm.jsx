@@ -40,15 +40,15 @@ export default function AddNewFirmForm() {
     else if (!newFirmInfo.email) alert("ইমেইল দিন");
     else if (!newFirmInfo.address) alert("ঠিকানা");
     else {
-      alert(JSON.stringify(newFirmInfo));
+      //alert(JSON.stringify(newFirmInfo));
       try {
         const response = await axios.post(
           "http://localhost:8888/api/v1/firms",
           newFirmInfo,
           {
-            headers: { Authorization: localStorage.getItem('token') },
+            headers: { Authorization: localStorage.getItem("token") },
           }
-        ); 
+        );
         console.log(response.data);
       } catch (error) {
         console.log(error);

@@ -1,13 +1,15 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, DatePicker, Space, Select } from "antd";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 import "./AddRecievingInfoPage.css";
 
 export default function AddRecievingInfoForm() {
   const navigate = useNavigate();
+  let {invoiceNo, firmId} = useParams();
 
   //console.log(useLocation().state);
   const [newprogramInfo, setNewprogramInfo] = useState({
@@ -17,6 +19,7 @@ export default function AddRecievingInfoForm() {
     receivingNetQuantity: "",
     receivingGrossQuantity: "",
     shortage: "",
+    status: 2,
   });
 
   const handleChange = (e) => {
@@ -32,10 +35,10 @@ export default function AddRecievingInfoForm() {
   };
 
   const handleDateChange = (date, dateString) => {
-    setNewprogramInfo({ ...newprogramInfo, receivingDate: dateString });
+    setNewprogramInfo({ ...newprogramInfo, receivingDate: date.toISOString() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newprogramInfo.receivingDate) alert("প্রাপ্তির তারিখ দিন");
     else if (!newprogramInfo.receivingNetSlack) alert("প্রাপ্ত নেট বস্তার সংখ্যা দিন");
@@ -44,10 +47,33 @@ export default function AddRecievingInfoForm() {
     else if (!newprogramInfo.receivingGrossQuantity) alert("প্রাপ্ত গ্রস পরিমান দিন");
     else if (!newprogramInfo.shortage) alert("ঘাটতির পরিমান দিন");
     else {
-      alert(JSON.stringify(newprogramInfo));
-      navigate("/firm/1", {
-        state: "নাইস",
-      });
+      //alert(JSON.stringify(newprogramInfo));
+      newprogramInfo.receivingGrossQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);
+      newprogramInfo.receivingGrossSlack= parseFloat(newprogramInfo.receivingGrossQuantity);
+      newprogramInfo.receivingNetQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);
+      newprogramInfo.receivingNetSlack = parseFloat(newprogramInfo.receivingGrossQuantity);
+      newprogramInfo.shortage = parseFloat(newprogramInfo.receivingGrossQuantity);
+
+      try {
+        const response = await axios.put(
+          "http://localhost:8888/api/v1/invoice/receiving/" + invoiceNo,
+          newprogramInfo,
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );        
+        console.log(response.data);        
+        navigate("/firm/" + firmId, {
+          state: {},
+        });
+      } catch (error) {
+        console.log(error);
+        console.log(newprogramInfo);
+        alert(error);
+        navigate("/firm/" + firmId, {
+          state: {},
+        });
+      }       
     }
   };
 

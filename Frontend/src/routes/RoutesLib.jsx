@@ -38,7 +38,7 @@ function RoutesLib() {
           />
           <Route path="/firm/:firmId/addNewProgram" element={<AddNewProgram />} />
           <Route path="/firm/:firmId/addInvoiceInfo" element={<AddNewIvoicePage />} />
-          <Route path="/firm/:invoiceNo/addRecievingInfo" element={<AddRecievingInfoPage />} />
+          <Route path="/firm/:firmId/addRecievingInfo/:invoiceNo" element={<AddRecievingInfoPage />} />
           <Route path="firm/:firmId/bill/addBillDistance" element={<AddBillDistancePage />} />
           <Route path="firm/:firmId/bill/addBillHeadings" element={<AddBillHeadings />} />
           <Route path="firm/:firmId/bill/billDownloadPage" element={<BillDownloadPage />} />

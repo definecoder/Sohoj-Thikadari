@@ -1,12 +1,13 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, DatePicker, Space, Select } from "antd";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import "./AddNewProgram.css";
 
 export default function AddNewProgramForm() {
   const navigate = useNavigate();
+  let { firmId } = useParams();
 
   const [newprogramInfo, setNewprogramInfo] = useState({
     programNo: "",
@@ -15,6 +16,7 @@ export default function AddNewProgramForm() {
     commodity: "",
     sendingPoint: "",
     receivingPoint: "",
+    firmID: firmId,
   });
 
   const handleChange = (e) => {
@@ -29,7 +31,7 @@ export default function AddNewProgramForm() {
   };
 
   const handleDateChange = (date, dateString) => {
-    setNewprogramInfo({ ...newprogramInfo, programDate: dateString });
+    setNewprogramInfo({ ...newprogramInfo, programDate: date.toISOString()});
   };
 
   const handleSubmit = (e) => {
@@ -41,8 +43,8 @@ export default function AddNewProgramForm() {
     else if (!newprogramInfo.sendingPoint) alert("প্রেরক কেন্দ্র দিন");
     else if (!newprogramInfo.receivingPoint) alert("প্রাপক কেন্দ্র দিন");
     else {
-      alert(JSON.stringify(newprogramInfo));
-      navigate("/addInvoiceInfo", {
+      //alert(JSON.stringify(newprogramInfo));
+      navigate("/firm/" + firmId + "/addInvoiceInfo", {
         state: newprogramInfo,
       });
     }

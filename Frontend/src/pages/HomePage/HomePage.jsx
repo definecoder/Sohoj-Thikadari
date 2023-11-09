@@ -41,6 +41,20 @@ export default function HomePage() {
   return (
     <>
       <NavBar />
+      <div className="wrapper">
+        <ul className="bg-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
       <div className="home-canvas">
         <div className="home-news-canvas">
           <div className="home-news-title">সাম্প্রতিক সংবাদসমুহ</div>
@@ -59,11 +73,10 @@ export default function HomePage() {
         <div className="home-right-canvas">
           <div className="home-profile-canvas">
             <div className="home-welcome-section">
-              {" "}
-              সহজ ঠিকাদারিতে স্বাগতম{" "}
-              <span className="home-username">jahirul Islam</span>{" "}
+              <marquee behavior="alternate" direction="left">সহজ ঠিকাদারিতে স্বাগতম <span className="home-username">jahirul Islam</span></marquee>
+              
             </div>
-            <div className="home-profile-info-section">
+            {/* <div className="home-profile-info-section">
               <div className="home-profile-info-card">
                 <div className="profile-info-card-upper-section">
                   <CallIcon /> &nbsp; ফোন নম্বর
@@ -81,7 +94,7 @@ export default function HomePage() {
                   codermehraj@gmail.com
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="home-content-canvas">
             <div className="home-recent-program-canvas">
