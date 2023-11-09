@@ -25,7 +25,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8888/api/v1/invoice/sending/3c2e9c32-1ade-4ae3-974b-33fea8497f0d",
+          "http://localhost:8888/api/v1/invoice/recent",
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
