@@ -106,13 +106,39 @@ const updateBill = async (req, res) => {
 
 }
 
-const getInvoice = async (req, res) => {
+const getInvoice = asyncWrapper( async (req, res) => {
+    
+    const invoice = await prisma.invoice.findUnique({
+        // include:{
+        //     bill
+        // },
+        where:{
+            invoiceNo: parseInt(req.params.id)
+        }
+    })
 
-}
+    res.status(StatusCodes.OK).json(invoice)
 
-const getAllInvoice = async (req, res) => {
 
-}
+}, {msg: 'couldn\'t get the invoice'})
+
+const getRecentInvoice = asyncWrapper( async (req, res) => {
+    // recent invoices
+
+    // console.log('api hit')
+    // res.sendStatus(200);    
+    
+    const invoices = await prisma.$queryRaw`
+        SELECT * FROM Firm, Invoice  
+        WHERE Firm.userID = ${req.user.id} AND Invoice.firmID = Firm.id
+        ORDER BY Invoice.updatedAt DESC
+        LIMIT 10;
+    `
+
+    res.status(StatusCodes.OK).json({Invoice: invoices})
+
+
+}, {msg: 'Couldn\'t fetch recent invoices'})
 
 module.exports = {
     addSendingInfo,
@@ -120,7 +146,7 @@ module.exports = {
     updateRateAndDistance,
     updateBill,
     getInvoice,
-    getAllInvoice,
+    getRecentInvoice,
     getAllOnlySending,
     getAllInvoiceForBill
 }
