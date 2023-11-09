@@ -31,11 +31,20 @@ export default function FirmProfilePage() {
     fetchData();    
   }, []);
 
+  function empyFirmList() {
+    return <div className="firm-list-empty-title">      
+      <h2>প্রাপ্তির তথ্য দেওয়ার মত কোন প্রোগ্রাম / ইনভয়েস নেই। </h2>
+      <h3>নতুন প্রোগ্রাম প্রেরণের পরে এই পেইজে পাওয়া যাবে।</h3>
+      <div>ধন্যবাদ।</div>
+    </div>;
+  }
+
   return (
     <>
       <NavBar />
       <div className="ps-main-wrapper">
         <div className="ps-header">প্রোগ্রাম নির্বাচন করুন</div>
+        {sendingPrograms.length == 0 ? empyFirmList() : () => {}}
         <div className="ps-grid-wrapper">
           {sendingPrograms.map((program) => {
             return (

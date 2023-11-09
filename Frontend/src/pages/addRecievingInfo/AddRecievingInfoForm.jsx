@@ -47,7 +47,7 @@ export default function AddRecievingInfoForm() {
     else if (!newprogramInfo.receivingGrossQuantity) alert("প্রাপ্ত গ্রস পরিমান দিন");
     else if (!newprogramInfo.shortage) alert("ঘাটতির পরিমান দিন");
     else {
-      alert(JSON.stringify(newprogramInfo));
+      //alert(JSON.stringify(newprogramInfo));
       newprogramInfo.receivingGrossQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);
       newprogramInfo.receivingGrossSlack= parseFloat(newprogramInfo.receivingGrossQuantity);
       newprogramInfo.receivingNetQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);

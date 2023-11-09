@@ -69,3 +69,11 @@
 .myfirms-upper-right-empty-space{
     flex-grow: 1;    
 }
+
+.firm-list-empty-title {
+
+    font-size: 2em;
+    font-style: italic;
+    padding-top: 5vh;
+
+}

@@ -59,6 +59,7 @@ export default function AddNewInvoiceFrom() {
       newprogramInfo.sendingGrossQuantity = parseFloat(newprogramInfo.sendingGrossQuantity);
 
       //alert(JSON.stringify(newprogramInfo));
+      console.log(newprogramInfo);
       try {
         const response = await axios.post(
           "http://localhost:8888/api/v1/invoice/sending",

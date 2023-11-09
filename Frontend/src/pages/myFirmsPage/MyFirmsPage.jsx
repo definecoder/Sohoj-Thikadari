@@ -41,6 +41,12 @@ export default function MyFirmsPage() {
     fetchData();    
   }, []);
 
+  function empyFirmList() {
+    return <div className="firm-list-empty-title">
+      নতুন ফার্ম যুক্ত করতে নিচের বাটনে কিল্ক করুন
+    </div>;
+  }
+
   return (
     <>
       <NavBar />
@@ -48,7 +54,7 @@ export default function MyFirmsPage() {
         <div className="myfirms-left-canvas">
           <div className="myfirms-title-section">আমার ফার্মসমূহ</div>
           <div className="myfirms-firm-list-container">
-            {firmList.map((firm) => {
+            {firmList.length == 0 ? empyFirmList() : firmList.map((firm) => {
               return <div
                 className="myfirms-firmcard"
                 key={firm.id}
