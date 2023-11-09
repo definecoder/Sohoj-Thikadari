@@ -41,20 +41,6 @@ export default function HomePage() {
   return (
     <>
       <NavBar />
-      <div className="wrapper">
-        <ul className="bg-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
       <div className="home-canvas">
         <div className="home-news-canvas">
           <div className="home-news-title">সাম্প্রতিক সংবাদসমুহ</div>

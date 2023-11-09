@@ -23,6 +23,20 @@ import MovementRegisterPage from "../pages/movement_register_page/MovementRegist
 function RoutesLib() {
   return (
     <>
+    <div className="wrapper">
+        <ul className="bg-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />

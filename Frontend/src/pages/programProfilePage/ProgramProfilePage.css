@@ -16,7 +16,7 @@
     padding-top: 4%;
 }
 .pp-ls-1-card{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.477);
     padding: 10px 30px 10px 30px;
     display: flex;    
     flex-direction: column;
@@ -33,7 +33,7 @@
     cursor: pointer;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
-    background-color: #96ecff24;
+    background-color: rgba(255, 255, 255, 0.82);
 }
 
 .pp-ls-1-card::-webkit-scrollbar {
@@ -96,7 +96,7 @@
 }
 
 .pp-invoice-info-card {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.358);
     padding: 10px 30px 10px 30px;
     display: flex;    
     flex-direction: column;
@@ -118,7 +118,7 @@
     cursor: pointer;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
-    background-color: #96ecff24;
+    background-color: #ffffffb8;
 }
 
 .pp-invoice-card-1{
@@ -145,7 +145,7 @@
 
 
 .pp-billno-card{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.336);
     padding: 10px 30px 10px 30px;
     display: flex;    
     flex-direction: column;
@@ -168,7 +168,7 @@
     cursor: pointer;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
-    background-color: #96ecff24;
+    background-color: rgba(253, 255, 255, 0.75);
 }
 
 .program-profile-right-section-4{
