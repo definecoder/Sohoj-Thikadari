@@ -75,12 +75,12 @@ model Invoice {
     firm   Firm   @relation(fields: [firmID], references: [id])
     firmID String
 
-    programNo      String
-    programDate    DateTime?
+    programNo       String
+    programDate     DateTime?
     programQuantity Float?
-    commodity      String
-    sendingPoint   String
-    receivingPoint String
+    commodity       String
+    sendingPoint    String
+    receivingPoint  String
 
     truckNo              String?
     sendingDate          DateTime
@@ -94,8 +94,9 @@ model Invoice {
     receivingNetQuantity   Float?
     receivingGrossQuantity Float?
 
-    shortage Float?
-    distance Float?
+    shortage      Float?
+    distance      Float?
+    invoiceAmount Float?
 
     pricePerTon Float?
 
