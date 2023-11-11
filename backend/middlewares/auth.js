@@ -8,7 +8,10 @@ const authenticationMiddleware = async (req, res, next) => {
         const authHeader = req.headers.authorization
 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            throw new Error({ msg: 'No token provided' })
+            // throw new Error({ msg: 'No token provided' })
+            console.log('No token Provided')
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'User is logged out' })
+            return
         }
 
         const token = authHeader.split(' ')[1]
