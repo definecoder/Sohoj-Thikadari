@@ -70,11 +70,13 @@ const signupForm = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/users",
+          "http://localhost:8888/api/v1/auth/register",
           retVal
         );
-        setModalText(`Congratulations ${retVal.username}! Your registration is successful`);
-        localStorage.setItem('token', "Bearer " + response.data.token);
+        setModalText(
+          `Congratulations ${retVal.username}! Your registration is successful`
+        );
+        localStorage.setItem("token", "Bearer " + response.data.token);
         setModalTitle("Your registrations is successfull");
         setModalRoute("/home");
         showModal();

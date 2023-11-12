@@ -4,17 +4,20 @@ import navLogo from "../../assets/appLogo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import LogoutIcon from "@mui/icons-material/Logout";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
-    
-    const navigate = useNavigate();
-              
+  const navigate = useNavigate();
 
-    return (
+  return (
     <>
       <div className="navCanvas">
-        <div className="navLogo">
+        <div
+          onClick={() => {
+            navigate("/home");
+          }}
+          className="navLogo"
+        >
           <img src={navLogo} alt="" />
         </div>
 
@@ -29,16 +32,22 @@ export default function NavBar() {
             <span className="dashboadNavText">ড্যাশবোর্ড</span>
           </div>
 
-          <div className="navElement" onClick={() => {              
+          <div
+            className="navElement"
+            onClick={() => {
               navigate("/firms");
-            }}>
+            }}
+          >
             <FormatListBulletedIcon fontSize="large" />
             <span className="firmsNavText">ফার্মসমূহ</span>
           </div>
 
-          <div className="navButton" onClick={() => {              
+          <div
+            className="navButton"
+            onClick={() => {
               navigate("/");
-            }}>
+            }}
+          >
             <LogoutIcon fontSize="large" />
             <span className="logoutNavText">লগআউট</span>
           </div>

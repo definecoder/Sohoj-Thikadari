@@ -122,23 +122,61 @@ const getInvoice = asyncWrapper( async (req, res) => {
 
 }, {msg: 'couldn\'t get the invoice'})
 
-const getRecentInvoice = asyncWrapper( async (req, res) => {
-    // recent invoices
+// const getRecentInvoice = asyncWrapper( async (req, res) => {
+        
+//     const invoices = await prisma.$queryRaw`
+//         SELECT * FROM Firm, Invoice  
+//         WHERE Firm.userID = ${req.user.id} AND Invoice.firmID = Firm.id
+//         ORDER BY Invoice.updatedAt DESC
+//         LIMIT 10;
+//     `
 
-    // console.log('api hit')
-    // res.sendStatus(200);    
-    
-    const invoices = await prisma.$queryRaw`
-        SELECT * FROM Firm, Invoice  
-        WHERE Firm.userID = ${req.user.id} AND Invoice.firmID = Firm.id
-        ORDER BY Invoice.updatedAt DESC
-        LIMIT 10;
-    `
+//     const invoiceCount = await prisma.invoice.count({
+//         where:{
+//             firm:{
+//                 userID: {
+//                     equals: req.user.id
+//                 }
+//             }
+//         },
+        
+        
+//     })
 
-    res.status(StatusCodes.OK).json({Invoice: invoices})
+//     const billCount = await prisma.bill.count({
+//         where:{
+//             firm:{
+//                 userID: {
+//                     equals: req.user.id
+//                 }
+//             }
+//         }
+//     })
+
+//     const firmCount = await prisma.firm.count({
+//         where:{
+//             userID:{
+//                 equals: req.user.id
+//             }
+//         }
+//     })
+
+//     const username = await prisma.user.findUnique({
+//         where:{
+//             id: req.user.id
+//         },
+//         select:{
+//             username:true
+//         }
+//     })
+
+//     console.log(invoiceCount, billCount, firmCount, username)
 
 
-}, {msg: 'Couldn\'t fetch recent invoices'})
+//     res.status(StatusCodes.OK).json({Invoice: invoices, invoiceCount, billCount, firmCount, username: username.username})
+
+
+// }, {msg: 'Couldn\'t fetch recent invoices'})
 
 module.exports = {
     addSendingInfo,
@@ -146,7 +184,6 @@ module.exports = {
     updateRateAndDistance,
     updateBill,
     getInvoice,
-    getRecentInvoice,
     getAllOnlySending,
     getAllInvoiceForBill
 }

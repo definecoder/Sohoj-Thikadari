@@ -9,7 +9,6 @@ const { addSendingInfo, updateReceivingInfo, updateRateAndDistance, updateBill, 
 router.route('/sending').post(addSendingInfo)
 router.route('/sending/:firmId').get(getAllOnlySending)
 router.route('/receiving/:id').put(updateReceivingInfo)
-router.route('/recent').get(getRecentInvoice)
 router.route('/:id').get(getInvoice)
 router.route('/rateAndDistance/').put(updateRateAndDistance)
 router.route('/addbill/:firmId').put(updateBill)
