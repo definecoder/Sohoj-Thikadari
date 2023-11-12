@@ -15,8 +15,9 @@ import BillPDF from "../../components/PdfGenerator/BillPDF";
 export default function BillDownloadPage() {
   let { firmId } = useParams();
   const navigate = useNavigate();
-  const billData = useLocation().state?.newFirmInfo;
-  console.log(billData);
+  //const billData = useLocation().state?.newFirmInfo;
+  const billID = useLocation().state?.billID;
+  //console.log(billID);
   return (
     <>
       <NavBar />
@@ -32,7 +33,7 @@ export default function BillDownloadPage() {
           </div>
 
           <PDFDownloadLink
-            document={<BillPDF data = {billData}/>}
+            document={<BillPDF billID = {billID}/>}
             fileName="মুভমেন্ট রেজিস্টার.pdf"
           >
             {({ loading }) =>

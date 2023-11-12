@@ -57,10 +57,11 @@ export default function AddBillHeadings() {
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
-        );
-        console.log(response.data);
+        );        
+        const billID = response.data.bill.id;
+        //console.log(billID);
         navigate("/firm/" + firmId + "/bill/billDownloadPage", {
-          state: {newFirmInfo},
+          state: {billID},          
         });
       } catch (error) {
         console.log(error);
