@@ -1,6 +1,6 @@
 .DarkButton{
-    background-color: #005163;
-    color: white;
+    background-color: rgba(4, 65, 79, 0.759);
+    color: rgb(255, 255, 255);
     font-size: 28px;
     padding: 10px 20px;
     border-radius: 13px;
@@ -12,6 +12,6 @@
 }
 
 .DarkButton:hover {
-    background-color: #0051635e;
+    background-color: #00516360;
     color: black;
 }

@@ -2,7 +2,7 @@ import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
 import { Input, Space, Switch } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 import axios from "axios";
 
 const LoginForm = () => {
@@ -58,7 +58,7 @@ const LoginForm = () => {
       //alert(JSON.stringify(user));
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/login",
+          "http://localhost:8888/api/v1/auth/login",
           user
         );
         console.log(response);
@@ -68,7 +68,7 @@ const LoginForm = () => {
         setModalRoute("/home");
         showModal();
       } catch (error) {
-        setModalText(error.message);
+        setModalText(error.response.data.msg);
         setModalTitle("An Error Occured");
         setModalRoute(null);
         showModal();
@@ -84,10 +84,22 @@ const LoginForm = () => {
       <Modal
         title={modalTitle}
         open={isModalOpen}
-        onOk={() => {
-          handleOk(modalRoute);
-        }}
-        onCancel={handleCancel}
+        footer={[
+          <Button
+            type="primary"
+            key="button"
+            onClick={() => {
+              handleOk(modalRoute);
+            }}
+          >
+            OK
+          </Button>,
+        ]}
+        closeIcon={null}
+        // onOk={() => {
+        //   handleOk(modalRoute);
+        // }}
+        // onCancel={handleCancel}
       >
         <p>{modalText}</p>
       </Modal>

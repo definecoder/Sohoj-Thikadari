@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navBar/NavBar";
-import newsData from "./newsData";
 import recentProgramList from "./recentProgramList";
 
 import "./HomePage.css";
@@ -20,19 +19,30 @@ export default function HomePage() {
   //console.log(localStorage.getItem('token'));
 
   const [homepageProgramList, setHomepageProgramList] = useState([]);
+  const [invoiceCount, setInvoiceCount] = useState(0);
+  const [billCount, setBillCount] = useState(0);
+  const [firmCount, setFirmCount] = useState(0);
+  const [username, setUsername] = useState(null);
+  const [newsData, setNewsData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8888/api/v1/invoice/recent",
+          "http://localhost:8888/api/v1/users/dashboard",
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
         );
         console.log(localStorage.getItem("token"));
-        console.log(res.data);
+        console.log(res);
         setHomepageProgramList(res.data.Invoice);
+        setInvoiceCount(res.data.invoiceCount);
+        setBillCount(res.data.billCount);
+        setFirmCount(res.data.firmCount);
+        setUsername(res.data.username);
+        setNewsData(res.data.newsData);
+        // setInvoiceCount(res.data.)
       } catch (error) {}
     };
     fetchData();
@@ -41,40 +51,32 @@ export default function HomePage() {
   return (
     <>
       <NavBar />
-      <div className="wrapper">
-        <ul className="bg-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
       <div className="home-canvas">
         <div className="home-news-canvas">
           <div className="home-news-title">সাম্প্রতিক সংবাদসমুহ</div>
           <div className="news-card-container">
-            {newsData.map((singleNews) => {
-              return (
-                <NewsCard
-                  newsText={singleNews.newsText}
-                  newsLink={singleNews.newsLink}
-                  key={singleNews.newsId}
-                />
-              );
-            })}
+            {newsData ? (
+              newsData.map((singleNews) => {
+                return (
+                  <NewsCard
+                    newsText={singleNews.newsTitle}
+                    newsLink={singleNews.newsLink}
+                    key={singleNews.newsId}
+                  />
+                );
+              })
+            ) : (
+              <h1>নতুন সংবাদ নেই</h1>
+            )}
           </div>
         </div>
         <div className="home-right-canvas">
           <div className="home-profile-canvas">
             <div className="home-welcome-section">
-              <marquee behavior="alternate" direction="left">সহজ ঠিকাদারিতে স্বাগতম <span className="home-username">jahirul Islam</span></marquee>
-              
+              <marquee behavior="alternate" direction="left">
+                সহজ ঠিকাদারিতে স্বাগতম{" "}
+                <span className="home-username">{username}</span>
+              </marquee>
             </div>
             {/* <div className="home-profile-info-section">
               <div className="home-profile-info-card">
@@ -113,9 +115,9 @@ export default function HomePage() {
               </div>
             </div>
             <div className="home-user-status-canvas">
-              <UserStatusCard title={"মোট প্রোগ্রাম"} number={"১২৯"} />
-              <UserStatusCard title={"মোট বিল"} number={"২৬"} />
-              <UserStatusCard title={"মোট ফার্ম"} number={"৩"} />
+              <UserStatusCard title={"মোট প্রোগ্রাম"} number={invoiceCount} />
+              <UserStatusCard title={"মোট বিল"} number={billCount} />
+              <UserStatusCard title={"মোট ফার্ম"} number={firmCount} />
             </div>
           </div>
         </div>

@@ -13,6 +13,11 @@
     margin-right: 3vw;
 }
 
+.navLogo:hover{
+    cursor: pointer;
+}
+
+
 .navRightContainer{
     height: 10vh;
     flex-grow: 1;
