@@ -3,11 +3,13 @@ import { useState } from "react";
 import { Input, DatePicker, Space, Switch } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 import "./AddBillHeadings.css";
 import NavBar from "../../components/navBar/NavBar";
 
 export default function AddBillHeadings() {
+  var done = false;
   const navigate = useNavigate();
   let { firmId } = useParams();
   const billEntryList = useLocation().state?.billEntries;
@@ -31,10 +33,10 @@ export default function AddBillHeadings() {
   };
 
   const handleDateChange = (date, dateString) => {
-    setNewFirmInfo({ ...newFirmInfo, date: dateString });
+    setNewFirmInfo({ ...newFirmInfo, date: date.toISOString() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newFirmInfo.billNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
     else if (!newFirmInfo.submittedTo) alert("ফার্মের নাম দিন");
@@ -45,10 +47,26 @@ export default function AddBillHeadings() {
       //   invoices: billEntryList,
       // });
       //console.log(newFirmInfo);
-      alert(JSON.stringify(newFirmInfo));
-      navigate("/firm/" + firmId + "/bill/billDownloadPage", {
-        state: {newFirmInfo},
-      });
+      //alert(JSON.stringify(newFirmInfo));            
+
+      if(!done) try {
+        done = true;
+        const response = await axios.post(
+          "http://localhost:8888/api/v1/bills",
+          {firmID: firmId, ...newFirmInfo},
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
+        console.log(response.data);
+        navigate("/firm/" + firmId + "/bill/billDownloadPage", {
+          state: {newFirmInfo},
+        });
+      } catch (error) {
+        console.log(error);
+        alert(error);
+        done = false;
+      }      
     }
   };
 

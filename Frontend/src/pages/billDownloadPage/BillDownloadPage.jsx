@@ -1,9 +1,16 @@
 import DarkButton from "../../components/darkButton/DarkButton";
-import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import billImg from "../../assets/billLogo.png";
 
 import "./BillDownloadPage.css";
 import NavBar from "../../components/navBar/NavBar";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import BillPDF from "../../components/PdfGenerator/BillPDF";
 
 export default function BillDownloadPage() {
   let { firmId } = useParams();
@@ -24,16 +31,27 @@ export default function BillDownloadPage() {
             বিলটি ডাউনলোড করতে নিচের বাটনে ক্লিক করবেন
           </div>
 
-          <DarkButton
-            buttonText="ডাউনলোড করুন"
-            onClick={() => {
-              //alert(JSON.stringify(billData));
-              navigate("/home", {
-                state: "no state",
-              });
-            }}
-            routePath="forbidden"
-          />
+          <PDFDownloadLink
+            document={<BillPDF data = {billData}/>}
+            fileName="মুভমেন্ট রেজিস্টার.pdf"
+          >
+            {({ loading }) =>
+              loading ? (
+                "লোডিং..."
+              ) : (
+                <DarkButton
+                  buttonText="ডাউনলোড করুন"
+                  onClick={() => {
+                    //alert(JSON.stringify(billData));
+                    // navigate("/home", {
+                    //   state: "no state",
+                    // });
+                  }}
+                  routePath="forbidden"
+                />
+              )
+            }
+          </PDFDownloadLink>
         </div>
       </div>
     </>

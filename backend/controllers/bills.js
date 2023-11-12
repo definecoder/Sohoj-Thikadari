@@ -34,9 +34,9 @@ const createBill = asyncWrapper(async (req, res) => {
     const updatedInvoices = req.body.invoices.map((invoice, index) => {
         return prisma.invoice.update({
             data: {
-                distance: invoice.distance,
-                pricePerTon: invoice.pricePerTon,
-                invoiceAmount: (invoice.pricePerTon * receivingInfoP[index].receivingGrossQuantity),
+                distance: parseFloat(invoice.distance),
+                pricePerTon: parseFloat(invoice.pricePerTon),
+                invoiceAmount: (parseFloat(invoice.pricePerTon) * receivingInfoP[index].receivingGrossQuantity),
                 billID: newBill.id
             },
             where: {
