@@ -8,8 +8,8 @@ import NavBar from "../../components/navBar/NavBar";
 export default function BillDownloadPage() {
   let { firmId } = useParams();
   const navigate = useNavigate();
-  const billData = useLocation().state;
-  console.log(billData.invoices);
+  const billData = useLocation().state?.newFirmInfo;
+  console.log(billData);
   return (
     <>
       <NavBar />
@@ -21,13 +21,13 @@ export default function BillDownloadPage() {
           </div>
           <div className="billdownload3">আপনার বিল তৈরি সম্পন্ন হয়েছে!</div>
           <div className="billdownload4">
-            বিলটি আবার ডাউনলোড করতে আমার বিলসমূহ অপশন এ যাবেন
+            বিলটি ডাউনলোড করতে নিচের বাটনে ক্লিক করবেন
           </div>
 
           <DarkButton
             buttonText="ডাউনলোড করুন"
             onClick={() => {
-              //alert(JSON.stringify(employeeData));
+              //alert(JSON.stringify(billData));
               navigate("/home", {
                 state: "no state",
               });

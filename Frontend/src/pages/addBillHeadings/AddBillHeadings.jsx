@@ -10,7 +10,7 @@ import NavBar from "../../components/navBar/NavBar";
 export default function AddBillHeadings() {
   const navigate = useNavigate();
   let { firmId } = useParams();
-  const billEntryList = useLocation().state;
+  const billEntryList = useLocation().state?.billEntries;
   const [newFirmInfo, setNewFirmInfo] = useState({
     billNo: "",
     submittedTo: "",
@@ -47,7 +47,7 @@ export default function AddBillHeadings() {
       //console.log(newFirmInfo);
       alert(JSON.stringify(newFirmInfo));
       navigate("/firm/" + firmId + "/bill/billDownloadPage", {
-        state: newFirmInfo,
+        state: {newFirmInfo},
       });
     }
   };

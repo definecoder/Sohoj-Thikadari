@@ -50,7 +50,7 @@ export default function AddBillDistancePage() {
   let { firmId } = useParams();
   //alert(JSON.stringify());
   const [billEntries, setBillEntries] = useState(billMakingInvoices);  
-  console.log(billMakingInvoices);
+  //console.log(billMakingInvoices);
 
   const onChangeInput = (e, index) => {
     const { name, value } = e.target;
@@ -134,9 +134,9 @@ export default function AddBillDistancePage() {
             <DarkButton
               buttonText="সংরক্ষন করুন"
               onClick={() => {
-                alert(JSON.stringify(billEntries));
+                //alert(JSON.stringify(billEntries));
                 navigate("/firm/" + firmId + "/bill/addBillHeadings", {
-                  state: billEntries,
+                  state: {billEntries},
                 });
               }}
               routePath="forbidden"
