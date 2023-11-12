@@ -23,7 +23,7 @@ export default function HomePage() {
   const [billCount, setBillCount] = useState(0);
   const [firmCount, setFirmCount] = useState(0);
   const [username, setUsername] = useState(null);
-  const [newsData, setNewsData] = useState([]);
+  const [newsData, setNewsData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
