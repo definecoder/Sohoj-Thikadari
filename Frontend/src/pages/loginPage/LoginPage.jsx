@@ -4,8 +4,10 @@ import "./LoginPage.css";
 import LandingAiLogo from "../../assets/landingAiLogo.jpeg";
 import AppLogo from "../../assets/appLogo.png";
 import LoginForm from "./LoginForm";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="loginPageRoot">
@@ -25,7 +27,9 @@ function LoginPage() {
               className="AppLoginLogo"
             />
           </div>
-          <div className="wantToRegister"> সহজ ঠিকাদারী তে নতুন? <span className="wantToRegisterBtn"> রেজিস্টার করুন </span></div>          
+          <div className="wantToRegister"> সহজ ঠিকাদারী তে নতুন? <span className="wantToRegisterBtn" onClick={()=>{
+            navigate('/signup');
+          }}> রেজিস্টার করুন </span></div>          
           <LoginForm />   
           <div>
             পাসওয়ার্ড ভুলে গেছেন? এখানে <b>ক্লিক করুন</b>

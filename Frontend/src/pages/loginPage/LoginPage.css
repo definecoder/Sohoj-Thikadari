@@ -37,6 +37,10 @@
     color: #005163;
 }
 
+.wantToRegisterBtn:hover {
+    cursor: pointer;
+}
+
 
 .passwordTitle {
     margin-top: 2rem;

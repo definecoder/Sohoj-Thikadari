@@ -49,6 +49,10 @@
     color: #005163;
 }
 
+.signupFooterButton:hover {
+    cursor: pointer;
+}
+
 .signupForm {       
     display: flex;    
     flex-direction: column;
