@@ -81,10 +81,14 @@ const getUserDashboardInfo = asyncWrapper( async (req, res) => {
         }
     })
 
+    const newsData = await prisma.news.findMany()
+
     // console.log(invoiceCount, billCount, firmCount, username)
 
+    // console.log(newsData)
 
-    res.status(StatusCodes.OK).json({Invoice: invoices, invoiceCount, billCount, firmCount, username: username.username})
+
+    res.status(StatusCodes.OK).json({Invoice: invoices, invoiceCount, billCount, firmCount, username: username.username, newsData})
 
 
 }, {msg: 'Couldn\'t fetch recent invoices'})

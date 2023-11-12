@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navBar/NavBar";
-import newsData from "./newsData";
 import recentProgramList from "./recentProgramList";
 
 import "./HomePage.css";
@@ -24,6 +23,7 @@ export default function HomePage() {
   const [billCount, setBillCount] = useState(0);
   const [firmCount, setFirmCount] = useState(0);
   const [username, setUsername] = useState(null);
+  const [newsData, setNewsData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +41,7 @@ export default function HomePage() {
         setBillCount(res.data.billCount);
         setFirmCount(res.data.firmCount);
         setUsername(res.data.username);
+        setNewsData(res.data.newsData);
         // setInvoiceCount(res.data.)
       } catch (error) {}
     };
@@ -54,15 +55,19 @@ export default function HomePage() {
         <div className="home-news-canvas">
           <div className="home-news-title">সাম্প্রতিক সংবাদসমুহ</div>
           <div className="news-card-container">
-            {newsData.map((singleNews) => {
-              return (
-                <NewsCard
-                  newsText={singleNews.newsText}
-                  newsLink={singleNews.newsLink}
-                  key={singleNews.newsId}
-                />
-              );
-            })}
+            {newsData ? (
+              newsData.map((singleNews) => {
+                return (
+                  <NewsCard
+                    newsText={singleNews.newsTitle}
+                    newsLink={singleNews.newsLink}
+                    key={singleNews.newsId}
+                  />
+                );
+              })
+            ) : (
+              <h1>নতুন সংবাদ নেই</h1>
+            )}
           </div>
         </div>
         <div className="home-right-canvas">
