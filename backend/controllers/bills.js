@@ -101,8 +101,43 @@ const getAllBills = asyncWrapper(async (req, res) => {
 
 }, { code: 404, msg: "Couldn\'t get bills" })
 
+
+const getBillsGov = asyncWrapper(async (req, res) => {
+
+    const bills = await prisma.bill.findMany({
+        
+        where: {
+            firmID: req.params.firmId,
+            govtBillNo: null
+        }
+    })
+
+    res.status(StatusCodes.OK).json(bills)
+
+}, { code: 404, msg: "Couldn\'t get bills for government" })
+
+
+const updateBillsGov = asyncWrapper(async (req, res) => {
+
+    const bills = await prisma.bill.update({
+        data:{
+            govtBillNo: req.body.govtBillNo,
+            govtBillDate: req.body.govtBillDate
+        },
+        where: {
+            firmID: req.params.firmId,
+            id: req.body.billId
+        }
+    })
+
+    res.status(StatusCodes.OK).json(bills)
+
+}, { code: 404, msg: "Couldn\'t update bill for government" })
+
 module.exports = {
     createBill,
     getBill,
-    getAllBills
+    getAllBills,
+    getBillsGov,
+    updateBillsGov
 }
