@@ -4,18 +4,22 @@ import "./ProgramSelectionCard.css";
 import SelectedCircle from "./SelectedCircle";
 
 export default function ProgramSelectionCard({
-  programNo,
+  invoiceNo,
   programDate,
   sendingPoint,
   receivingPoint,
-  noOfSlacks,
+  receivingNetSlack,
   sendingDate,
   receivingDate,
-  comodity,
+  commodity,
   programId,
   selected,
   handleClick,
 }) {
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
+  sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
+  receivingDate = new Date(receivingDate).toLocaleDateString("bn-BD", options);
+  programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
   return (
     <>
       <div onClick={handleClick} className="psc-main-wrapper">
@@ -25,8 +29,8 @@ export default function ProgramSelectionCard({
         <div className="psc-info">
           <div className="psc-header">
             <div className="psc-header-left">
-              প্রোগ্রাম নংঃ &nbsp;{" "}
-              <span className="program-no-style">{programNo}</span>
+              ইনভয়েস নংঃ &nbsp;{" "}
+              <span className="program-no-style">{invoiceNo}</span>
             </div>
             <div className="psc-header-right">{programDate}</div>
           </div>
@@ -35,7 +39,7 @@ export default function ProgramSelectionCard({
           </div>
           <div className="psc-footer">
             <div className="psc-footer-left">
-              <b>{noOfSlacks} বস্তা</b> - &nbsp; <i>{comodity}</i>
+              <b>{receivingNetSlack} বস্তা</b> - &nbsp; <i>{commodity}</i>
               <br /> <b>প্রেরনঃ</b> &nbsp; {sendingDate}{" "}
             </div>
             <div className="psc-footer-right">

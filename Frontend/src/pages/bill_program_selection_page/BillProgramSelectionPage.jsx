@@ -2,19 +2,22 @@ import "./BillProgramSelectionPage.css";
 import NavBar from "../../components/navBar/NavBar";
 import ProgramSelectionCard from "../../components/ProgramSelectionCard/ProgramSelectionCard";
 import DarkButton from "../../components/darkButton/DarkButton";
-import programList from "./ProgramList";
 import { Row, Col } from "antd";
 import { SelectOutlined } from "@ant-design/icons";
 import FirmInfo from "../../components/firm_info/FirmInfo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function BillProgramSelectionPage() {
   let { firmId } = useParams();
   const navigate = useNavigate();
   const [selectList, setSelectList] = useState(
-    Array(programList.length).fill(false)
+    Array(0).fill(false)
+  );
+  const [billProgramList, setBillProgramList] = useState(
+    []
   );
 
   function handleClick(index) {
@@ -30,11 +33,11 @@ export default function BillProgramSelectionPage() {
 
     for (var i = 0; i < selectList.length; i++) {
       if (selectList[i]) {
-        newProgramList.push(programList[i]);
-      }
+        newProgramList.push(billProgramList[i]);
+      } 
     }
 
-    //console.log(newProgramList);
+    //console.log(selectList);
     //alert(JSON.stringify(newProgramList));
     navigate("/firm/" + firmId + "/bill/addBillDistance", {
       state: {
@@ -42,11 +45,42 @@ export default function BillProgramSelectionPage() {
       },
     });
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8888/api/v1/invoice/forbill/" + firmId,
+          {
+            headers: { Authorization: localStorage.getItem('token') },
+          }
+        );
+        // console.log(localStorage.getItem('token'));
+        //console.log(res.data.Invoice);
+        setBillProgramList(res.data.Invoice);    
+        setSelectList(Array(billProgramList.length).fill(false));
+        //console.log(selectList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();    
+  }, []);
+
+  function renderEmptyBill() {
+    return <div>
+
+      <h1>বিল তৈরি করার মত প্রোগ্রাম নেই</h1>
+
+    </div>
+  }
+
   return (
     <>
       <NavBar />
 
-      <div className="bps-main-wrapper">
+
+      {billProgramList.length == 0 ? renderEmptyBill() : <div className="bps-main-wrapper">
         <div className="bps-header">
           <div className="bps-header-left">
             <SelectOutlined />
@@ -62,16 +96,16 @@ export default function BillProgramSelectionPage() {
         </div>
         <div className="bps-body">
           <Row>
-            {programList.map((program, index) => {
+            {billProgramList.map((program, index) => {
               return (
-                <Col span={12} key={program.programId}>
+                <Col span={12} key={program.invoiceNo}>
                   <ProgramSelectionCard
                     {...program}
                     selected={selectList[index]}
                     handleClick={() => {
                       handleClick(index);
                     }}
-                    key={program.programId}
+                    key={program.invoiceNo}
                   />
                 </Col>
               );
@@ -86,7 +120,7 @@ export default function BillProgramSelectionPage() {
             type="submit"
           />
         </div>
-      </div>
+      </div>}
     </>
   );
 }
