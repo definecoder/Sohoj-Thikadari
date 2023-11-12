@@ -42,6 +42,17 @@ const login = asyncWrapper(async (req, res) => {
 
 }, { msg: 'Login Failed' })
 
+const createUser = asyncWrapper(async (req, res) => {
 
+    req.body.hashedPassword = await bcrypt.hash(req.body.password, saltRounds)
+    req.body.password = undefined
+    const newUser = await prisma.user.create({ data: req.body })
 
-module.exports = login
+    const token = jwt.sign({ id: newUser.id, phone: newUser.phone }, process.env.JWT_SECRET, {
+        expiresIn: '30d',
+    })
+    res.status(StatusCodes.CREATED).json({ token })
+
+}, { msg: "Couldn\'t create user" })
+
+module.exports = {login, createUser}

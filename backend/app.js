@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const users = require('./routes/users')
 const firms = require('./routes/firms')
-const login = require('./routes/auth')
+const auth = require('./routes/auth')
 const program = require('./routes/program')
 const authToken = require('./middlewares/auth')
 const invoice = require('./routes/invoice')
@@ -15,8 +15,10 @@ app.use(express.json())
 app.use(cors());
 
 // routes
-app.use('/api/v1/users', users)
-app.use('/api/v1/login', login)
+app.use('/api/v1/auth', auth)
+
+app.use('/api/v1/users', authToken, users)
+
 app.use('/api/v1/firms', authToken, firms)
 
 app.use('/api/v1/program', authToken, program)
