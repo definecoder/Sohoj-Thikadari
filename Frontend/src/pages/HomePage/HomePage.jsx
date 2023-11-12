@@ -104,14 +104,20 @@ export default function HomePage() {
                 সাম্প্রতিক প্রোগ্রাম সমুহ
               </div>
               <div className="home-recent-program-cards-container">
-                {homepageProgramList.map((program) => {
-                  return (
-                    <RecentProgramInfoCard
-                      {...program}
-                      key={program.invoiceNo}
-                    />
-                  );
-                })}
+                {homepageProgramList.length != 0 ? (
+                  homepageProgramList.map((program) => {
+                    return (
+                      <RecentProgramInfoCard
+                        {...program}
+                        key={program.invoiceNo}
+                      />
+                    );
+                  })
+                ) : (
+                  <>
+                    <h1> কোনো প্রোগ্রাম নেই </h1>
+                  </>
+                )}
               </div>
             </div>
             <div className="home-user-status-canvas">

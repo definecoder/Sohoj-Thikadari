@@ -29,11 +29,24 @@
   justify-content: start;
   align-items: center;  
   height: 90%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .news-card-container::-webkit-scrollbar {
-  display: none;
+  background: none;
+}
+.news-card-container::-webkit-scrollbar-thumb {
+  background: none;
+  /* No background color for the scroll handle */
+  border: 2px solid #888;
+  /* Border color for the scroll handle */
+  border-radius: 6px;
+  /* Optional: Round the corners of the scroll handle */
+}
+
+.news-card-container::-webkit-scrollbar-thumb:hover {
+  border: 2px solid #555;
+  /* Border color for the scroll handle on hover */
 }
 
 .news-card-canvas {
@@ -141,12 +154,26 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .home-recent-program-cards-container::-webkit-scrollbar {
-  display: none;
+  background: none;
 }
+.home-recent-program-cards-container::-webkit-scrollbar-thumb {
+  background: none;
+  /* No background color for the scroll handle */
+  border: 2px solid #888;
+  /* Border color for the scroll handle */
+  border-radius: 6px;
+  /* Optional: Round the corners of the scroll handle */
+}
+
+.home-recent-program-cards-container::-webkit-scrollbar-thumb:hover {
+  border: 2px solid #555;
+  /* Border color for the scroll handle on hover */
+}
+
 
 .home-user-status-canvas {
   flex-grow: 1;
