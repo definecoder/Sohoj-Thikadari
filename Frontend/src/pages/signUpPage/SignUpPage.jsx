@@ -3,9 +3,10 @@ import landingLogo from "../../assets/appLogo.png"
 import SignUpForm from "./SignUpForm";
 
 import "./SignUpPage.css";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {        
-
+  const navigate = useNavigate();
     return (
       <>
         <div className="signupCanvas">
@@ -16,7 +17,9 @@ function SignUpPage() {
                 </div>
                 <SignUpForm />
                 <div className="signupFooter">
-                    পূর্বেই এক্যাউন্ট রয়েছে? <span className="signupFooterButton">প্রবেশ করুন</span>
+                    পূর্বেই এক্যাউন্ট রয়েছে? <span className="signupFooterButton" onClick={()=>{
+                      navigate("/login");
+                    }}>প্রবেশ করুন</span>
                 </div>
             </div>
         </div>
