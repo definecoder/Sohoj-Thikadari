@@ -76,12 +76,14 @@ export default function AddGovBillNumPage() {
               );
             })
           ) : (
-            <>
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100vw", paddingTop:"100px"}}>
             <br /> <br />
               <h1>
                 <i>সরকারি নাম্বার দেওয়ার মত বিল নেই</i>
               </h1>
-            </>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <BackButton />
+            </div>
           )}
         </div>
       </div>

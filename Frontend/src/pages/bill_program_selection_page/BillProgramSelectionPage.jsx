@@ -40,7 +40,7 @@ export default function BillProgramSelectionPage() {
       } 
     }
 
-    //console.log(selectList);
+    console.log(newProgramList);
     //alert(JSON.stringify(newProgramList));
     navigate("/firm/" + firmId + "/bill/addBillDistance", {
       state: {

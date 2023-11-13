@@ -37,7 +37,8 @@ const createBill = asyncWrapper(async (req, res) => {
                 distance: parseFloat(invoice.distance),
                 pricePerTon: parseFloat(invoice.pricePerTon),
                 invoiceAmount: (parseFloat(invoice.pricePerTon) * receivingInfoP[index].receivingGrossQuantity),
-                billID: newBill.id
+                billID: newBill.id,
+                status: invoice.status
             },
             where: {
                 invoiceNo: invoice.id

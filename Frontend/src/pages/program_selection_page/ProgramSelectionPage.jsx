@@ -33,10 +33,12 @@ export default function FirmProfilePage() {
 
   function empyFirmList() {
     return (
-      <div className="firm-list-empty-title">
+      <div className="recieving-list-empty-title">
         <h2>প্রাপ্তির তথ্য দেওয়ার মত কোন প্রোগ্রাম / ইনভয়েস নেই। </h2>
         <h3>নতুন প্রোগ্রাম প্রেরণের পরে এই পেইজে পাওয়া যাবে।</h3>
         <div>ধন্যবাদ।</div>
+        &nbsp;
+        <BackButton />
       </div>
     );
   }

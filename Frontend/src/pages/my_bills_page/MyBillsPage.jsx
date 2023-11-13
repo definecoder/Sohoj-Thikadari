@@ -51,6 +51,18 @@ export default function MyBillsPage() {
     fetchData();
   }, []);
 
+  function emptyBillRender() {
+    return (
+      <div className="movement-reg-empty-title">
+        <h2>আপনার কোন বিল যুক্ত করা হয়নি </h2>
+        <h3>বিল তৈরি করার পর সকল বিলের তথ্য এইখানে পুনরায় পাওয়া যাবে।</h3>
+        <div>ধন্যবাদ।</div>
+        &nbsp;
+        <BackButton />
+      </div>
+    );
+  }
+
   return (
     <>
       <NavBar />
@@ -70,13 +82,15 @@ export default function MyBillsPage() {
         </div>
         <div className="bp-body">
           <Row>
-            {billList.map((bill) => {
-              return (
-                <Col className="bp-col" span={12} key={bill.id}>
-                  <BillCard {...bill} />
-                </Col>
-              );
-            })}
+            {billList.length == 0
+              ? emptyBillRender()
+              : billList.map((bill) => {
+                  return (
+                    <Col className="bp-col" span={12} key={bill.id}>
+                      <BillCard {...bill} />
+                    </Col>
+                  );
+                })}
           </Row>
         </div>
       </div>

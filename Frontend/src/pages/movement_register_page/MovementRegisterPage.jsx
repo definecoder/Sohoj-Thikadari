@@ -50,6 +50,18 @@ export default function MovementRegisterPage() {
     fetchData();
   }, []);
 
+  function emptyMovementReg() {
+    return (
+      <div className="movement-reg-empty-title">
+        <h2>আপনার কোন প্রোগ্রাম যুক্ত করা হয়নি </h2>
+        <h3>নতুন প্রোগ্রাম যুক্তের পর সকল ইনভয়েস এইখানে পাওয়া যাবে।</h3>
+        <div>ধন্যবাদ।</div>
+        &nbsp;
+        <BackButton />
+      </div>
+    );
+  }
+
   return (
     <>
       <NavBar />
@@ -77,7 +89,7 @@ export default function MovementRegisterPage() {
         </div>
         <div className="mr-body">
           <Row>
-            {invoiceList.map((program, index) => {
+            {invoiceList.length == 0 ? emptyMovementReg() : invoiceList.map((program, index) => {
               return (
                 <Col className="mr-col" span={12} key={index}>
                   <RecentProgramInfoCard {...program} key={program.programId} />

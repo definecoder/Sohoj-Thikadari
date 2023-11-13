@@ -35,3 +35,13 @@
 .ps-program{
     width:650px;
 }
+
+.recieving-list-empty-title {    
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    font-size: 2em;
+    font-style: italic;
+}

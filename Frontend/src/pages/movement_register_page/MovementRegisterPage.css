@@ -71,3 +71,14 @@
     display: flex;
     justify-content: center;
 }
+
+.movement-reg-empty-title {   
+    width: 100%; 
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    font-size: 2em;
+    font-style: italic;
+}
