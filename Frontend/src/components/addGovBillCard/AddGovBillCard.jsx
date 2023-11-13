@@ -2,25 +2,38 @@ import { useState } from "react";
 import "./AddGovBillCard.css";
 
 import { Button, Input, DatePicker } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function AddGovBillCard({ billNo, amount, billDate }) {
+export default function AddGovBillCard({ billNo, amount, billDate, billId }) {
+  let { firmId } = useParams();
   const navigate = useNavigate();
+
   const [cardData, setCardData] = useState({
-    govBillNo: "",
-    billDate: "",
+    billId: billId,
+    govtBillNo: "",
+    govtBillDate: "",
   });
 
-  var submitCard = () => {
-    if (!cardData.govBillNo)
-      alert(billNo + " এর সরকারি বিল নম্বর দিন");
-    else if (!cardData.billDate)
+  var submitCard = async () => {
+    if (!cardData.govtBillNo) alert(billNo + " এর সরকারি বিল নম্বর দিন");
+    else if (!cardData.govtBillDate)
       alert(billNo + " এর সরকারি বিলের তারিখ দিন");
     else {
-      alert(JSON.stringify(cardData));                  
-      navigate("/firm/1/addgovbillnum", {
-        state: "নাইস",
-      });
+      try {
+        const response = await axios.put(
+          "http://localhost:8888/api/v1/bills/govtBills/" + firmId,
+          cardData,
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
+        navigate("firm/" + firmId + "/addgovbillnum", {
+          state: {},
+        });
+      } catch (error) {
+        alert(JSON.stringify(error.response.data.msg));
+      }
     }
   };
 
@@ -43,9 +56,9 @@ export default function AddGovBillCard({ billNo, amount, billDate }) {
                 className="gov-bill-input-textfield"
                 size="large"
                 placeholder="সরকারী বিল নম্বর দিন"
-                value={cardData.govBillNo}
+                value={cardData.govtBillNo}
                 onChange={(e) =>
-                  setCardData({ ...cardData, govBillNo: e.target.value })
+                  setCardData({ ...cardData, govtBillNo: e.target.value })
                 }
               />
             </div>
@@ -58,7 +71,7 @@ export default function AddGovBillCard({ billNo, amount, billDate }) {
                 onChange={(date, dateString) => {
                   setCardData({
                     ...cardData,
-                    billDate: dateString,
+                    govtBillDate: date.toISOString(),
                   });
                 }}
               />

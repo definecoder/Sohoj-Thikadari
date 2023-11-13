@@ -14,7 +14,7 @@ export default function AddGovBillNumPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!done)
+      if (!done) {
         try {
           done = true;
           const response = await axios.get(
@@ -24,13 +24,16 @@ export default function AddGovBillNumPage() {
             }
           );
 
+          console.log(response.data);
+
           setPendingGovBills(response.data);
 
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.msg);
+          alert(error.response.data.msg);
           done = false;
         }
+      }
     };
     fetchData();
   }, []);
@@ -48,6 +51,7 @@ export default function AddGovBillNumPage() {
                   billNo={bill.billNo}
                   amount={bill.amount}
                   billDate={bill.billDate}
+                  billId={bill.id}
                   key={indx}
                 />
               );
