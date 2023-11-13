@@ -36,7 +36,11 @@ export default function AddGovBillNumPage() {
       }
     };
     fetchData();
-  }, []);
+  }, [firmId]);
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
   return (
     <>
@@ -52,6 +56,7 @@ export default function AddGovBillNumPage() {
                   amount={bill.amount}
                   billDate={bill.billDate}
                   billId={bill.id}
+                  onRefresh={handleRefresh}
                   key={indx}
                 />
               );

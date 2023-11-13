@@ -5,7 +5,13 @@ import { Button, Input, DatePicker } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-export default function AddGovBillCard({ billNo, amount, billDate, billId }) {
+export default function AddGovBillCard({
+  billNo,
+  amount,
+  billDate,
+  billId,
+  onRefresh,
+}) {
   let { firmId } = useParams();
   const navigate = useNavigate();
 
@@ -28,9 +34,7 @@ export default function AddGovBillCard({ billNo, amount, billDate, billId }) {
             headers: { Authorization: localStorage.getItem("token") },
           }
         );
-        navigate("firm/" + firmId + "/addgovbillnum", {
-          state: {},
-        });
+        onRefresh();
       } catch (error) {
         alert(JSON.stringify(error.response.data.msg));
       }
