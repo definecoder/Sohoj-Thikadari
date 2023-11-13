@@ -39,7 +39,7 @@ export default function FirmProfilePage() {
 
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.msg);
+          alert(error.response.data.msg);
           done = false;
         }
     };

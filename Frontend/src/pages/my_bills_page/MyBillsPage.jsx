@@ -4,12 +4,51 @@ import "./MyBillsPage.css";
 
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
-import billList from "./billList";
+
 import BillCard from "../../components/bill_card/BillCard";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function MyBillsPage() {
   // getting uid from login or signup :v
   //console.log(useLocation().state?.user);
+  let done = false;
+  let { firmId } = useParams();
+
+  const [firmInfo, setFirmInfo] = useState(null);
+  const [billList, setBillList] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!done)
+        try {
+          done = true;
+          const response = await axios.get(
+            "http://localhost:8888/api/v1/firms/" + firmId,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setFirmInfo(response.data);
+
+          const response2 = await axios.get(
+            "http://localhost:8888/api/v1/bills/all/" + firmId,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setBillList(response2.data);
+
+          // setInvoiceCount(res.data.)
+        } catch (error) {
+          alert(error.response.data.msg);
+          done = false;
+        }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -21,9 +60,9 @@ export default function MyBillsPage() {
           </div>
           <div className="bp-header-right">
             <FirmInfo
-              firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
-              firmAddress={"৪১৪/এ, ডিটি রোড কদমতলি, চট্টগ্রাম"}
-              ProprietorName={"জহিরুল ইসলাম"}
+              firmName={firmInfo?.name}
+              firmAddress={firmInfo?.address}
+              ProprietorName={firmInfo?.proprietor}
             />
           </div>
         </div>
