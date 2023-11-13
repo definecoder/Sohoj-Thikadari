@@ -7,6 +7,7 @@ import axios from "axios";
 
 import "./AddBillHeadings.css";
 import NavBar from "../../components/navBar/NavBar";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function AddBillHeadings() {
   var done = false;
@@ -75,6 +76,7 @@ export default function AddBillHeadings() {
     <>
       <NavBar />
       <div className="addbillheadings-canvas">
+        <div className="bill-heading-back-btn"><BackButton /></div>        
         <div className="addbillheadings-title">বিলের সার্বিক তথ্যসমূহ দিন</div>
         <form className="add-bill-heading-form" onSubmit={handleSubmit}>
           <div className="makebill-main-form">

@@ -1,3 +1,16 @@
+.no-bill-container{
+
+    height: 83vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 10%;
+    font-size: 1.5em;
+
+}
+
 .bps-main-wrapper {
     width: 100vw;
     height: 83vh;
@@ -13,14 +26,17 @@
     width: 80%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .bps-header-left{
+    padding-top: 25px;
     display: flex;
     font-size: 2em;
-    justify-content: center;
-    align-items: end;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    height: 100%;
 }
 .bps-header-text{
     margin-left: 10px;
@@ -29,4 +45,5 @@
 
 .bps-body{
     width: 90%;
+    margin-bottom: 30px;
 }

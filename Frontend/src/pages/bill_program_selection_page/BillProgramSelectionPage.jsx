@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function BillProgramSelectionPage() {
   let { firmId } = useParams();
@@ -69,9 +70,11 @@ export default function BillProgramSelectionPage() {
   }, []);
 
   function renderEmptyBill() {
-    return <div>
-
+    return <div className="no-bill-container">
+            
       <h1>বিল তৈরি করার মত প্রোগ্রাম নেই</h1>
+      <br />
+      <BackButton />
 
     </div>
   }
@@ -84,8 +87,8 @@ export default function BillProgramSelectionPage() {
       {billProgramList.length == 0 ? renderEmptyBill() : <div className="bps-main-wrapper">
         <div className="bps-header">
           <div className="bps-header-left">
-            <SelectOutlined />
-            <div className="bps-header-text">প্রোগ্রাম নির্বাচন করুন</div>
+          <BackButton />                      
+            <div className="bps-header-text"><SelectOutlined />&nbsp;&nbsp;&nbsp;প্রোগ্রাম নির্বাচন করুন</div>
           </div>
           <div className="bps-header-right">
             <FirmInfo
