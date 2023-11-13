@@ -35,6 +35,7 @@ export default function BillProgramSelectionPage() {
     for (var i = 0; i < selectList.length; i++) {
       if (selectList[i]) {
         billProgramList[i].id = billProgramList[i].invoiceNo;
+        billProgramList[i].status = 3;
         newProgramList.push(billProgramList[i]);
       } 
     }

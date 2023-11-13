@@ -39,6 +39,17 @@ export default function RunningProgramsPage() {
     fetchData();
   }, []);
 
+  function emptyRunningProgram() {
+    return <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100vw", paddingTop:"30px"}}>
+
+            
+      <h1><i>চলমান কোনো প্রোগ্রাম নেই</i></h1>
+      &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; 
+      <BackButton />
+
+    </div>;
+  }
+
   return (
     <>
       <NavBar />
@@ -58,7 +69,7 @@ export default function RunningProgramsPage() {
         </div>
         <div className="rp-body">
           <Row>
-            {runningPrograms.map((program) => {
+            {runningPrograms.length == 0 ? emptyRunningProgram() : runningPrograms.map((program) => {
               return (
                 <Col className="rp-col" span={12} key={program.invoiceNo}>
                   <RecentProgramInfoCard
