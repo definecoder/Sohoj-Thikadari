@@ -14,9 +14,38 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import "./FirmProfilePage.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function FirmProfilePage() {
+  let done = false;
   let { firmId } = useParams();
+
+  const [firmInfo, setFirmInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!done)
+        try {
+          done = true;
+          const response = await axios.get(
+            "http://localhost:8888/api/v1/firms/" + firmId,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setFirmInfo(response.data);
+
+          // setInvoiceCount(res.data.)
+        } catch (error) {
+          alert(error.response.data.msg);
+          done = false;
+        }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -24,9 +53,9 @@ export default function FirmProfilePage() {
         <div className="fp-left-section-wrapper">
           <div className="fp-firm-info-wrapper">
             <FirmInfo
-              firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
-              firmAddress={"৪১৪/এ, ডিটি রোড কদমতলি, চট্টগ্রাম"}
-              ProprietorName={"জহিরুল ইসলাম"}
+              firmName={firmInfo?.name}
+              firmAddress={firmInfo?.address}
+              ProprietorName={firmInfo?.proprietor}
             />
           </div>
           <div className="fp-left-btn-wrapper">
@@ -35,7 +64,7 @@ export default function FirmProfilePage() {
               onClick={() => {}}
               // <FontAwesomeIcon icon="fa-light fa-receipt" />
               IconComponent={FileTextOutlined}
-              routePath={"/firm/"+ firmId +"/bills"}
+              routePath={"/firm/" + firmId + "/bills"}
               type="submit"
             />
             <LightIconButtonStyled
@@ -66,7 +95,7 @@ export default function FirmProfilePage() {
             buttonText="চলমান প্রোগ্রামসমূহ"
             onClick={() => {}}
             IconComponent={ProfileOutlined}
-            routePath={"/firm/"+firmId+"/programs"}
+            routePath={"/firm/" + firmId + "/programs"}
             type="submit"
           />
           <LightIconButton
