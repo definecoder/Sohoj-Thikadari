@@ -9,6 +9,7 @@ import BillCard from "../../components/bill_card/BillCard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function MyBillsPage() {
   // getting uid from login or signup :v
@@ -56,6 +57,7 @@ export default function MyBillsPage() {
       <div className="bp-main-wrapper">
         <div className="bp-header">
           <div className="bp-header-left">
+            <BackButton />
             <div className="bp-header-text">আমার বিল সমূহ</div>
           </div>
           <div className="bp-header-right">
