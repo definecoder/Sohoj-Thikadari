@@ -122,6 +122,22 @@ const getInvoice = asyncWrapper( async (req, res) => {
 
 }, {msg: 'couldn\'t get the invoice'})
 
+
+const getAllInvoice = asyncWrapper( async (req, res) => {
+
+    const invoices = await prisma.invoice.findMany({
+        where:{
+            firmID: req.params.firmId
+        }
+    })
+
+    res.status(StatusCodes.OK).json(invoices)
+
+
+}, {msg: 'couldn\'t get invoices'})
+
+
+
 module.exports = {
     addSendingInfo,
     updateReceivingInfo,
@@ -129,5 +145,6 @@ module.exports = {
     updateBill,
     getInvoice,
     getAllOnlySending,
-    getAllInvoiceForBill
+    getAllInvoiceForBill, 
+    getAllInvoice
 }
