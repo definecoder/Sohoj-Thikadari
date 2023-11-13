@@ -8,14 +8,19 @@
 }
 
 .ps-header{
-    margin: 0px 200px;
-    font-size: 2em;
+    padding: 25px 120px 0px 120px;
+    font-size: 2.5em;
+    width: 100%;
     /* border: 1px solid red; */
-    align-self:flex-end
+    align-self:flex-end;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    align-items: center;
 }
 
 .ps-grid-wrapper{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 100px;
     height: 100%;
     /* border: 1px solid blue; */

@@ -4,6 +4,7 @@ import NavBar from "../../components/navBar/NavBar";
 import "./MyFirmsPage.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function MyFirmsPage() {
   const navigate = useNavigate();
@@ -51,8 +52,9 @@ export default function MyFirmsPage() {
     <>
       <NavBar />
       <div className="myfirmspage-canvas">
-        <div className="myfirms-left-canvas">
-          <div className="myfirms-title-section">আমার ফার্মসমূহ</div>
+        <div className="myfirms-left-canvas">          
+          <div className="myfirms-title-section">
+          <BackButton /><div className="main-title-myfirms">আমার ফার্মসমূহ</div></div>
           <div className="myfirms-firm-list-container">
             {firmList.length == 0 ? empyFirmList() : firmList.map((firm) => {
               return <div

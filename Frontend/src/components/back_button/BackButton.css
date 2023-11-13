@@ -1,6 +1,6 @@
 .bck-btn-comp{
-    padding: 5px;
-    padding-left: 15px;
+    padding: 2px;
+    padding-left: 20px;
     padding-right: 20px;
     margin: 5px;
     font-size: 1.2rem;    
@@ -9,7 +9,11 @@
     color: white;
     word-spacing: 1px;
     letter-spacing: 1.2px;
-    
+    display: flex;
+    align-items: center;  
+    height: fit-content;
+    width: fit-content;
+    font-weight: 400;
 }
 
 .bck-btn-comp:hover {

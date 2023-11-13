@@ -7,9 +7,9 @@ export default function BackButton() {
     const navigate = useNavigate();
 
     return <>
-        <div className="bck-btn-comp" onClick={()=>{navigate(-1)}}>
+        <button className="bck-btn-comp" onClick={()=>{navigate(-1)}}>
             <CaretLeftOutlined /> &nbsp; পেছনে যান
-        </div>
+        </button>
     </>;
 
 }

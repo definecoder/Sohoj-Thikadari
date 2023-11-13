@@ -22,8 +22,21 @@
     height: 15vh;
     font-size: 3em;
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 20px;    
+    display: flex;
+    flex-direction: row;
+    justify-content: start;    
+    align-items: center;
+    padding-left: 10%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;    
+}
+
+.main-title-myfirms {
+    text-align: right;
     font-weight: bold;
+    flex-grow: 1;
+    padding-right: 10%;
 }
 
 .myfirms-firm-list-container {

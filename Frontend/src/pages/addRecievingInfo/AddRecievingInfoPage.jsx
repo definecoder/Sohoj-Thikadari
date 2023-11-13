@@ -1,3 +1,4 @@
+import BackButton from "../../components/back_button/BackButton";
 import NavBar from "../../components/navBar/NavBar";
 import AddRecievingInfoForm from "./AddRecievingInfoForm";
 import "./AddRecievingInfoPage.css";
@@ -10,8 +11,8 @@ export default function AddRecievingInfoPage() {
     return <>
         <NavBar />
         <div className="addnewprogram-canvas">
-            <div className="addnewprogram-title">
-                প্রাপ্তির তথ্যসমূহ দিন
+            <div className="addnewprogram-title-receiving">
+                <BackButton /> প্রাপ্তির তথ্যসমূহ দিন
             </div>
             <AddRecievingInfoForm />
         </div>
