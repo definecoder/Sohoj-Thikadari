@@ -6,11 +6,22 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { Spin, message } from "antd";
+
 export default function AddGovBillNumPage() {
   var done = false;
   let { firmId } = useParams();
 
   const [pendingGovBills, setPendingGovBills] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "সরকারি বিল যুক্ত হয়েছে",
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,28 +38,28 @@ export default function AddGovBillNumPage() {
           console.log(response.data);
 
           setPendingGovBills(response.data);
-
+          setIsLoading(false);
           // setInvoiceCount(res.data.)
         } catch (error) {
           alert(error.response.data.msg);
           done = false;
+          setIsLoading(false);
         }
       }
     };
     fetchData();
-  }, [firmId]);
-
-  const handleRefresh = () => {
-    window.location.reload();
-  };
+  }, [isLoading]);
 
   return (
     <>
+      {contextHolder}
       <NavBar />
       <div className="gov-bill-num-add-page-canvas">
         <div className="add-gov-bill-num-page-title">সরকারি বিল নম্বর দিন</div>
         <div className="main-content-gov-bill-add">
-          {pendingGovBills.length !== 0 ? (
+          {isLoading ? (
+            <Spin />
+          ) : pendingGovBills.length !== 0 ? (
             pendingGovBills.map((bill, indx) => {
               return (
                 <AddGovBillCard
@@ -56,7 +67,8 @@ export default function AddGovBillNumPage() {
                   amount={bill.amount}
                   billDate={bill.billDate}
                   billId={bill.id}
-                  onRefresh={handleRefresh}
+                  onClick={setIsLoading}
+                  onSuccess={success}
                   key={indx}
                 />
               );

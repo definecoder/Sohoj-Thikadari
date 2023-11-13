@@ -10,7 +10,8 @@ export default function AddGovBillCard({
   amount,
   billDate,
   billId,
-  onRefresh,
+  onClick,
+  onSuccess,
 }) {
   let { firmId } = useParams();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export default function AddGovBillCard({
       alert(billNo + " এর সরকারি বিলের তারিখ দিন");
     else {
       try {
+        onClick(true);
         const response = await axios.put(
           "http://localhost:8888/api/v1/bills/govtBills/" + firmId,
           cardData,
@@ -34,7 +36,7 @@ export default function AddGovBillCard({
             headers: { Authorization: localStorage.getItem("token") },
           }
         );
-        onRefresh();
+        onSuccess();
       } catch (error) {
         alert(JSON.stringify(error.response.data.msg));
       }
