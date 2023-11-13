@@ -14,6 +14,7 @@
     height: fit-content;
     width: fit-content;
     font-weight: 400;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .bck-btn-comp:hover {

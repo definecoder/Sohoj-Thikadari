@@ -12,15 +12,15 @@ export default function MyFirmsPage() {
   const [firmList, setFirmList] = useState([
     {
       id: "1",
-      name: "M/s Balaka Overseas Ltd",
+      name: "dummy data 1",
     },
     {
       id: "2",
-      name: "M/s Balaka Overseas Ltd",
+      name: "dummy data 2",
     },
     {
       id: "3",
-      name: "M/s Balaka Overseas Ltd",
+      name: "dummy data 3",
     },
   ]);
 
@@ -42,7 +42,7 @@ export default function MyFirmsPage() {
     fetchData();    
   }, []);
 
-  function empyFirmList() {
+  function emptyFirmList() {
     return <div className="firm-list-empty-title">
       নতুন ফার্ম যুক্ত করতে নিচের বাটনে কিল্ক করুন
     </div>;
@@ -56,7 +56,7 @@ export default function MyFirmsPage() {
           <div className="myfirms-title-section">
           <BackButton /><div className="main-title-myfirms">আমার ফার্মসমূহ</div></div>
           <div className="myfirms-firm-list-container">
-            {firmList.length == 0 ? empyFirmList() : firmList.map((firm) => {
+            {firmList.length == 0 ? emptyFirmList() : firmList.map((firm) => {
               return <div
                 className="myfirms-firmcard"
                 key={firm.id}

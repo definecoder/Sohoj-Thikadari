@@ -11,6 +11,7 @@ import PdfFile from "../../components/PdfGenerator/PdfFile";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function MovementRegisterPage() {
   // getting uid from login or signup :v
@@ -53,16 +54,18 @@ export default function MovementRegisterPage() {
     <>
       <NavBar />
       <div className="mr-main-wrapper">
-        <div className="mr-header">
-          <div className="mr-header-left">
+        <div className="mr-header">        
+          <div className="mr-header-left">            
+            <BackButton />
+            <div className="donwolad-movement-reg">
             <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
             <PDFDownloadLink
               document={<PdfFile />}
               fileName="মুভমেন্ট রেজিস্টার.pdf"
             >
-              {({ loading }) => (loading ? "লোডিং..." : "ডাউনলোড")}
+              {({ loading }) => (loading ? "লোডিং..." : <div className="download-btn-mov-reg">ডাউনলোড</div>)}
             </PDFDownloadLink>
-            {/* <PdfFile/> */}
+            </div>
           </div>
           <div className="mr-header-right">
             <FirmInfo
