@@ -19,6 +19,32 @@ export default function RunningProgramsPage() {
 
   const [runningPrograms, setSendingPrograms] = useState([...programList]);
 
+  let done = false;
+  const [firmInfo, setFirmInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!done)
+        try {
+          done = true;
+          const response = await axios.get(
+            "http://localhost:8888/api/v1/firms/" + firmId,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setFirmInfo(response.data);
+
+          // setInvoiceCount(res.data.)
+        } catch (error) {
+          alert(error.response.data.msg);
+          done = false;
+        }
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,9 +87,9 @@ export default function RunningProgramsPage() {
           </div>
           <div className="rp-header-right">
             <FirmInfo
-              firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
-              firmAddress={"৪১৪/এ, ডিটি রোড কদমতলি, চট্টগ্রাম"}
-              ProprietorName={"জহিরুল ইসলাম"}
+              firmName={firmInfo?.name}
+              firmAddress={firmInfo?.address}
+              ProprietorName={firmInfo?.proprietor}
             />
           </div>
         </div>
