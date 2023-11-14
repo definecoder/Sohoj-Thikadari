@@ -1,14 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import "./BillCard.css";
 
-export default function BillCard({ id, billNo, date, amount }) {
+export default function BillCard({ id, billNo, date, amount, firmID }) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
   const formattedDate = new Date(date).toLocaleDateString("bn-BD", options);
+  const navigate = useNavigate();
+  const billID = id;
   return (
     <>
       <div
         className="bill-card"
         onClick={() => {
-          alert(id);
+          navigate("/firm/" + firmID + "/bill/billDownloadPage", {
+            state: {billID},
+          });
         }}
       >
         <div className="bill-card-header">

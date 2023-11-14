@@ -87,7 +87,7 @@ export default function MyBillsPage() {
               : billList.map((bill) => {
                   return (
                     <Col className="bp-col" span={12} key={bill.id}>
-                      <BillCard {...bill} />
+                      <BillCard firmID={firmId} {...bill} />                      
                     </Col>
                   );
                 })}
