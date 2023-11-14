@@ -17,13 +17,13 @@ export default function BillCard({ id, billNo, date, amount }) {
             <div className="program-no-style">{billNo}</div>
           </div>
           <div className="bill-card-header-right">
-            টঃ
+            ৳ &nbsp;
             {amount}
           </div>
         </div>
         <div className="bill-card-footer">
           <div className="bill-card-footer-left">
-            <br /> <b>তারিখঃ</b> &nbsp; {formattedDate}{" "}
+            <b>তারিখঃ</b> &nbsp; {formattedDate}{" "}
           </div>
         </div>
       </div>

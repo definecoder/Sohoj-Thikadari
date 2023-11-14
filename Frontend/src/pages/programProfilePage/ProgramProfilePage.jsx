@@ -31,7 +31,7 @@ export default function ProgramProfilePage() {
 
         console.log(response);
 
-        setInvoiceData(response.data);
+        setInvoiceData(response.data[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -120,7 +120,7 @@ export default function ProgramProfilePage() {
                 </span>
                 <span className="pp-invoice-card-3">
                   প্রোগ্রাম নং : <b>{invoiceData.programNo}</b>
-                </span>
+                </span>                
                 <span className="pp-invoice-card-4">
                   প্রোগ্রামের তারিখঃ{" "}
                   <b>{convertDate(invoiceData.programDate)}</b>
@@ -130,7 +130,7 @@ export default function ProgramProfilePage() {
             <div className="program-profile-right-section-3">
               <div className="pp-billno-card">
                 <span>
-                  সরকারি বিল নম্বর : <b>{invoiceData.govbillNo}</b>
+                  সরকারি বিল নম্বর : <b>{invoiceData.govtBillNo}</b>
                 </span>
                 <span>
                   বিল নং : <b>{invoiceData.billNo}</b>

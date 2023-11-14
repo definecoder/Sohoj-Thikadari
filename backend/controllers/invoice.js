@@ -108,14 +108,18 @@ const updateBill = async (req, res) => {
 
 const getInvoice = asyncWrapper( async (req, res) => {
     
-    const invoice = await prisma.invoice.findUnique({
-        // include:{
-        //     bill
-        // },
-        where:{
-            invoiceNo: parseInt(req.params.id)
-        }
-    })
+    // const invoice = await prisma.invoice.findUnique({
+    //     // include:{
+    //     //     bill
+    //     // },
+    //     where:{
+    //         invoiceNo: parseInt(req.params.id)
+    //     }
+    // })
+
+    const invoice = await prisma.$queryRaw`
+        SELECT * FROM Bill, Invoice WHERE Invoice.invoiceNo = ${parseInt(req.params.id)} AND Bill.id = Invoice.billID
+    `
 
     res.status(StatusCodes.OK).json(invoice)
 
