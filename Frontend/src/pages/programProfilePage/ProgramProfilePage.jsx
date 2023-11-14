@@ -20,6 +20,32 @@ export default function ProgramProfilePage() {
 
   // sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
 
+  let done = false;
+  const [firmInfo, setFirmInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!done)
+        try {
+          done = true;
+          const response = await axios.get(
+            "http://localhost:8888/api/v1/firms/" + invoiceData.firmID,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setFirmInfo(response.data);
+
+          // setInvoiceCount(res.data.)
+        } catch (error) {
+          alert(error.response.data.msg);
+          done = false;
+        }
+    };
+    fetchData();
+  }, [invoiceData]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -107,9 +133,9 @@ export default function ProgramProfilePage() {
             <div className="program-profile-right-section-1">              
               <BackButton />
               <FirmInfo
-                firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
-                firmAddress={"২১৪, শেখ মুজিব রোড, চট্টগ্রাম"}
-                ProprietorName={"মোঃ জহিরুল ইসলাম"}
+                firmName={firmInfo?.name}
+                firmAddress={firmInfo?.address}
+                ProprietorName={firmInfo?.proprietor}
               />
             </div>
             <div className="program-profile-right-section-2">
