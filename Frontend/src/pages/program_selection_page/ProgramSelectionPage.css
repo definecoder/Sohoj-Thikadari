@@ -8,14 +8,19 @@
 }
 
 .ps-header{
-    margin: 0px 200px;
-    font-size: 2em;
+    padding: 25px 120px 0px 120px;
+    font-size: 2.5em;
+    width: 100%;
     /* border: 1px solid red; */
-    align-self:flex-end
+    align-self:flex-end;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    align-items: center;
 }
 
 .ps-grid-wrapper{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 100px;
     height: 100%;
     /* border: 1px solid blue; */
@@ -29,4 +34,14 @@
 }
 .ps-program{
     width:650px;
+}
+
+.recieving-list-empty-title {    
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    font-size: 2em;
+    font-style: italic;
 }

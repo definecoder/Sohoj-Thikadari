@@ -43,7 +43,8 @@ export default function HomePage() {
         setUsername(res.data.username);
         setNewsData(res.data.newsData);
         // setInvoiceCount(res.data.)
-      } catch (error) {}
+      } catch (error) {
+      }
     };
     fetchData();
   }, []);

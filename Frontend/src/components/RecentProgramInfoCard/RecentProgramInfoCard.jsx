@@ -17,6 +17,14 @@ export default function RecentProgramInfoCard({
   const options = { year: "numeric", month: "numeric", day: "numeric" };
   sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
   programDate = new Date(programDate).toLocaleDateString("bn-BD", options);
+
+  const getStatusText = {
+    1: 'প্রেরিত',
+    2: 'প্রাপ্ত',
+    3: 'বিল করা হয়েছে',
+    4: 'বিল শেষ',
+  };
+
   return (
     <>
       <div
@@ -37,10 +45,10 @@ export default function RecentProgramInfoCard({
         </div>
         <div className="recent-program-card-footer">
           <div className="recent-program-card-footer-left">
-            <b>{sendingNetSlack} বস্তা</b> - &nbsp; <i>{commodity}</i>
+            <b>{commodity}</b> - &nbsp; <i>{sendingNetSlack} বস্তা</i>
             <br /> <b>প্রেরনঃ</b> &nbsp; {sendingDate}{" "}
           </div>
-          <div className="recent-program-card-footer-right">{status}</div>
+          <div className="recent-program-card-footer-right">{getStatusText[status]}</div>
         </div>
       </div>
     </>

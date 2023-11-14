@@ -11,7 +11,7 @@
 }
 
 .bill-card:hover {
-    background-color: azure;
+    background-color: rgba(240, 255, 255, 0.406);
     cursor: pointer;
 }
 
@@ -21,51 +21,42 @@
     justify-content: space-between;
     padding: 8px;
     padding-bottom: 0px;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .bill-card-header-left{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start;    
 }
 
 .bill-card-header-left .program-no-style {
     color: #005163;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 1.8em;
+    letter-spacing: 1.5px;
+    overflow: hidden;
 }
 
 .bill-card-header-right {
-    color: #005163;
-    font-style: italic;
-}
-
-.bill-card-title {
-    text-align: left;
-    padding: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    font-size: 1.9em;
+    color: #004d5c;
+    font-style: italic;    
     font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: 1.1em;
 }
 
 .bill-card-footer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
 }
 
 .bill-card-footer-left {
     text-align: left;
     padding-left: 10px;
     padding-bottom: 5px;
-    font-size: 1.1em;
-}
-
-.bill-card-footer-right {
-    text-align: right;
-    font-size: 1.7em;
-    font-weight: bold;
-    padding: 10px;
-    color: #005163;
+    font-size: 1.2em;
+    padding-top: 3px;
+    letter-spacing: 1px;
 }

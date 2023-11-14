@@ -73,9 +73,9 @@ export default function AddNewInvoiceFrom() {
           state: {},
         });
       } catch (error) {
-        console.log(error);
-        console.log(newprogramInfo);
-        alert(error);
+        //console.log(error);
+        //console.log(newprogramInfo);
+        alert(error.response.data.msg);
         navigate("/firm/" + firmId, {
           state: {},
         });

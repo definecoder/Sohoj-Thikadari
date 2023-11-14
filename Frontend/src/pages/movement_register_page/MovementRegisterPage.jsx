@@ -11,6 +11,7 @@ import PdfFile from "../../components/PdfGenerator/PdfFile";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function MovementRegisterPage() {
   // getting uid from login or signup :v
@@ -49,20 +50,34 @@ export default function MovementRegisterPage() {
     fetchData();
   }, []);
 
+  function emptyMovementReg() {
+    return (
+      <div className="movement-reg-empty-title">
+        <h2>আপনার কোন প্রোগ্রাম যুক্ত করা হয়নি </h2>
+        <h3>নতুন প্রোগ্রাম যুক্তের পর সকল ইনভয়েস এইখানে পাওয়া যাবে।</h3>
+        <div>ধন্যবাদ।</div>
+        &nbsp;
+        <BackButton />
+      </div>
+    );
+  }
+
   return (
     <>
       <NavBar />
       <div className="mr-main-wrapper">
-        <div className="mr-header">
-          <div className="mr-header-left">
+        <div className="mr-header">        
+          <div className="mr-header-left">            
+            <BackButton />
+            <div className="donwolad-movement-reg">
             <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
             <PDFDownloadLink
               document={<PdfFile />}
               fileName="মুভমেন্ট রেজিস্টার.pdf"
             >
-              {({ loading }) => (loading ? "লোডিং..." : "ডাউনলোড")}
+              {({ loading }) => (loading ? "লোডিং..." : <div className="download-btn-mov-reg">ডাউনলোড</div>)}
             </PDFDownloadLink>
-            {/* <PdfFile/> */}
+            </div>
           </div>
           <div className="mr-header-right">
             <FirmInfo
@@ -74,7 +89,7 @@ export default function MovementRegisterPage() {
         </div>
         <div className="mr-body">
           <Row>
-            {invoiceList.map((program, index) => {
+            {invoiceList.length == 0 ? emptyMovementReg() : invoiceList.map((program, index) => {
               return (
                 <Col className="mr-col" span={12} key={index}>
                   <RecentProgramInfoCard {...program} key={program.programId} />

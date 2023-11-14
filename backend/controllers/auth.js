@@ -44,6 +44,7 @@ const login = asyncWrapper(async (req, res) => {
 
 const createUser = asyncWrapper(async (req, res) => {
 
+    var saltRounds = 10;
     req.body.hashedPassword = await bcrypt.hash(req.body.password, saltRounds)
     req.body.password = undefined
     const newUser = await prisma.user.create({ data: req.body })
@@ -53,6 +54,6 @@ const createUser = asyncWrapper(async (req, res) => {
     })
     res.status(StatusCodes.CREATED).json({ token })
 
-}, { msg: "Couldn\'t create user" })
+}, { msg: "Couldn\'t create user, Check if your phone number is registerd already!" })
 
 module.exports = {login, createUser}

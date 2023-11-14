@@ -83,14 +83,15 @@ const LoginForm = () => {
       {/* fOR MODAL*/}
       <Modal
         title={modalTitle}
-        open={isModalOpen}
+        open={isModalOpen} 
+        keyboard={true}       
         footer={[
           <Button
             type="primary"
             key="button"
             onClick={() => {
               handleOk(modalRoute);
-            }}
+            }}          
           >
             OK
           </Button>,

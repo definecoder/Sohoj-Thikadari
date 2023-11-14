@@ -1,6 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space } from "antd";
+import { Input, Space, Button } from "antd";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -81,7 +81,7 @@ const signupForm = () => {
         setModalRoute("/home");
         showModal();
       } catch (error) {
-        setModalText(error.message);
+        setModalText(error.response.data.msg);
         setModalTitle("An Error Occured");
         setModalRoute(null);
         showModal();
@@ -97,10 +97,18 @@ const signupForm = () => {
       <Modal
         title={modalTitle}
         open={isModalOpen}
-        onOk={() => {
-          handleOk(modalRoute);
-        }}
-        onCancel={handleCancel}
+        footer={[
+          <Button
+            type="primary"
+            key="button"
+            onClick={() => {
+              handleOk(modalRoute);
+            }}          
+          >
+            OK
+          </Button>,
+        ]}
+        closeIcon={null}
       >
         <p>{modalText}</p>
       </Modal>

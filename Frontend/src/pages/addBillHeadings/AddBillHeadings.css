@@ -1,14 +1,21 @@
 .addbillheadings-canvas {
     height: 83vh;
     width: 100%;
+    /* overflow: hidden; */
+}
+
+.bill-heading-back-btn {
+    padding-left: 50px;
+    padding-top: 20px;        
 }
 
 .addbillheadings-title {
     font-size: 2.5em;
     font-weight: bold;
     padding: 15px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     padding-right: 50px;
+    padding-top: 10px;    
     text-align: center;
 }
 
