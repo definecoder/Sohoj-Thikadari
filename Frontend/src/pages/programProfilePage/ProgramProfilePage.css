@@ -87,6 +87,11 @@
 
 .program-profile-right-section-1{
     height: 25%;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-bottom: 3%;
     
 }
 .program-profile-right-section-2{

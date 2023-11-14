@@ -4,6 +4,7 @@ import NavBar from "../../components/navBar/NavBar";
 import "./ProgramProfilePage.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import BackButton from "../../components/back_button/BackButton";
 
 function convertDate(date) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -103,7 +104,8 @@ export default function ProgramProfilePage() {
             </div>
           </div>
           <div className="program-profile-right-section">
-            <div className="program-profile-right-section-1">
+            <div className="program-profile-right-section-1">              
+              <BackButton />
               <FirmInfo
                 firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
                 firmAddress={"২১৪, শেখ মুজিব রোড, চট্টগ্রাম"}
