@@ -135,6 +135,9 @@ const getInvoice = asyncWrapper( async (req, res) => {
 const getAllInvoice = asyncWrapper( async (req, res) => {
 
     const invoices = await prisma.invoice.findMany({
+        include:{
+            bill: true
+        },
         where:{
             firmID: req.params.firmId
         }
@@ -144,6 +147,25 @@ const getAllInvoice = asyncWrapper( async (req, res) => {
 
 
 }, {msg: 'couldn\'t get invoices'})
+
+
+const getAllMovementInvoice = asyncWrapper( async (req, res) => {
+
+    console.log('movement hit')
+
+    const invoices = await prisma.invoice.findMany({
+        include: {
+            bill: true  
+        },
+        where:{
+            firmID: req.params.firmId
+        }
+    })
+
+    res.status(StatusCodes.OK).json(invoices)
+
+
+}, {msg: 'couldn\'t get all invoices'})
 
 
 const getRunningInvoice = asyncWrapper( async (req, res) => {
@@ -180,5 +202,6 @@ module.exports = {
     getAllOnlySending,
     getAllInvoiceForBill, 
     getAllInvoice,
-    getRunningInvoice
+    getRunningInvoice,
+    getAllMovementInvoice
 }

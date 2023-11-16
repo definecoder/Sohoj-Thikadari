@@ -62,21 +62,29 @@ export default function MovementRegisterPage() {
     );
   }
 
+  // console.log(invoiceList);
+
   return (
     <>
       <NavBar />
       <div className="mr-main-wrapper">
-        <div className="mr-header">        
-          <div className="mr-header-left">            
+        <div className="mr-header">
+          <div className="mr-header-left">
             <BackButton />
             <div className="donwolad-movement-reg">
-            <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
-            <PDFDownloadLink
-              document={<PdfFile />}
-              fileName="মুভমেন্ট রেজিস্টার.pdf"
-            >
-              {({ loading }) => (loading ? "লোডিং..." : <div className="download-btn-mov-reg">ডাউনলোড</div>)}
-            </PDFDownloadLink>
+              <div className="mr-header-text">মুভমেন্ট রেজিস্টারঃ</div>
+              <PDFDownloadLink
+                document={<PdfFile list={invoiceList} firmInfo={firmInfo} />}
+                fileName="মুভমেন্ট রেজিস্টার.pdf"
+              >
+                {({ loading }) =>
+                  loading ? (
+                    "লোডিং..."
+                  ) : (
+                    <div className="download-btn-mov-reg">ডাউনলোড</div>
+                  )
+                }
+              </PDFDownloadLink>
             </div>
           </div>
           <div className="mr-header-right">
@@ -89,13 +97,18 @@ export default function MovementRegisterPage() {
         </div>
         <div className="mr-body">
           <Row>
-            {invoiceList.length == 0 ? emptyMovementReg() : invoiceList.map((program, index) => {
-              return (
-                <Col className="mr-col" span={12} key={index}>
-                  <RecentProgramInfoCard {...program} key={program.programId} />
-                </Col>
-              );
-            })}
+            {invoiceList.length == 0
+              ? emptyMovementReg()
+              : invoiceList.map((program, index) => {
+                  return (
+                    <Col className="mr-col" span={12} key={index}>
+                      <RecentProgramInfoCard
+                        {...program}
+                        key={program.programId}
+                      />
+                    </Col>
+                  );
+                })}
           </Row>
         </div>
       </div>

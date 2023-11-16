@@ -44,6 +44,7 @@ export default function HomePage() {
         setNewsData(res.data.newsData);
         // setInvoiceCount(res.data.)
       } catch (error) {
+        alert(error.response.data.msg);
       }
     };
     fetchData();
