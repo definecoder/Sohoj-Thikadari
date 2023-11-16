@@ -51,7 +51,7 @@ export default function FirmsDropDown() {
           onClick,
         }}
       >
-        <a onClick={(e) => e.preventDefault()}>
+        <a onClick={(e) => {e.preventDefault(); navigate("/firms");}}>
           <Space>
             <div style={{ fontSize: "1.6rem" }}>ফার্মসমূহ</div>
             <DownCircleOutlined style={{ fontSize: "1.9rem" }} />
