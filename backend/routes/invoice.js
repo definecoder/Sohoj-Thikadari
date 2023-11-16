@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { addSendingInfo, updateReceivingInfo, updateRateAndDistance, updateBill, getInvoice, getRecentInvoice, getAllOnlySending, getAllInvoiceForBill, getAllInvoice, getRunningInvoice } = require('../controllers/invoice')
+const { addSendingInfo, updateReceivingInfo, updateRateAndDistance, updateBill, getInvoice, getAllOnlySending, getAllInvoiceForBill, getAllInvoice, getRunningInvoice } = require('../controllers/invoice')
 
 
 // here id means invoice number

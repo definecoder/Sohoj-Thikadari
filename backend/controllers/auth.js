@@ -4,6 +4,12 @@ const { PrismaClient } = require('@prisma/client')
 const bcrypt = require('bcrypt')
 const { StatusCodes } = require('http-status-codes')
 const asyncWrapper = require('../middlewares/asyncWrapper')
+const nodemailer = require('nodemailer')
+const Mailgen = require('mailgen')
+
+
+const EMAIL = process.env.EMAIL
+const PASSWORD = process.env.PASSWORD
 
 
 const prisma = new PrismaClient()
@@ -56,4 +62,54 @@ const createUser = asyncWrapper(async (req, res) => {
 
 }, { msg: "Couldn\'t create user, Check if your phone number is registerd already!" })
 
-module.exports = {login, createUser}
+const forgotPassword = asyncWrapper(async (req, res) =>{
+
+    const userEmail = 'shawon.majid@gmail.com'
+
+    let config = {
+        service: 'gmail',
+        auth: {
+            user: EMAIL, 
+            pass: PASSWORD
+        }
+    }
+
+    let transporter = nodemailer.createTransport(config)
+
+    let MailGenerator = new Mailgen({
+        theme: "default",
+        product: {
+            name: "Mailgen",
+            link: "https://mailgen.js/"
+        }
+    })
+
+    let response = {
+        body: {
+            name: "Mehrajul Islam",
+            intro: "OTP from Sohoj Thikadari is 2134",
+            outro:  "Your OTP is valid for 5 minutes\nBest Regards, Team Sohoj Thikadari",
+            // signature: 'Best regards, Team Sohoj Thikadari'
+            signature: false
+
+        }
+    }
+
+    let mail = MailGenerator.generate(response)
+
+    let message = {
+        from : EMAIL, 
+        to: userEmail,
+        subject: 'Forget Password OTP',
+        html: mail
+    }
+
+
+    await transporter.sendMail(message)
+
+}, {msg: "forgot password error"})
+
+
+// forgotPassword({}, {})
+
+module.exports = {login, createUser, forgotPassword}
