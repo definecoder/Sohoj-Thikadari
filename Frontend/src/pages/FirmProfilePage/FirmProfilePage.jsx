@@ -17,7 +17,7 @@ import "./FirmProfilePage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function FirmProfilePage() {  
+export default function FirmProfilePage(props) {
   let { firmId } = useParams();
 
   let done = false;
@@ -44,7 +44,7 @@ export default function FirmProfilePage() {
         }
     };
     fetchData();
-  }, []);
+  }, [firmId]);
 
   return (
     <>
