@@ -4,7 +4,8 @@
   }
 
 .loginPageRoot {
-    display: flex;    
+    display: flex;
+    overflow: hidden;    
 }
 
 .loginLeft {    

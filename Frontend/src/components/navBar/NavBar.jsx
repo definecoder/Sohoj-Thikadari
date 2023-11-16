@@ -46,6 +46,7 @@ export default function NavBar() {
           <div
             className="navButton"
             onClick={() => {
+              localStorage.removeItem("token");
               navigate("/");
             }}
           >
