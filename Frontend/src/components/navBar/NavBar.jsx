@@ -50,7 +50,7 @@ export default function NavBar() {
               navigate("/");
             }}
           >
-            <LogoutIcon fontSize="large" />
+            <LogoutIcon fontSize="medium" />
             <span className="logoutNavText">লগআউট</span>
           </div>
         </div>

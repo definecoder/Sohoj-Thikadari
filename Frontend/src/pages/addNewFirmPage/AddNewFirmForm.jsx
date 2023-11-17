@@ -140,7 +140,7 @@ export default function AddNewFirmForm() {
             <div className="addfirm-form-row">
               <Space direction="horizontal">
                 <label htmlFor="name" className="addfirm-form-label">
-                  ফোন নম্বর &nbsp;
+                  ফোন নম্বর 
                 </label>
                 <Input
                   size="large"
