@@ -33,23 +33,42 @@ export default function BillDownloadPage() {
           </div>
 
           <PDFDownloadLink
-            document={<BillPDF billID = {billID}/>}
+            document={<BillPDF billID={billID} />}
             fileName="মুভমেন্ট রেজিস্টার.pdf"
           >
             {({ loading }) =>
               loading ? (
                 "লোডিং..."
               ) : (
-                <DarkButton
-                  buttonText="ডাউনলোড করুন"
-                  onClick={() => {
-                    //alert(JSON.stringify(billData));
-                    // navigate("/home", {
-                    //   state: "no state",
-                    // });
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                    width: '80vw',
                   }}
-                  routePath="forbidden"
-                />
+                >
+                  <DarkButton
+                    buttonText="ডাউনলোড করুন"
+                    onClick={() => {
+                      //alert(JSON.stringify(billData));
+                      // navigate("/home", {
+                      //   state: "no state",
+                      // });
+                    }}
+                    routePath="forbidden"
+                  />                  
+                  <DarkButton
+                    buttonText="ফার্মের পেইজে যান"
+                    onClick={() => {
+                      //alert(JSON.stringify(billData));
+                      // navigate("/home", {
+                      //   state: "no state",
+                      // });
+                    }}
+                    routePath={"/firm/" + firmId}
+                  />
+                </div>
               )
             }
           </PDFDownloadLink>

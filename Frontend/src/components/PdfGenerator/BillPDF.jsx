@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
     top: 10,
     right: 10,
   },
+  totalBill: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+  },
   table: {
     display: "table",
     borderStyle: "solid",
@@ -186,6 +191,10 @@ function BillPDF(billID) {
                 <br></br>
               </View>
             ))}
+          </View>
+          <View style={styles.headerbox}>            
+            <Text>{"\n"}</Text>
+            <Text><Text style={{fontSize: "30px"}}>মোট বিল: &nbsp; ৳</Text> {data.amount}  </Text>
           </View>
         </View>
       </Page>

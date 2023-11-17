@@ -8,6 +8,7 @@ import DarkButton from "../../components/darkButton/DarkButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { alertClasses } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import BackButton from "../../components/back_button/BackButton";
 
 const data = [
   {
@@ -65,8 +66,8 @@ export default function AddBillDistancePage() {
   return (
     <>
       <NavBar />
-      <div className="addbilldistance-canvas">
-        <div className="addbilldistance-title">বিলের দূরত্ব ও দর দিন</div>
+      <div className="addbilldistance-canvas">        
+        <div className="addbilldistance-title"><BackButton />বিলের দূরত্ব ও দর দিন</div>
         <div className="addbilldistance-container">
           <div className="addbilldistance-table">
             <table>

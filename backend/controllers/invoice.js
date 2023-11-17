@@ -108,14 +108,23 @@ const updateBill = async (req, res) => {
 
 const getInvoice = asyncWrapper( async (req, res) => {
     
-    const invoice = await prisma.invoice.findUnique({
-        // include:{
-        //     bill
-        // },
-        where:{
-            invoiceNo: parseInt(req.params.id)
-        }
-    })
+    // const invoice = await prisma.invoice.findUnique({
+    //     // include:{
+    //     //     bill
+    //     // },
+    //     where:{
+    //         invoiceNo: parseInt(req.params.id)
+    //     }
+    // })
+
+    let invoice = await prisma.$queryRaw`
+        SELECT * FROM Bill, Invoice WHERE Invoice.invoiceNo = ${parseInt(req.params.id)} AND Bill.id = Invoice.billID
+    `
+    if(invoice.length == 0) {
+        invoice = await prisma.$queryRaw`
+        SELECT * FROM Invoice WHERE Invoice.invoiceNo = ${parseInt(req.params.id)}
+    `
+    }
 
     res.status(StatusCodes.OK).json(invoice)
 
@@ -126,6 +135,9 @@ const getInvoice = asyncWrapper( async (req, res) => {
 const getAllInvoice = asyncWrapper( async (req, res) => {
 
     const invoices = await prisma.invoice.findMany({
+        include:{
+            bill: true
+        },
         where:{
             firmID: req.params.firmId
         }
@@ -135,6 +147,25 @@ const getAllInvoice = asyncWrapper( async (req, res) => {
 
 
 }, {msg: 'couldn\'t get invoices'})
+
+
+const getAllMovementInvoice = asyncWrapper( async (req, res) => {
+
+    console.log('movement hit')
+
+    const invoices = await prisma.invoice.findMany({
+        include: {
+            bill: true  
+        },
+        where:{
+            firmID: req.params.firmId
+        }
+    })
+
+    res.status(StatusCodes.OK).json(invoices)
+
+
+}, {msg: 'couldn\'t get all invoices'})
 
 
 const getRunningInvoice = asyncWrapper( async (req, res) => {
@@ -171,5 +202,6 @@ module.exports = {
     getAllOnlySending,
     getAllInvoiceForBill, 
     getAllInvoice,
-    getRunningInvoice
+    getRunningInvoice,
+    getAllMovementInvoice
 }

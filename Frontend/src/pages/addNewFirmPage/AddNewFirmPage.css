@@ -6,9 +6,13 @@
 .addnewfirm-title {
     font-size: 2.5em;
     font-weight: bold;
-    padding: 15px;
-    padding-right: 50px;
+    padding: 50px;
+    padding-right: 100px;
+    padding-left: 80px;
     text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
 }
 
 .add-new-firm-form {       

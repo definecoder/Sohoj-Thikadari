@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Spin, message } from "antd";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function AddGovBillNumPage() {
   var done = false;
@@ -55,7 +56,8 @@ export default function AddGovBillNumPage() {
       {contextHolder}
       <NavBar />
       <div className="gov-bill-num-add-page-canvas">
-        <div className="add-gov-bill-num-page-title">সরকারি বিল নম্বর দিন</div>
+        <div className="add-gov-bill-num-page-title">
+          <BackButton /> সরকারি বিল নম্বর দিন</div>
         <div className="main-content-gov-bill-add">
           {isLoading ? (
             <Spin />
@@ -74,11 +76,14 @@ export default function AddGovBillNumPage() {
               );
             })
           ) : (
-            <>
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100vw", paddingTop:"100px"}}>
+            <br /> <br />
               <h1>
                 <i>সরকারি নাম্বার দেওয়ার মত বিল নেই</i>
               </h1>
-            </>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <BackButton />
+            </div>
           )}
         </div>
       </div>

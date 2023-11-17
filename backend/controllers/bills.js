@@ -37,7 +37,8 @@ const createBill = asyncWrapper(async (req, res) => {
                 distance: parseFloat(invoice.distance),
                 pricePerTon: parseFloat(invoice.pricePerTon),
                 invoiceAmount: (parseFloat(invoice.pricePerTon) * receivingInfoP[index].receivingGrossQuantity),
-                billID: newBill.id
+                billID: newBill.id,
+                status: invoice.status
             },
             where: {
                 invoiceNo: invoice.id
@@ -134,13 +135,18 @@ const updateBillsGov = asyncWrapper(async (req, res) => {
     const bills = await prisma.bill.update({
         data:{
             govtBillNo: req.body.govtBillNo,
-            govtBillDate: req.body.govtBillDate
+            govtBillDate: req.body.govtBillDate,            
         },
         where: {
             firmID: req.params.firmId,
             id: req.body.billId
         }
     })
+
+    const invoices = await prisma.$queryRaw`
+        UPDATE Invoice SET status = 4
+        WHERE firmID = ${req.params.firmId} AND billID = ${req.body.billId};
+    `
 
     res.status(StatusCodes.OK).json(bills)
 

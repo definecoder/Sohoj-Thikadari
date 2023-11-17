@@ -5,6 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import FirmsDropDown from "./FirmsDropDown";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -35,20 +36,21 @@ export default function NavBar() {
           <div
             className="navElement"
             onClick={() => {
-              navigate("/firms");
+              //navigate("/firms");
             }}
           >
-            <FormatListBulletedIcon fontSize="large" />
-            <span className="firmsNavText">ফার্মসমূহ</span>
+            {/* <span className="firmsNavText">ফার্মসমূহ</span> */}
+            <FirmsDropDown />
           </div>
 
           <div
             className="navButton"
             onClick={() => {
+              localStorage.removeItem("token");
               navigate("/");
             }}
           >
-            <LogoutIcon fontSize="large" />
+            <LogoutIcon fontSize="medium" />
             <span className="logoutNavText">লগআউট</span>
           </div>
         </div>

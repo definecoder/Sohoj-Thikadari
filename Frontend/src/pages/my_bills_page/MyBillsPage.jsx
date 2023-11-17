@@ -9,6 +9,7 @@ import BillCard from "../../components/bill_card/BillCard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BackButton from "../../components/back_button/BackButton";
 
 export default function MyBillsPage() {
   // getting uid from login or signup :v
@@ -50,12 +51,25 @@ export default function MyBillsPage() {
     fetchData();
   }, []);
 
+  function emptyBillRender() {
+    return (
+      <div className="movement-reg-empty-title">
+        <h2>আপনার কোন বিল যুক্ত করা হয়নি </h2>
+        <h3>বিল তৈরি করার পর সকল বিলের তথ্য এইখানে পুনরায় পাওয়া যাবে।</h3>
+        <div>ধন্যবাদ।</div>
+        &nbsp;
+        <BackButton />
+      </div>
+    );
+  }
+
   return (
     <>
       <NavBar />
       <div className="bp-main-wrapper">
         <div className="bp-header">
           <div className="bp-header-left">
+            <BackButton />
             <div className="bp-header-text">আমার বিল সমূহ</div>
           </div>
           <div className="bp-header-right">
@@ -68,13 +82,15 @@ export default function MyBillsPage() {
         </div>
         <div className="bp-body">
           <Row>
-            {billList.map((bill) => {
-              return (
-                <Col className="bp-col" span={12} key={bill.id}>
-                  <BillCard {...bill} />
-                </Col>
-              );
-            })}
+            {billList.length == 0
+              ? emptyBillRender()
+              : billList.map((bill) => {
+                  return (
+                    <Col className="bp-col" span={12} key={bill.id}>
+                      <BillCard firmID={firmId} {...bill} />                      
+                    </Col>
+                  );
+                })}
           </Row>
         </div>
       </div>

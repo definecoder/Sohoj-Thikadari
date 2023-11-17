@@ -1,6 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space } from "antd";
+import { Input, Space, Button } from "antd";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -30,6 +30,8 @@ const signupForm = () => {
   };
   /// fOR MODAL
 
+  let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+  // let emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
@@ -55,15 +57,21 @@ const signupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user.username) alert("ইউজারনেম দিন");
+    else if (user.username.length < 4)
+      alert("ইউজারনেম নুন্যতম ৪ অক্ষরের হতে হবে");
     else if (!user.phone) alert("ফোন নম্বর দিন");
+    else if (user.phone.length !== 10) alert("ফোন নম্বর সঠিক নয়");
     else if (!user.email) alert("ইমেইল দিন");
+    else if (!emailRegex.test(user.email)) alert("ইমেইল সঠিক নয়");
     else if (!user.password) alert("পাসওয়ার্ড দিন");
+    else if (user.password.length < 6)
+      alert("পাসওয়ার্ড নুন্যতম ৬ অক্ষরের হতে হবে");
     else if (user.password !== user.confirmPassword)
       alert("পাসওয়ার্ড দুইটি একই হয়নি");
     else {
       var retVal = {
         username: user.username,
-        phone: user.phone,
+        phone: "+880" + user.phone,
         email: user.email,
         password: user.password,
       };
@@ -81,7 +89,7 @@ const signupForm = () => {
         setModalRoute("/home");
         showModal();
       } catch (error) {
-        setModalText(error.message);
+        setModalText(error.response.data.msg);
         setModalTitle("An Error Occured");
         setModalRoute(null);
         showModal();
@@ -97,10 +105,18 @@ const signupForm = () => {
       <Modal
         title={modalTitle}
         open={isModalOpen}
-        onOk={() => {
-          handleOk(modalRoute);
-        }}
-        onCancel={handleCancel}
+        footer={[
+          <Button
+            type="primary"
+            key="button"
+            onClick={() => {
+              handleOk(modalRoute);
+            }}
+          >
+            OK
+          </Button>,
+        ]}
+        closeIcon={null}
       >
         <p>{modalText}</p>
       </Modal>
@@ -137,7 +153,17 @@ const signupForm = () => {
               name="phone"
               value={user.phone}
               onChange={handleChange}
+              addonBefore="+880"
             />
+            {/* <Input
+              size="large"
+              placeholder="ফোন নম্বর দিন"
+              className="signup-form-input"
+              id="phone"
+              name="phone"
+              value={user.phone}
+              onChange={handleChange}
+            /> */}
           </Space>
         </div>
 

@@ -1,3 +1,4 @@
+import BackButton from "../../components/back_button/BackButton";
 import NavBar from "../../components/navBar/NavBar";
 import AddNewInvoiceFrom from "./AddNewIvoiceForm";
 import "./addNewIvoicePage.css";
@@ -10,8 +11,8 @@ export default function AddNewIvoicePage() {
     return <>
         <NavBar />
         <div className="addnewprogram-canvas">
-            <div className="addnewprogram-title">
-                ইনভয়েস এর তথ্যসমূহ দিন
+            <div className="addnewprogram-title-invoicepage">
+                <BackButton />  ইনভয়েস এর তথ্যসমূহ দিন
             </div>
             <AddNewInvoiceFrom />
         </div>

@@ -19,15 +19,22 @@
   }
   
   .addbilldistance-title {
+    display: flex;
     text-align: center;
     font-size: 2em;
     font-weight: bold;
-    height: 7%;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
   }
   
   .addbilldistance-table {    
     flex-grow: 1;
     overflow: scroll;
+    margin-bottom: 15px;
   }
 
   .addbilldistance-table::-webkit-scrollbar {

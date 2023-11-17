@@ -4,6 +4,7 @@ import NavBar from "../../components/navBar/NavBar";
 import "./ProgramProfilePage.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import BackButton from "../../components/back_button/BackButton";
 
 function convertDate(date) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -19,6 +20,32 @@ export default function ProgramProfilePage() {
 
   // sendingDate = new Date(sendingDate).toLocaleDateString("bn-BD", options);
 
+  let done = false;
+  const [firmInfo, setFirmInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!done)
+        try {
+          done = true;
+          const response = await axios.get(
+            "http://localhost:8888/api/v1/firms/" + invoiceData.firmID,
+            {
+              headers: { Authorization: localStorage.getItem("token") },
+            }
+          );
+
+          setFirmInfo(response.data);
+
+          // setInvoiceCount(res.data.)
+        } catch (error) {
+          alert(error.response.data.msg);
+          done = false;
+        }
+    };
+    fetchData();
+  }, [invoiceData]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +58,7 @@ export default function ProgramProfilePage() {
 
         console.log(response);
 
-        setInvoiceData(response.data);
+        setInvoiceData(response.data[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -103,11 +130,12 @@ export default function ProgramProfilePage() {
             </div>
           </div>
           <div className="program-profile-right-section">
-            <div className="program-profile-right-section-1">
+            <div className="program-profile-right-section-1">              
+              <BackButton />
               <FirmInfo
-                firmName={"মেসার্স বলাকা ওভারসিস লিমিটেড"}
-                firmAddress={"২১৪, শেখ মুজিব রোড, চট্টগ্রাম"}
-                ProprietorName={"মোঃ জহিরুল ইসলাম"}
+                firmName={firmInfo?.name}
+                firmAddress={firmInfo?.address}
+                ProprietorName={firmInfo?.proprietor}
               />
             </div>
             <div className="program-profile-right-section-2">
@@ -120,7 +148,7 @@ export default function ProgramProfilePage() {
                 </span>
                 <span className="pp-invoice-card-3">
                   প্রোগ্রাম নং : <b>{invoiceData.programNo}</b>
-                </span>
+                </span>                
                 <span className="pp-invoice-card-4">
                   প্রোগ্রামের তারিখঃ{" "}
                   <b>{convertDate(invoiceData.programDate)}</b>
@@ -130,7 +158,7 @@ export default function ProgramProfilePage() {
             <div className="program-profile-right-section-3">
               <div className="pp-billno-card">
                 <span>
-                  সরকারি বিল নম্বর : <b>{invoiceData.govbillNo}</b>
+                  সরকারি বিল নম্বর : <b>{invoiceData.govtBillNo}</b>
                 </span>
                 <span>
                   বিল নং : <b>{invoiceData.billNo}</b>
