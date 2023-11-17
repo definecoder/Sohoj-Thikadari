@@ -87,10 +87,10 @@ function BillPDF(billID) {
     sendingPoint: "প্রেরক কেন্দ্র",
     receivingPoint: "প্রাপক কেন্দ্র",
     commodity: "পণ্য",
-    sendingNetQuantity: "প্রেরিত বস্তা",
-    sendingGrossQuantity: "মোট প্রেরণ ",
-    receivingNetQuantity: "প্রাপ্ত বস্তা",
-    receivingGrossQuantity: "মোট প্রাপ্ত ",
+    sendingNetSlack: "প্রেরিত বস্তা",
+    sendingNetQuantity: "মোট প্রেরণ ",
+    receivingNetSlack: "প্রাপ্ত বস্তা",
+    receivingNetQuantity: "মোট প্রাপ্ত ",
     shortage: "ঘাটতি",
     distance: "দূরত্ব",
     pricePerTon: "টনপ্রতি দর",
@@ -121,10 +121,10 @@ function BillPDF(billID) {
               sendingPoint: tmp[i].sendingPoint,
               receivingPoint: tmp[i].receivingPoint,
               commodity: tmp[i].commodity,
+              sendingNetSlack: tmp[i].sendingNetSlack,
               sendingNetQuantity: tmp[i].sendingNetQuantity,
-              sendingGrossQuantity: tmp[i].sendingGrossQuantity,
+              receivingNetSlack: tmp[i].receivingNetSlack,
               receivingNetQuantity: tmp[i].receivingNetQuantity,
-              receivingGrossQuantity: tmp[i].receivingGrossQuantity,
               shortage: tmp[i].shortage,
               distance: tmp[i].distance,
               pricePerTon: tmp[i].pricePerTon,
@@ -165,7 +165,7 @@ function BillPDF(billID) {
           <View style={styles.namebox}>
             <Text style={styles.description}>
               {" "}
-              বিল নংঃ {data.billNo} তারিখঃ {data.date}
+              বিল নংঃ {data.billNo} তারিখঃ {new Date(data.date).toLocaleDateString("bn-BD", options)}
             </Text>
             <Text style={styles.description}> বরাবরঃ {data.submittedTo}</Text>
           </View>

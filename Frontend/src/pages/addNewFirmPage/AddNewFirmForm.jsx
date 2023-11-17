@@ -55,6 +55,7 @@ export default function AddNewFirmForm() {
           }
         );
         console.log(response.data);
+        message.success("আপনার ফার্ম যুক্ত হয়েছে")
       } catch (error) {
         console.log(error);
         message.error(error);

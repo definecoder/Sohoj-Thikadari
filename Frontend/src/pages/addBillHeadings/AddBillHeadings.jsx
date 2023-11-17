@@ -62,6 +62,7 @@ export default function AddBillHeadings() {
         );        
         const billID = response.data.bill.id;
         //console.log(billID);
+        message.success("আপনার বিল তৈরি সম্পন্ন হয়েছে")
         navigate("/firm/" + firmId + "/bill/billDownloadPage", {
           state: {billID},          
         });

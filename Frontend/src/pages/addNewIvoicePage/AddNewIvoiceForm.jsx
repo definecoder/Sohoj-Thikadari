@@ -81,7 +81,8 @@ export default function AddNewInvoiceFrom() {
             headers: { Authorization: localStorage.getItem("token") },
           }
         );
-        console.log(response.data);
+        //console.log(response.data);
+        message.success("আপনার ইনভয়েস যুক্ত হয়েছে")
         navigate("/firm/" + firmId, {
           state: {},
         });
