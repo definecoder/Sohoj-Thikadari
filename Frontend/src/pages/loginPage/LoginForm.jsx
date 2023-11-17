@@ -1,6 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space, Switch } from "antd";
+import { Input, Space, Switch, message } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Button, Modal } from "antd";
 import axios from "axios";
@@ -62,16 +62,26 @@ const LoginForm = () => {
           user
         );
         console.log(response);
-        setModalText(`Congratulations! Press OK to go to home page`);
         localStorage.setItem("token", "Bearer " + response.data.token);
-        setModalTitle("Your login is successfull");
-        setModalRoute("/home");
-        showModal();
+
+        message.success("Congratulations! Login Successful");
+        navigate("/home", {
+          state: {
+            user,
+          },
+        });
+
+        // setModalText(`Congratulations! Press OK to go to home page`);
+
+        // setModalTitle("Your login is successfull");
+        // setModalRoute("/home");
+        // showModal();
       } catch (error) {
-        setModalText(error.response.data.msg);
-        setModalTitle("An Error Occured");
-        setModalRoute(null);
-        showModal();
+        message.error(error.response.data.msg);
+        // setModalText();
+        // setModalTitle("An Error Occured");
+        // setModalRoute(null);
+        // showModal();
 
         //alert(error);
       }
@@ -83,15 +93,15 @@ const LoginForm = () => {
       {/* fOR MODAL*/}
       <Modal
         title={modalTitle}
-        open={isModalOpen} 
-        keyboard={true}       
+        open={isModalOpen}
+        keyboard={true}
         footer={[
           <Button
             type="primary"
             key="button"
             onClick={() => {
               handleOk(modalRoute);
-            }}          
+            }}
           >
             OK
           </Button>,
