@@ -89,9 +89,9 @@ export default function AddNewInvoiceFrom() {
         //console.log(error);
         //console.log(newprogramInfo);
         message.error(error.response.data.msg);
-        navigate("/firm/" + firmId, {
-          state: {},
-        });
+        // navigate("/firm/" + firmId, {
+        //   state: {},
+        // });
       }
     }
   };
