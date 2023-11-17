@@ -1,5 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
+import { message } from "antd";
 import { Input, DatePicker, Space, Switch } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -39,9 +40,9 @@ export default function AddBillHeadings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newFirmInfo.billNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
-    else if (!newFirmInfo.submittedTo) alert("ফার্মের নাম দিন");
-    else if (!newFirmInfo.date) alert("প্রোপ্রাইটর এর নাম দিন");    
+    if (!newFirmInfo.billNo) message.error("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
+    else if (!newFirmInfo.submittedTo) message.error("ফার্মের নাম দিন");
+    else if (!newFirmInfo.date) message.error("প্রোপ্রাইটর এর নাম দিন");    
     else {
       // setNewFirmInfo({
       //   ...newFirmInfo,
@@ -65,8 +66,7 @@ export default function AddBillHeadings() {
           state: {billID},          
         });
       } catch (error) {
-        console.log(error);
-        alert(error);
+        message.error(error);
         done = false;
       }      
     }

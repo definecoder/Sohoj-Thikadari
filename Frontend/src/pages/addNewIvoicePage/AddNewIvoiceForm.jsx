@@ -1,6 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, DatePicker, Space, Select } from "antd";
+import { Input, DatePicker, Space, message } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -47,15 +47,15 @@ export default function AddNewInvoiceFrom() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newprogramInfo.invoiceNo) alert("ইনভয়েস নম্বর দিন");
-    else if (!newprogramInfo.sendingDate) alert("প্রেরণের তারিখ দিন");
-    else if (!newprogramInfo.truckNo) alert("ট্রাকের নম্বর দিন");
+    if (!newprogramInfo.invoiceNo) message.error("ইনভয়েস নম্বর দিন");
+    else if (!newprogramInfo.sendingDate) message.error("প্রেরণের তারিখ দিন");
+    else if (!newprogramInfo.truckNo) message.error("ট্রাকের নম্বর দিন");
     else if (!newprogramInfo.sendingNetSlack)
-      alert("প্রেরিত নেট বস্তাসংখ্যা দিন");
+      message.error("প্রেরিত নেট বস্তাসংখ্যা দিন");
     else if (!newprogramInfo.sendingNetQuantity)
-      alert("প্রেরিত নেট পরিমান দিন");
+      message.error("প্রেরিত নেট পরিমান দিন");
     else if (!newprogramInfo.sendingGrossQuantity)
-      alert("প্রেরিত গ্রস পরিমান দিন");
+      message.error("প্রেরিত গ্রস পরিমান দিন");
     else {
       newprogramInfo.programQuantity = parseFloat(
         newprogramInfo.programQuantity
@@ -71,7 +71,7 @@ export default function AddNewInvoiceFrom() {
         newprogramInfo.sendingGrossQuantity
       );
 
-      //alert(JSON.stringify(newprogramInfo));
+      //message.error(JSON.stringify(newprogramInfo));
       console.log(newprogramInfo);
       try {
         const response = await axios.post(
@@ -88,7 +88,7 @@ export default function AddNewInvoiceFrom() {
       } catch (error) {
         //console.log(error);
         //console.log(newprogramInfo);
-        alert(error.response.data.msg);
+        message.error(error.response.data.msg);
         navigate("/firm/" + firmId, {
           state: {},
         });

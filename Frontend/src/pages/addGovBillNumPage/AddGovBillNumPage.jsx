@@ -42,7 +42,7 @@ export default function AddGovBillNumPage() {
           setIsLoading(false);
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.data.msg);
+          message.error(error.response.data.msg);
           done = false;
           setIsLoading(false);
         }

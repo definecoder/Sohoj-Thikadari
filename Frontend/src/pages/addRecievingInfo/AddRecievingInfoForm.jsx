@@ -4,6 +4,7 @@ import { Input, DatePicker, Space, Select } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { message } from "antd";
 
 import "./AddRecievingInfoPage.css";
 
@@ -44,18 +45,18 @@ export default function AddRecievingInfoForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newprogramInfo.receivingDate) alert("প্রাপ্তির তারিখ দিন");
+    if (!newprogramInfo.receivingDate) message.error("প্রাপ্তির তারিখ দিন");
     else if (!newprogramInfo.receivingNetSlack)
-      alert("প্রাপ্ত নেট বস্তার সংখ্যা দিন");
+      message.error("প্রাপ্ত নেট বস্তার সংখ্যা দিন");
     else if (!newprogramInfo.receivingGrossSlack)
-      alert("প্রাপ্ত গ্রস বস্তার সংখ্যা দিন");
+      message.error("প্রাপ্ত গ্রস বস্তার সংখ্যা দিন");
     else if (!newprogramInfo.receivingNetQuantity)
-      alert("প্রাপ্ত নেট পরিমান দিন");
+      message.error("প্রাপ্ত নেট পরিমান দিন");
     else if (!newprogramInfo.receivingGrossQuantity)
-      alert("প্রাপ্ত গ্রস পরিমান দিন");
-    else if (!newprogramInfo.shortage) alert("ঘাটতির পরিমান দিন");
+      message.error("প্রাপ্ত গ্রস পরিমান দিন");
+    else if (!newprogramInfo.shortage) message.error("ঘাটতির পরিমান দিন");
     else {
-      //alert(JSON.stringify(newprogramInfo));
+      //message.error(JSON.stringify(newprogramInfo));
       newprogramInfo.receivingGrossQuantity = parseFloat(
         newprogramInfo.receivingGrossQuantity
       );
@@ -85,9 +86,7 @@ export default function AddRecievingInfoForm() {
           state: {},
         });
       } catch (error) {
-        console.log(error);
-        console.log(newprogramInfo);
-        alert(error);
+        message.error(error);
         navigate("/firm/" + firmId, {
           state: {},
         });

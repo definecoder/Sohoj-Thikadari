@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./AddGovBillCard.css";
 
-import { Button, Input, DatePicker } from "antd";
+import { Button, Input, DatePicker, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+
 
 export default function AddGovBillCard({
   billNo,
@@ -23,9 +24,9 @@ export default function AddGovBillCard({
   });
 
   var submitCard = async () => {
-    if (!cardData.govtBillNo) alert(billNo + " এর সরকারি বিল নম্বর দিন");
+    if (!cardData.govtBillNo) message.error(billNo + " এর সরকারি বিল নম্বর দিন");
     else if (!cardData.govtBillDate)
-      alert(billNo + " এর সরকারি বিলের তারিখ দিন");
+      message.error(billNo + " এর সরকারি বিলের তারিখ দিন");
     else {
       try {
         onClick(true);
@@ -38,7 +39,7 @@ export default function AddGovBillCard({
         );
         onSuccess();
       } catch (error) {
-        alert(JSON.stringify(error.response.data.msg));
+        message.error(JSON.stringify(error.response.data.msg));
       }
     }
   };

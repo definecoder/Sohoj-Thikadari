@@ -3,47 +3,13 @@ import NavBar from "../../components/navBar/NavBar";
 import "./AddBillDistancePage.css";
 import _ from "lodash";
 
+import { message } from "antd";
 import { Space, Table, Input, Rate } from "antd";
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { alertClasses } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
-
-const data = [
-  {
-    invoiceNo: "১২৩২১৩১২৩",
-    programNo: "৭৭৮৬",
-    sendingPoint: "চট্টগ্রাম বন্দর",
-    receivingPoint: "সিলেট সদর",
-    distance: "",
-    pricePerTon: "",
-  },
-  {
-    invoiceNo: "১২৩২১৩১২৩",
-    programNo: "১২৩",
-    sendingPoint: "চট্টগ্রাম বন্দর",
-    receivingPoint: "সিলেট সদর",
-    distance: "",
-    pricePerTon: "",
-  },
-  {
-    invoiceNo: "১২৩২১৩১২৩",
-    programNo: "৭৭৮৬",
-    sendingPoint: "চট্টগ্রাম বন্দর",
-    receivingPoint: "সিলেট সদর",
-    distance: "",
-    pricePerTon: "",
-  },
-  {
-    invoiceNo: "১২৩২১৩১২৩",
-    programNo: "৭৭৮৬",
-    sendingPoint: "চট্টগ্রাম বন্দর",
-    receivingPoint: "সিলেট সদর",
-    distance: "",
-    pricePerTon: "",
-  },
-];
 
 export default function AddBillDistancePage() {
   const navigate = useNavigate();
@@ -151,12 +117,12 @@ export default function AddBillDistancePage() {
                   const item = billEntries[index];                                    
                 
                   if (item.distance === null) {
-                    alert("ইনভয়েস নং " + item.invoiceNo + " এর দূরত্ব দিন");
+                    message.error("ইনভয়েস নং " + item.invoiceNo + " এর দূরত্ব দিন");
                     ok = false;
                     return;
                   }
                   if (item.pricePerTon === null) {
-                    alert("ইনভয়েস নং " + item.invoiceNo + " এর টনপ্রতি দর দিন");
+                    message.error("ইনভয়েস নং " + item.invoiceNo + " এর টনপ্রতি দর দিন");
                     ok = false;
                     return;
                   }

@@ -6,6 +6,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import FirmsDropDown from "./FirmsDropDown";
+import { message } from "antd";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ export default function NavBar() {
             className="navButton"
             onClick={() => {
               localStorage.removeItem("token");
+              message.success("লগআউট সম্পন্ন হয়েছে")
               navigate("/");
             }}
           >

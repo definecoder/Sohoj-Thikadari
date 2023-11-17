@@ -7,6 +7,7 @@ import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/Recent
 // import DarkButton from "../../components/darkButton/DarkButton";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
+import { message } from "antd";
 import PdfFile from "../../components/PdfGenerator/PdfFile";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -43,7 +44,7 @@ export default function MovementRegisterPage() {
           );
           setInvoiceList(response2.data);
         } catch (error) {
-          alert(error.response.data.msg);
+          message.error(error.response.data.msg);
           done = false;
         }
     };
