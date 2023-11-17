@@ -10,6 +10,7 @@ import {useParams} from "react-router-dom";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import { message } from "antd";
 
 export default function RunningProgramsPage() {
   // getting uid from login or signup :v
@@ -38,7 +39,7 @@ export default function RunningProgramsPage() {
 
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.data.msg);
+          message.error(error.response.data.msg);
           done = false;
         }
     };

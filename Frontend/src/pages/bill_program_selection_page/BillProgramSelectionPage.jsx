@@ -2,7 +2,7 @@ import "./BillProgramSelectionPage.css";
 import NavBar from "../../components/navBar/NavBar";
 import ProgramSelectionCard from "../../components/ProgramSelectionCard/ProgramSelectionCard";
 import DarkButton from "../../components/darkButton/DarkButton";
-import { Row, Col } from "antd";
+import { Row, Col, message } from "antd";
 import { SelectOutlined } from "@ant-design/icons";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { useState, useEffect } from "react";
@@ -40,9 +40,12 @@ export default function BillProgramSelectionPage() {
       } 
     }
 
-    console.log(newProgramList);
+    //console.log(newProgramList);
     //alert(JSON.stringify(newProgramList));
-    navigate("/firm/" + firmId + "/bill/addBillDistance", {
+    if(newProgramList.length == 0){
+      message.error("নূন্যতম ১টি প্রোগ্রাম নির্বাচন করুন")
+    }
+    else navigate("/firm/" + firmId + "/bill/addBillDistance", {
       state: {
         newProgramList,
       },

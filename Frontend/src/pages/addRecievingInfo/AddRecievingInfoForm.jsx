@@ -4,12 +4,13 @@ import { Input, DatePicker, Space, Select } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { message } from "antd";
 
 import "./AddRecievingInfoPage.css";
 
 export default function AddRecievingInfoForm() {
   const navigate = useNavigate();
-  let {invoiceNo, firmId} = useParams();
+  let { invoiceNo, firmId } = useParams();
 
   //console.log(useLocation().state);
   const [newprogramInfo, setNewprogramInfo] = useState({
@@ -24,7 +25,11 @@ export default function AddRecievingInfoForm() {
 
   const handleChange = (e) => {
     if (
-      e.target.name === "programQuantity" &&
+      (e.target.name === "receivingNetSlack" ||
+        e.target.name === "receivingGrossSlack" ||
+        e.target.name === "receivingNetQuantity" ||
+        e.target.name === "receivingGrossQuantity" ||
+        e.target.name === "shortage") &&
       !(
         typeof Number(e.target.value) === "number" &&
         !Number.isNaN(Number(e.target.value))
@@ -40,19 +45,33 @@ export default function AddRecievingInfoForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newprogramInfo.receivingDate) alert("প্রাপ্তির তারিখ দিন");
-    else if (!newprogramInfo.receivingNetSlack) alert("প্রাপ্ত নেট বস্তার সংখ্যা দিন");
-    else if (!newprogramInfo.receivingGrossSlack) alert("প্রাপ্ত গ্রস বস্তার সংখ্যা দিন");
-    else if (!newprogramInfo.receivingNetQuantity) alert("প্রাপ্ত নেট পরিমান দিন");
-    else if (!newprogramInfo.receivingGrossQuantity) alert("প্রাপ্ত গ্রস পরিমান দিন");
-    else if (!newprogramInfo.shortage) alert("ঘাটতির পরিমান দিন");
+    if (!newprogramInfo.receivingDate) message.error("প্রাপ্তির তারিখ দিন");
+    else if (!newprogramInfo.receivingNetSlack)
+      message.error("প্রাপ্ত নেট বস্তার সংখ্যা দিন");
+    else if (!newprogramInfo.receivingGrossSlack)
+      message.error("প্রাপ্ত গ্রস বস্তার সংখ্যা দিন");
+    else if (!newprogramInfo.receivingNetQuantity)
+      message.error("প্রাপ্ত নেট পরিমান দিন");
+    else if (!newprogramInfo.receivingGrossQuantity)
+      message.error("প্রাপ্ত গ্রস পরিমান দিন");
+    else if (!newprogramInfo.shortage) message.error("ঘাটতির পরিমান দিন");
     else {
-      //alert(JSON.stringify(newprogramInfo));
-      newprogramInfo.receivingGrossQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);
-      newprogramInfo.receivingGrossSlack= parseFloat(newprogramInfo.receivingGrossQuantity);
-      newprogramInfo.receivingNetQuantity = parseFloat(newprogramInfo.receivingGrossQuantity);
-      newprogramInfo.receivingNetSlack = parseFloat(newprogramInfo.receivingGrossQuantity);
-      newprogramInfo.shortage = parseFloat(newprogramInfo.receivingGrossQuantity);
+      //message.error(JSON.stringify(newprogramInfo));
+      newprogramInfo.receivingGrossQuantity = parseFloat(
+        newprogramInfo.receivingGrossQuantity
+      );
+      newprogramInfo.receivingGrossSlack = parseFloat(
+        newprogramInfo.receivingGrossQuantity
+      );
+      newprogramInfo.receivingNetQuantity = parseFloat(
+        newprogramInfo.receivingGrossQuantity
+      );
+      newprogramInfo.receivingNetSlack = parseFloat(
+        newprogramInfo.receivingGrossQuantity
+      );
+      newprogramInfo.shortage = parseFloat(
+        newprogramInfo.receivingGrossQuantity
+      );
 
       try {
         const response = await axios.put(
@@ -61,19 +80,17 @@ export default function AddRecievingInfoForm() {
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
-        );        
-        console.log(response.data);        
+        );
+        console.log(response.data);
         navigate("/firm/" + firmId, {
           state: {},
         });
       } catch (error) {
-        console.log(error);
-        console.log(newprogramInfo);
-        alert(error);
+        message.error(error);
         navigate("/firm/" + firmId, {
           state: {},
         });
-      }       
+      }
     }
   };
 
@@ -81,8 +98,7 @@ export default function AddRecievingInfoForm() {
     <div>
       <form className="add-new-program-form" onSubmit={handleSubmit}>
         <div className="addrecievinginfo-main-form">
-          <div className="addrecievinginfo-form-left">           
-
+          <div className="addrecievinginfo-form-left">
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
                 <label htmlFor="name" className="addrecievinginfo-form-label">
@@ -101,7 +117,10 @@ export default function AddRecievingInfoForm() {
 
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
-                <label htmlFor="password" className="addrecievinginfo-form-label">
+                <label
+                  htmlFor="password"
+                  className="addrecievinginfo-form-label"
+                >
                   প্রাপ্ত নেট বস্তা &nbsp;
                 </label>
                 <Input
@@ -115,12 +134,14 @@ export default function AddRecievingInfoForm() {
                   addonAfter="বস্তা"
                 />
               </Space>
-            
             </div>
 
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
-                <label htmlFor="password" className="addrecievinginfo-form-label">
+                <label
+                  htmlFor="password"
+                  className="addrecievinginfo-form-label"
+                >
                   প্রাপ্ত গ্রস বস্তা &nbsp;
                 </label>
                 <Input
@@ -135,16 +156,15 @@ export default function AddRecievingInfoForm() {
                 />
               </Space>
             </div>
-
-            
           </div>
 
-          <div className="addrecievinginfo-form-right">                        
-            
-
+          <div className="addrecievinginfo-form-right">
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
-                <label htmlFor="password" className="addrecievinginfo-form-label">
+                <label
+                  htmlFor="password"
+                  className="addrecievinginfo-form-label"
+                >
                   প্রাপ্ত নেট পরিমান &nbsp;
                 </label>
                 <Input
@@ -161,7 +181,10 @@ export default function AddRecievingInfoForm() {
             </div>
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
-                <label htmlFor="password" className="addrecievinginfo-form-label">
+                <label
+                  htmlFor="password"
+                  className="addrecievinginfo-form-label"
+                >
                   প্রাপ্ত গ্রস পরিমান &nbsp;
                 </label>
                 <Input
@@ -179,7 +202,10 @@ export default function AddRecievingInfoForm() {
 
             <div className="addrecievinginfo-form-row">
               <Space direction="horizontal">
-                <label htmlFor="password" className="addrecievinginfo-form-label">
+                <label
+                  htmlFor="password"
+                  className="addrecievinginfo-form-label"
+                >
                   ঘাটতি &nbsp;
                 </label>
                 <Input
@@ -194,7 +220,6 @@ export default function AddRecievingInfoForm() {
                 />
               </Space>
             </div>
-            
           </div>
         </div>
 

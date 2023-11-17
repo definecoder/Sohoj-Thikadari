@@ -1,16 +1,23 @@
-// TODO : ADD BG
 import "./LoginPage.css";
 
 import LandingAiLogo from "../../assets/landingAiLogo.jpeg";
 import AppLogo from "../../assets/appLogo.png";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import ForgetPasswordModal from "./ForgetPasswordModal";
 
 function LoginPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
   return (
     <>
       <div className="loginPageRoot">
+        <ForgetPasswordModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
         <div className="loginLeft">
           <img
             src={LandingAiLogo}
@@ -27,12 +34,29 @@ function LoginPage() {
               className="AppLoginLogo"
             />
           </div>
-          <div className="wantToRegister"> সহজ ঠিকাদারী তে নতুন? <span className="wantToRegisterBtn" onClick={()=>{
-            navigate('/signup');
-          }}> রেজিস্টার করুন </span></div>          
-          <LoginForm />   
-          <div>
-            পাসওয়ার্ড ভুলে গেছেন? এখানে <b>ক্লিক করুন</b>
+          <div className="wantToRegister">
+            {" "}
+            সহজ ঠিকাদারী তে নতুন?{" "}
+            <span
+              className="wantToRegisterBtn"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              {" "}
+              রেজিস্টার করুন{" "}
+            </span>
+          </div>
+          <LoginForm />
+          <div className="login-forgot-password">
+            পাসওয়ার্ড ভুলে গেছেন? এখানে{" "}
+            <b
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              ক্লিক করুন
+            </b>
           </div>
         </div>
       </div>

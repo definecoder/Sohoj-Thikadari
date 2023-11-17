@@ -4,6 +4,7 @@ import { Input, Space, Button } from "antd";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { message } from "antd";
 
 const signupForm = () => {
   /// fOR MODAL
@@ -56,20 +57,20 @@ const signupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.username) alert("ইউজারনেম দিন");
+    if (!user.username) message.error("ইউজারনেম দিন");
     else if (user.username.length < 4)
-      alert("ইউজারনেম নুন্যতম ৪ অক্ষরের হতে হবে");
-    else if (!user.phone) alert("ফোন নম্বর দিন");
-    else if (user.phone.length !== 10) alert("ফোন নম্বর সঠিক নয়");
-    else if (!user.email) alert("ইমেইল দিন");
-    else if (!emailRegex.test(user.email)) alert("ইমেইল সঠিক নয়");
-    else if (!user.password) alert("পাসওয়ার্ড দিন");
+      message.error("ইউজারনেম নুন্যতম ৪ অক্ষরের হতে হবে");
+    else if (!user.phone) message.error("ফোন নম্বর দিন");
+    else if (user.phone.length !== 10) message.error("ফোন নম্বর সঠিক নয়");
+    else if (!user.email) message.error("ইমেইল দিন");
+    else if (!emailRegex.test(user.email)) message.error("ইমেইল সঠিক নয়");
+    else if (!user.password) message.error("পাসওয়ার্ড দিন");
     else if (user.password.length < 6)
-      alert("পাসওয়ার্ড নুন্যতম ৬ অক্ষরের হতে হবে");
+      message.error("পাসওয়ার্ড নুন্যতম ৬ অক্ষরের হতে হবে");
     else if (user.password !== user.confirmPassword)
-      alert("পাসওয়ার্ড দুইটি একই হয়নি");
+      message.error("পাসওয়ার্ড দুইটি একই হয়নি");
     else {
-      var retVal = {
+      const retVal = {
         username: user.username,
         phone: "+880" + user.phone,
         email: user.email,

@@ -3,6 +3,7 @@ import FirmInfo from "../../components/firm_info/FirmInfo";
 import LightIconButton from "../../components/light_button/LightIconButton";
 import LightIconButtonStyled from "../../components/light_button/LightIconButtonStyled";
 import { useParams } from "react-router-dom";
+import {message} from 'antd';
 import {
   PlusSquareOutlined,
   FileDoneOutlined,
@@ -39,7 +40,7 @@ export default function FirmProfilePage(props) {
 
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.data.msg);
+          message.error(error.response.data.msg);
           done = false;
         }
     };

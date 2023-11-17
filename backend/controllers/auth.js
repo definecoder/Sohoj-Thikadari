@@ -152,7 +152,7 @@ const validateOTP = asyncWrapper(async (req, res) =>{
     // console.log(decoded.OTP);
 
     if(decoded.OTP == req.body.otp){
-        res.status(StatusCodes.ACCEPTED).json(decoded.id);
+        res.status(StatusCodes.ACCEPTED).json(decoded);
     }
     else{
         res.status(StatusCodes.LOCKED).json({msg: "Wrong OTP"})
@@ -165,6 +165,19 @@ const validateOTP = asyncWrapper(async (req, res) =>{
 
 const updatePassword = asyncWrapper(async (req, res) =>{
 
+    const authHeader = req.headers.authorization
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        // throw new Error({ msg: 'No token provided' })
+        console.log('No token Provided')
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'Something Went Wrong!' })
+        return
+    }
+
+    const token = authHeader.split(' ')[1]
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
     // console.log('hi')
     var saltRounds = 10;
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds)
@@ -174,7 +187,7 @@ const updatePassword = asyncWrapper(async (req, res) =>{
             hashedPassword: hashedPassword
         },
         where:{
-            id: req.body.id
+            id: decoded.id
         }
     })
 

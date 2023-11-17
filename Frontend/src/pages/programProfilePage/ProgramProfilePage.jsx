@@ -5,6 +5,7 @@ import "./ProgramProfilePage.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
+import { message } from "antd";
 
 function convertDate(date) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -39,7 +40,7 @@ export default function ProgramProfilePage() {
 
           // setInvoiceCount(res.data.)
         } catch (error) {
-          alert(error.response.data.msg);
+          message.error(error.response.data.msg);
           done = false;
         }
     };

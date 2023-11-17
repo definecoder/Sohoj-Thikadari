@@ -1,6 +1,6 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, InputNumber, Space, Switch } from "antd";
+import { Input, InputNumber, Space, message } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -31,16 +31,21 @@ export default function AddNewFirmForm() {
   };
 
   const handleSubmit = async (e) => {
+    let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
     e.preventDefault();
-    if (!newFirmInfo.regNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
-    else if (!newFirmInfo.name) alert("ফার্মের নাম দিন");
-    else if (!newFirmInfo.proprietor) alert("প্রোপ্রাইটর এর নাম দিন");
-    else if (!newFirmInfo.tradeLicense) alert("ট্রেড লাইসেন্স দিন");
-    else if (!newFirmInfo.phone) alert("ফোন নম্বর দিন");
-    else if (!newFirmInfo.email) alert("ইমেইল দিন");
-    else if (!newFirmInfo.address) alert("ঠিকানা");
+    if (!newFirmInfo.regNo) message.error("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
+    else if (!newFirmInfo.name) message.error("ফার্মের নাম দিন");
+    else if (!newFirmInfo.proprietor) message.error("প্রোপ্রাইটর এর নাম দিন");
+    else if (!newFirmInfo.tradeLicense) message.error("ট্রেড লাইসেন্স দিন");
+    else if (!newFirmInfo.phone) message.error("ফোন নম্বর দিন");
+    else if (newFirmInfo.phone.length != 10) message.error("ফোন নম্বর সঠিক নয়");
+    else if (!newFirmInfo.email) message.error("ইমেইল দিন");
+    else if (!emailRegex.test(newFirmInfo.email)) message.error("ইমেইল সঠিক নয়");
+    else if (!newFirmInfo.address) message.error("ঠিকানা");
     else {
-      //alert(JSON.stringify(newFirmInfo));
+      
+      const firmInfoFinal = {...newFirmInfo, phone: "+880" + newFirmInfo.phone}
+      //message.error(JSON.stringify(firmInfoFinal));
       try {
         const response = await axios.post(
           "http://localhost:8888/api/v1/firms",
@@ -52,7 +57,7 @@ export default function AddNewFirmForm() {
         console.log(response.data);
       } catch (error) {
         console.log(error);
-        alert(error);
+        message.error(error);
       }
       navigate("/firms", {
         state: {
@@ -150,6 +155,7 @@ export default function AddNewFirmForm() {
                   name="phone"
                   value={newFirmInfo.phone}
                   onChange={handleChange}
+                  addonBefore="+880"
                 />
               </Space>
             </div>

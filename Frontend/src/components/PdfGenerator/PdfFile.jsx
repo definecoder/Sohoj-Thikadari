@@ -140,7 +140,7 @@ function PdfFile({ list, firmInfo }) {
   const values = updatedJSON;
 
   function splitTextIntoChunks(text) {
-    const maxChunkLength = 15; // Adjust this value based on your needs
+    const maxChunkLength = 10; // Adjust this value based on your needs
     const chunks = [];
     for (let i = 0; i < text?.toString().length; i += maxChunkLength) {
       chunks.push(text?.toString().substr(i, maxChunkLength));
