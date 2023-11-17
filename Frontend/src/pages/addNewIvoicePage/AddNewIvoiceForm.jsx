@@ -8,8 +8,8 @@ import axios from "axios";
 import "./AddNewIvoicePage.css";
 
 export default function AddNewInvoiceFrom() {
-  const navigate = useNavigate();  
-  let {firmId} = useParams();  
+  const navigate = useNavigate();
+  let { firmId } = useParams();
 
   //console.log(useLocation().state);
   const prevData = useLocation().state;
@@ -28,7 +28,10 @@ export default function AddNewInvoiceFrom() {
 
   const handleChange = (e) => {
     if (
-      e.target.name === "programQuantity" &&
+      (e.target.name === "invoiceNo" ||
+        e.target.name === "sendingNetSlack" ||
+        e.target.name === "sendingNetQuantity" ||
+        e.target.name === "sendingGrossQuantity") &&
       !(
         typeof Number(e.target.value) === "number" &&
         !Number.isNaN(Number(e.target.value))
@@ -47,16 +50,26 @@ export default function AddNewInvoiceFrom() {
     if (!newprogramInfo.invoiceNo) alert("ইনভয়েস নম্বর দিন");
     else if (!newprogramInfo.sendingDate) alert("প্রেরণের তারিখ দিন");
     else if (!newprogramInfo.truckNo) alert("ট্রাকের নম্বর দিন");
-    else if (!newprogramInfo.sendingNetSlack) alert("প্রেরিত নেট বস্তাসংখ্যা দিন");
-    else if (!newprogramInfo.sendingNetQuantity) alert("প্রেরিত নেট পরিমান দিন");
-    else if (!newprogramInfo.sendingGrossQuantity) alert("প্রেরিত গ্রস পরিমান দিন");
+    else if (!newprogramInfo.sendingNetSlack)
+      alert("প্রেরিত নেট বস্তাসংখ্যা দিন");
+    else if (!newprogramInfo.sendingNetQuantity)
+      alert("প্রেরিত নেট পরিমান দিন");
+    else if (!newprogramInfo.sendingGrossQuantity)
+      alert("প্রেরিত গ্রস পরিমান দিন");
     else {
-
-      newprogramInfo.programQuantity = parseFloat(newprogramInfo.programQuantity);
+      newprogramInfo.programQuantity = parseFloat(
+        newprogramInfo.programQuantity
+      );
       newprogramInfo.invoiceNo = parseFloat(newprogramInfo.invoiceNo);
-      newprogramInfo.sendingNetSlack = parseFloat(newprogramInfo.sendingNetSlack);
-      newprogramInfo.sendingNetQuantity = parseFloat(newprogramInfo.sendingNetQuantity);
-      newprogramInfo.sendingGrossQuantity = parseFloat(newprogramInfo.sendingGrossQuantity);
+      newprogramInfo.sendingNetSlack = parseFloat(
+        newprogramInfo.sendingNetSlack
+      );
+      newprogramInfo.sendingNetQuantity = parseFloat(
+        newprogramInfo.sendingNetQuantity
+      );
+      newprogramInfo.sendingGrossQuantity = parseFloat(
+        newprogramInfo.sendingGrossQuantity
+      );
 
       //alert(JSON.stringify(newprogramInfo));
       console.log(newprogramInfo);
@@ -79,7 +92,7 @@ export default function AddNewInvoiceFrom() {
         navigate("/firm/" + firmId, {
           state: {},
         });
-      }      
+      }
     }
   };
 
@@ -169,7 +182,7 @@ export default function AddNewInvoiceFrom() {
                   className="addinvoice-form-input"
                   id="sendingNetQuantity"
                   name="sendingNetQuantity"
-                  value={newprogramInfo.sendingNetQuantityk}
+                  value={newprogramInfo.sendingNetQuantity}
                   onChange={handleChange}
                   addonAfter="টন"
                 />

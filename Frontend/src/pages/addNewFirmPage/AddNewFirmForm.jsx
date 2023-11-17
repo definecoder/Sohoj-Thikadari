@@ -31,16 +31,21 @@ export default function AddNewFirmForm() {
   };
 
   const handleSubmit = async (e) => {
+    let emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
     e.preventDefault();
     if (!newFirmInfo.regNo) alert("ফার্মের রেজিস্ট্রেশন নম্বর দিন");
     else if (!newFirmInfo.name) alert("ফার্মের নাম দিন");
     else if (!newFirmInfo.proprietor) alert("প্রোপ্রাইটর এর নাম দিন");
     else if (!newFirmInfo.tradeLicense) alert("ট্রেড লাইসেন্স দিন");
     else if (!newFirmInfo.phone) alert("ফোন নম্বর দিন");
+    else if (newFirmInfo.phone.length != 10) alert("ফোন নম্বর সঠিক নয়");
     else if (!newFirmInfo.email) alert("ইমেইল দিন");
+    else if (!emailRegex.test(newFirmInfo.email)) alert("ইমেইল সঠিক নয়");
     else if (!newFirmInfo.address) alert("ঠিকানা");
     else {
-      //alert(JSON.stringify(newFirmInfo));
+      
+      const firmInfoFinal = {...newFirmInfo, phone: "+880" + newFirmInfo.phone}
+      //alert(JSON.stringify(firmInfoFinal));
       try {
         const response = await axios.post(
           "http://localhost:8888/api/v1/firms",
@@ -150,6 +155,7 @@ export default function AddNewFirmForm() {
                   name="phone"
                   value={newFirmInfo.phone}
                   onChange={handleChange}
+                  addonBefore="+880"
                 />
               </Space>
             </div>

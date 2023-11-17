@@ -50,11 +50,18 @@ export default function AddBillDistancePage() {
   const billMakingInvoices = useLocation().state?.newProgramList;
   let { firmId } = useParams();
   //alert(JSON.stringify());
-  const [billEntries, setBillEntries] = useState(billMakingInvoices);  
+  const [billEntries, setBillEntries] = useState(billMakingInvoices);
   //console.log(billMakingInvoices);
 
   const onChangeInput = (e, index) => {
-    const { name, value } = e.target;
+    if (      
+      !(
+        typeof Number(e.target.value) === "number" &&
+        !Number.isNaN(Number(e.target.value))
+      )
+    )
+      return;
+    const { name, value } = e.target;        
 
     const editData = billEntries.map((item, i) =>
       i === index ? { ...item, [name]: value } : item
@@ -66,8 +73,11 @@ export default function AddBillDistancePage() {
   return (
     <>
       <NavBar />
-      <div className="addbilldistance-canvas">        
-        <div className="addbilldistance-title"><BackButton />বিলের দূরত্ব ও দর দিন</div>
+      <div className="addbilldistance-canvas">
+        <div className="addbilldistance-title">
+          <BackButton />
+          বিলের দূরত্ব ও দর দিন
+        </div>
         <div className="addbilldistance-container">
           <div className="addbilldistance-table">
             <table>
@@ -113,7 +123,7 @@ export default function AddBillDistancePage() {
                           name="distance"
                           value={distance}
                           onChange={(e) => onChangeInput(e, index)}
-                          placeholder={`${programNo} প্রোগ্রামের দূরত্ব দিন`}
+                          placeholder={`ইনভয়েস নং ${invoiceNo} এর দূরত্ব দিন`}
                         />
                       </td>
                       <td>
@@ -136,8 +146,23 @@ export default function AddBillDistancePage() {
               buttonText="সংরক্ষন করুন"
               onClick={() => {
                 //alert(JSON.stringify(billEntries));
-                navigate("/firm/" + firmId + "/bill/addBillHeadings", {
-                  state: {billEntries},
+                let ok = true;
+                for (let index = 0; index < billEntries.length; index++) {
+                  const item = billEntries[index];                                    
+                
+                  if (item.distance === null) {
+                    alert("ইনভয়েস নং " + item.invoiceNo + " এর দূরত্ব দিন");
+                    ok = false;
+                    return;
+                  }
+                  if (item.pricePerTon === null) {
+                    alert("ইনভয়েস নং " + item.invoiceNo + " এর টনপ্রতি দর দিন");
+                    ok = false;
+                    return;
+                  }
+                }
+                if(ok) navigate("/firm/" + firmId + "/bill/addBillHeadings", {
+                  state: { billEntries },
                 });
               }}
               routePath="forbidden"
