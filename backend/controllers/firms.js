@@ -13,15 +13,15 @@ const createFirm = asyncWrapper(async (req, res) => {
 }, { msg: "Couldn\'t create the firm" })
 
 const getFirms = asyncWrapper(async (req, res) => {
-    firms = await prisma.user.findMany({
+    firms = await prisma.firm.findMany({
         where: {
-            id: req.user.id
+            userID: req.user.id,
         },
-        select: {
-            Firm: true
+        orderBy:{
+            createdAt: 'asc'
         }
     })
-    res.status(StatusCodes.OK).json(firms)
+    res.status(StatusCodes.OK).json([{Firm: firms}])
 
 }, { msg: "Couldn\'t fetch firms", code: 404 })
 

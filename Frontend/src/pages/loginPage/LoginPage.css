@@ -33,6 +33,7 @@
 }
 
 .wantToRegisterBtn {
+    transition: font-size 0.3s;
     font-size: 1.1em;
     font-weight: bold;
     color: #005163;
@@ -40,6 +41,7 @@
 
 .wantToRegisterBtn:hover {
     cursor: pointer;
+    font-size: larger;
 }
 
 
@@ -76,4 +78,13 @@
 
 .login-form-input {
     width: 35vw;    
+}
+
+
+.login-forgot-password b{
+    transition: font-size 0.3s;
+}
+.login-forgot-password:hover b{
+    font-size: larger;
+    cursor: pointer;
 }

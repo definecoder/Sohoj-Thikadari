@@ -1,41 +1,16 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space, Switch, message } from "antd";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Button, Modal } from "antd";
+import { Input, Space, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm = () => {
-  /// fOR MODAL
-  const [modalText, setModalText] = useState("");
-  const [modalTitle, setModalTitle] = useState("");
-  const [modalRoute, setModalRoute] = useState(null);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = (route) => {
-    setIsModalOpen(false);
-    if (route) {
-      navigate(route, {
-        state: {
-          user,
-        },
-      });
-    }
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  /// fOR MODAL
-
   const navigate = useNavigate();
   const [user, setUser] = useState({
     phone: "",
     password: "",
   });
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
     if (
@@ -90,31 +65,6 @@ const LoginForm = () => {
 
   return (
     <div>
-      {/* fOR MODAL*/}
-      <Modal
-        title={modalTitle}
-        open={isModalOpen}
-        keyboard={true}
-        footer={[
-          <Button
-            type="primary"
-            key="button"
-            onClick={() => {
-              handleOk(modalRoute);
-            }}
-          >
-            OK
-          </Button>,
-        ]}
-        closeIcon={null}
-        // onOk={() => {
-        //   handleOk(modalRoute);
-        // }}
-        // onCancel={handleCancel}
-      >
-        <p>{modalText}</p>
-      </Modal>
-      {/* fOR MODAL*/}
       <form className="loginForm" onSubmit={handleSubmit}>
         {/* name */}
         <label htmlFor="name" className="login-form-label">
