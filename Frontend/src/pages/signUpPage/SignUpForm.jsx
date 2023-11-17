@@ -69,7 +69,7 @@ const signupForm = () => {
     else if (user.password !== user.confirmPassword)
       alert("পাসওয়ার্ড দুইটি একই হয়নি");
     else {
-      var retVal = {
+      const retVal = {
         username: user.username,
         phone: "+880" + user.phone,
         email: user.email,
