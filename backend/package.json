@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "npx prisma generate && npx prisma migrate deploy --name init --create-only && npx prisma migrate deploy && node app.js",
+    "start": "npx prisma generate && npx prisma migrate deploy && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "npx prisma migrate dev --name init --create-only": "npx prisma migrate dev --name init --create-only --schema=./database/Schema.prisma"
   },
