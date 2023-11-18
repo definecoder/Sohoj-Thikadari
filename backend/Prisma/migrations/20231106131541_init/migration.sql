@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE `invoice` ADD COLUMN `programQuantity` DOUBLE NULL;
+ALTER TABLE `Invoice` ADD COLUMN `programQuantity` DOUBLE NULL;
