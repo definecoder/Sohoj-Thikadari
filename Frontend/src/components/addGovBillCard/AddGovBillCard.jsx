@@ -5,7 +5,6 @@ import { Button, Input, DatePicker, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-
 export default function AddGovBillCard({
   billNo,
   amount,
@@ -24,14 +23,16 @@ export default function AddGovBillCard({
   });
 
   var submitCard = async () => {
-    if (!cardData.govtBillNo) message.error(billNo + " এর সরকারি বিল নম্বর দিন");
+    if (!cardData.govtBillNo)
+      message.error(billNo + " এর সরকারি বিল নম্বর দিন");
     else if (!cardData.govtBillDate)
       message.error(billNo + " এর সরকারি বিলের তারিখ দিন");
     else {
       try {
         onClick(true);
         const response = await axios.put(
-          "http://localhost:8888/api/v1/bills/govtBills/" + firmId,
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+            firmId,
           cardData,
           {
             headers: { Authorization: localStorage.getItem("token") },

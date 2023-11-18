@@ -26,7 +26,8 @@ export default function MyBillsPage() {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/firms/" + firmId,
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+              firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
             }
@@ -35,7 +36,8 @@ export default function MyBillsPage() {
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "http://localhost:8888/api/v1/bills/all/" + firmId,
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/all/" +
+              firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
             }
@@ -88,7 +90,7 @@ export default function MyBillsPage() {
               : billList.map((bill) => {
                   return (
                     <Col className="bp-col" span={12} key={bill.id}>
-                      <BillCard firmID={firmId} {...bill} />                      
+                      <BillCard firmID={firmId} {...bill} />
                     </Col>
                   );
                 })}

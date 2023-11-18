@@ -30,7 +30,8 @@ export default function ProgramProfilePage() {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/firms/" + invoiceData.firmID,
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+              invoiceData.firmID,
             {
               headers: { Authorization: localStorage.getItem("token") },
             }
@@ -51,7 +52,8 @@ export default function ProgramProfilePage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8888/api/v1/invoice/" + invoiceNo,
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/" +
+            invoiceNo,
           {
             headers: { Authorization: localStorage.getItem("token") },
           }
@@ -131,7 +133,7 @@ export default function ProgramProfilePage() {
             </div>
           </div>
           <div className="program-profile-right-section">
-            <div className="program-profile-right-section-1">              
+            <div className="program-profile-right-section-1">
               <BackButton />
               <FirmInfo
                 firmName={firmInfo?.name}
@@ -149,7 +151,7 @@ export default function ProgramProfilePage() {
                 </span>
                 <span className="pp-invoice-card-3">
                   প্রোগ্রাম নং : <b>{invoiceData.programNo}</b>
-                </span>                
+                </span>
                 <span className="pp-invoice-card-4">
                   প্রোগ্রামের তারিখঃ{" "}
                   <b>{convertDate(invoiceData.programDate)}</b>

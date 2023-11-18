@@ -40,15 +40,18 @@ export default function AddNewFirmForm() {
     else if (!newFirmInfo.phone) message.error("ফোন নম্বর দিন");
     else if (newFirmInfo.phone.length != 10) message.error("ফোন নম্বর সঠিক নয়");
     else if (!newFirmInfo.email) message.error("ইমেইল দিন");
-    else if (!emailRegex.test(newFirmInfo.email)) message.error("ইমেইল সঠিক নয়");
+    else if (!emailRegex.test(newFirmInfo.email))
+      message.error("ইমেইল সঠিক নয়");
     else if (!newFirmInfo.address) message.error("ঠিকানা");
     else {
-      
-      const firmInfoFinal = {...newFirmInfo, phone: "+880" + newFirmInfo.phone}
+      const firmInfoFinal = {
+        ...newFirmInfo,
+        phone: "+880" + newFirmInfo.phone,
+      };
       //message.error(JSON.stringify(firmInfoFinal));
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/firms",
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
           newFirmInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
@@ -145,7 +148,7 @@ export default function AddNewFirmForm() {
             <div className="addfirm-form-row">
               <Space direction="horizontal">
                 <label htmlFor="name" className="addfirm-form-label">
-                  ফোন নম্বর 
+                  ফোন নম্বর
                 </label>
                 <Input
                   size="large"

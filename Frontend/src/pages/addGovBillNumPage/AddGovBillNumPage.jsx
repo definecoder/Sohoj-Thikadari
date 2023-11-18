@@ -30,7 +30,8 @@ export default function AddGovBillNumPage() {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/bills/govtBills/" + firmId,
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+              firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
             }
@@ -57,7 +58,8 @@ export default function AddGovBillNumPage() {
       <NavBar />
       <div className="gov-bill-num-add-page-canvas">
         <div className="add-gov-bill-num-page-title">
-          <BackButton /> সরকারি বিল নম্বর দিন</div>
+          <BackButton /> সরকারি বিল নম্বর দিন
+        </div>
         <div className="main-content-gov-bill-add">
           {isLoading ? (
             <Spin />
@@ -76,8 +78,16 @@ export default function AddGovBillNumPage() {
               );
             })
           ) : (
-            <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100vw", paddingTop:"100px"}}>
-            <br /> <br />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100vw",
+                paddingTop: "100px",
+              }}
+            >
+              <br /> <br />
               <h1>
                 <i>সরকারি নাম্বার দেওয়ার মত বিল নেই</i>
               </h1>

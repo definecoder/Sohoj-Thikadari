@@ -21,9 +21,12 @@ export default function FirmsDropDown() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8888/api/v1/firms", {
-          headers: { Authorization: localStorage.getItem("token") },
-        });
+        const res = await axios.get(
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
 
         const tmp = res.data[0].Firm.map((item) => ({
           key: item.id,
@@ -51,7 +54,12 @@ export default function FirmsDropDown() {
           onClick,
         }}
       >
-        <a onClick={(e) => {e.preventDefault(); navigate("/firms");}}>
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/firms");
+          }}
+        >
           <Space>
             <div style={{ fontSize: "1.6rem" }}>ফার্মসমূহ</div>
             <DownCircleOutlined style={{ fontSize: "1.9rem" }} />
