@@ -17,7 +17,7 @@ app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // enable credentials (cookies, authorization headers)
 }));
-app.options('*', cors());
+
 
 // routes
 app.use('/api/v1/auth', auth)
@@ -33,6 +33,7 @@ app.use('/api/v1/bills', authToken, bills)
 
 // api/v1/users - post // create a new user
 // api/v1/firms - post // create a new firm
+app.options('*', cors());
 
 app.get('/', (req, res) => {
     res.send('Hello World')

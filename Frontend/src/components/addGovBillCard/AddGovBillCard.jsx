@@ -36,6 +36,7 @@ export default function AddGovBillCard({
           cardData,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         onSuccess();

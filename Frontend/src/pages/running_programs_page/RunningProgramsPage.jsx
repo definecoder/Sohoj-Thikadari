@@ -33,6 +33,7 @@ export default function RunningProgramsPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -55,6 +56,7 @@ export default function RunningProgramsPage() {
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         // console.log(localStorage.getItem('token'));

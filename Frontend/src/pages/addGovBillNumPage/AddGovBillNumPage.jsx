@@ -34,6 +34,7 @@ export default function AddGovBillNumPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 

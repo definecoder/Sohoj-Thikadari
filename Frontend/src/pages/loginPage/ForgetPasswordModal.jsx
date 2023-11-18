@@ -29,6 +29,7 @@ const ForgetPasswordModal = (props) => {
         { password: values.confirm },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
+          withCredentials: true,
         }
       );
 
@@ -48,6 +49,7 @@ const ForgetPasswordModal = (props) => {
         { otp: parseInt(modalInput) },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
+          withCredentials: true,
         }
       );
       setLoading(false);
@@ -68,6 +70,7 @@ const ForgetPasswordModal = (props) => {
         "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/forgotpassword",
         {
           email: modalInput,
+          withCredentials: true,
         }
       );
       localStorage.setItem("otptoken", "Bearer " + response.data.otptoken);

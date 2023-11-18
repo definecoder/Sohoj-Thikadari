@@ -55,6 +55,7 @@ export default function AddNewFirmForm() {
           newFirmInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(response.data);

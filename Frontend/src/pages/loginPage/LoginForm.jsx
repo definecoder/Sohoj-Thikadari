@@ -34,7 +34,8 @@ const LoginForm = () => {
       try {
         const response = await axios.post(
           "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/login",
-          user
+          user,
+          { withCredentials: true }
         );
         console.log(response);
         localStorage.setItem("token", "Bearer " + response.data.token);

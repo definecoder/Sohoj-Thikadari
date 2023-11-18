@@ -80,6 +80,7 @@ export default function AddRecievingInfoForm() {
           newprogramInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(response.data);

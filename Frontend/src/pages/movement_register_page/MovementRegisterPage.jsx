@@ -32,6 +32,7 @@ export default function MovementRegisterPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -42,6 +43,7 @@ export default function MovementRegisterPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
           setInvoiceList(response2.data);

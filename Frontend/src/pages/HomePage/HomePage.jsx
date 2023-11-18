@@ -32,6 +32,7 @@ export default function HomePage() {
           "https://sohoj-thikadari-production.up.railway.app/api/v1/users/dashboard",
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(localStorage.getItem("token"));

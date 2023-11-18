@@ -59,6 +59,7 @@ export default function AddBillHeadings() {
             { firmID: firmId, ...newFirmInfo },
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
           const billID = response.data.bill.id;

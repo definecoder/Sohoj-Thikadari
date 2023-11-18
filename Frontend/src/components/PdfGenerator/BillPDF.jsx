@@ -105,6 +105,7 @@ function BillPDF(billID) {
             billID.billID,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(res);

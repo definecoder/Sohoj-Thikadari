@@ -21,6 +21,7 @@ export default function FirmProfilePage() {
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         // console.log(localStorage.getItem('token'));

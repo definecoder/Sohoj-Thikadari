@@ -31,6 +31,7 @@ export default function MyFirmsPage() {
           "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(res.data[0].Firm);

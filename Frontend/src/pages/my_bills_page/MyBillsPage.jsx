@@ -30,6 +30,7 @@ export default function MyBillsPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -40,6 +41,7 @@ export default function MyBillsPage() {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 

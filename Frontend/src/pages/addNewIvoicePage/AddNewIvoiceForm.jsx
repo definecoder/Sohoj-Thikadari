@@ -79,6 +79,7 @@ export default function AddNewInvoiceFrom() {
           newprogramInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(response.data);

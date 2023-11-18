@@ -56,6 +56,7 @@ export default function BillProgramSelectionPage() {
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         // console.log(localStorage.getItem('token'));

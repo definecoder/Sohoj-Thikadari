@@ -34,6 +34,7 @@ export default function FirmProfilePage(props) {
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 

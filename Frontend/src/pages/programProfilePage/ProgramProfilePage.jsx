@@ -34,6 +34,7 @@ export default function ProgramProfilePage() {
               invoiceData.firmID,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -56,6 +57,7 @@ export default function ProgramProfilePage() {
             invoiceNo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
 

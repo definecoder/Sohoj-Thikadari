@@ -25,6 +25,7 @@ export default function FirmsDropDown() {
           "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
 
