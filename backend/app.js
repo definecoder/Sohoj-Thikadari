@@ -12,7 +12,12 @@ const bills = require('./routes/bills')
 // middleware
 
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // enable credentials (cookies, authorization headers)
+}));
+app.options('*', cors());
 
 // routes
 app.use('/api/v1/auth', auth)
