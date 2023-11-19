@@ -25,7 +25,7 @@ const ForgetPasswordModal = (props) => {
     setLoading(true);
     try {
       await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/auth/updatepassword",
+        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/updatepassword",
         { password: values.confirm },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
@@ -45,7 +45,7 @@ const ForgetPasswordModal = (props) => {
 
     try {
       await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/auth/validateotp",
+        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/validateotp",
         { otp: parseInt(modalInput) },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
@@ -67,7 +67,7 @@ const ForgetPasswordModal = (props) => {
 
     try {
       const response = await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/auth/forgotpassword",
+        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/forgotpassword",
         {
           email: modalInput,
           withCredentials: true,

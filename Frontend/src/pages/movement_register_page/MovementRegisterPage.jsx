@@ -28,7 +28,7 @@ export default function MovementRegisterPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/firms/" +
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -39,7 +39,7 @@ export default function MovementRegisterPage() {
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/invoice/all/" +
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/all/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

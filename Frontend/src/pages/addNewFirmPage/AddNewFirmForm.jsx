@@ -51,7 +51,7 @@ export default function AddNewFirmForm() {
       //message.error(JSON.stringify(firmInfoFinal));
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/firms",
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
           newFirmInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },

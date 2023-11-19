@@ -29,7 +29,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/users/dashboard",
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/users/dashboard",
           {
             headers: { Authorization: localStorage.getItem("token") },
             withCredentials: true,

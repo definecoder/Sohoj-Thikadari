@@ -17,7 +17,7 @@ export default function FirmProfilePage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/invoice/sending/" +
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/sending/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

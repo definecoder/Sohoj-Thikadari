@@ -55,7 +55,7 @@ export default function AddBillHeadings() {
         try {
           done = true;
           const response = await axios.post(
-            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/bills",
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills",
             { firmID: firmId, ...newFirmInfo },
             {
               headers: { Authorization: localStorage.getItem("token") },

@@ -52,7 +52,7 @@ export default function BillProgramSelectionPage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/invoice/forbill/" +
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/forbill/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

@@ -29,7 +29,7 @@ export default function RunningProgramsPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/firms/" +
+            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -52,7 +52,7 @@ export default function RunningProgramsPage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/invoice/running/" +
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/running/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

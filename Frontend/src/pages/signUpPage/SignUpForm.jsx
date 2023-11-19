@@ -79,7 +79,7 @@ const signupForm = () => {
 
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/auth/register",
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/register",
           retVal,
           { withCredentials: true }
         );
