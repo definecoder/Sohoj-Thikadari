@@ -101,7 +101,7 @@ function BillPDF(billID) {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/" +
+          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/bills/" +
             billID.billID,
           {
             headers: { Authorization: localStorage.getItem("token") },

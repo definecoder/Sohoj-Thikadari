@@ -26,7 +26,7 @@ export default function MyBillsPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -37,7 +37,7 @@ export default function MyBillsPage() {
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/all/" +
+            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/bills/all/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

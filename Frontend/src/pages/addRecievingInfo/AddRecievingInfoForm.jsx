@@ -75,7 +75,7 @@ export default function AddRecievingInfoForm() {
 
       try {
         const response = await axios.put(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/receiving/" +
+          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/invoice/receiving/" +
             invoiceNo,
           newprogramInfo,
           {

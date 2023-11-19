@@ -30,7 +30,7 @@ export default function AddGovBillNumPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+            "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/bills/govtBills/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

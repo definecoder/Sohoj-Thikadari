@@ -31,7 +31,7 @@ export default function AddGovBillCard({
       try {
         onClick(true);
         const response = await axios.put(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+          "https://sohoj-thikadari-production.up.railway.app:8888/api/v1/bills/govtBills/" +
             firmId,
           cardData,
           {
