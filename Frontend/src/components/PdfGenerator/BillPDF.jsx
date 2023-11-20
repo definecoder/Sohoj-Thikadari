@@ -6,6 +6,7 @@ import BengaliFont from "./SolaimanLipi_29-05-06.ttf";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import backendURL from  "../urlProvider"
 
 Font.register({
   family: "SolaimanLipi",
@@ -101,7 +102,7 @@ function BillPDF(billID) {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/" +
+          backendURL + "api/v1/bills/" +
             billID.billID,
           {
             headers: { Authorization: localStorage.getItem("token") },

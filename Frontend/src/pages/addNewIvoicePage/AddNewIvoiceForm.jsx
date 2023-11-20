@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, DatePicker, Space, message } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
@@ -75,7 +76,7 @@ export default function AddNewInvoiceFrom() {
       console.log(newprogramInfo);
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/sending",
+          backendURL + "api/v1/invoice/sending",
           newprogramInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },

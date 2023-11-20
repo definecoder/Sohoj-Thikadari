@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, DatePicker, Space, Select } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
@@ -75,7 +76,7 @@ export default function AddRecievingInfoForm() {
 
       try {
         const response = await axios.put(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/receiving/" +
+          backendURL + "api/v1/invoice/receiving/" +
             invoiceNo,
           newprogramInfo,
           {

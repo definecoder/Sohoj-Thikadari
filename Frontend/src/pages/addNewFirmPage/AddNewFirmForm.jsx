@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, InputNumber, Space, message } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -51,7 +52,7 @@ export default function AddNewFirmForm() {
       //message.error(JSON.stringify(firmInfoFinal));
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
+          backendURL + "api/v1/firms",
           newFirmInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },

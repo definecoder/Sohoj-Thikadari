@@ -12,6 +12,7 @@ import { Dropdown, message, Space } from "antd";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import backendURL from "../urlProvider";
 
 export default function FirmsDropDown() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function FirmsDropDown() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
+          backendURL + "api/v1/firms",
           {
             headers: { Authorization: localStorage.getItem("token") },
             withCredentials: true,
