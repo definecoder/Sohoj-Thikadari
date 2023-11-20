@@ -94,16 +94,18 @@ function BillPDF(billID) {
     shortage: "ঘাটতি",
     distance: "দূরত্ব",
     pricePerTon: "টনপ্রতি দর",
-    amount:  "টাকার পরিমান",
+    amount: "টাকার পরিমান",
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8888/api/v1/bills/" + billID.billID,
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/" +
+            billID.billID,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(res);
@@ -115,9 +117,15 @@ function BillPDF(billID) {
           if (i != 0) {
             updatedJSON.push({
               programNo: tmp[i].programNo,
-              programDate: new Date(tmp[i].programDate).toLocaleDateString("bn-BD", options),
+              programDate: new Date(tmp[i].programDate).toLocaleDateString(
+                "bn-BD",
+                options
+              ),
               invoiceNo: tmp[i].invoiceNo,
-              sendingDate: new Date(tmp[i].sendingDate).toLocaleDateString("bn-BD", options),
+              sendingDate: new Date(tmp[i].sendingDate).toLocaleDateString(
+                "bn-BD",
+                options
+              ),
               sendingPoint: tmp[i].sendingPoint,
               receivingPoint: tmp[i].receivingPoint,
               commodity: tmp[i].commodity,
@@ -131,7 +139,7 @@ function BillPDF(billID) {
               amount: tmp[i].invoiceAmount,
             });
           } else updatedJSON.push(tmp[i]);
-        }        
+        }
         setValues(updatedJSON);
         console.log(updatedJSON);
         //console.log(values);
@@ -148,8 +156,6 @@ function BillPDF(billID) {
     }
     return chunks;
   }
-  
-  
 
   return (
     <Document>
@@ -192,9 +198,12 @@ function BillPDF(billID) {
               </View>
             ))}
           </View>
-          <View style={styles.headerbox}>            
+          <View style={styles.headerbox}>
             <Text>{"\n"}</Text>
-            <Text><Text style={{fontSize: "30px"}}>মোট বিল: &nbsp; ৳</Text> {data.amount}  </Text>
+            <Text>
+              <Text style={{ fontSize: "30px" }}>মোট বিল: &nbsp; ৳</Text>{" "}
+              {data.amount}{" "}
+            </Text>
           </View>
         </View>
       </Page>

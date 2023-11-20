@@ -79,8 +79,9 @@ const signupForm = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/auth/register",
-          retVal
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/register",
+          retVal,
+          { withCredentials: true }
         );
         setModalText(
           `Congratulations ${retVal.username}! Your registration is successful`

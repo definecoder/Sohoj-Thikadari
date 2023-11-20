@@ -75,10 +75,12 @@ export default function AddRecievingInfoForm() {
 
       try {
         const response = await axios.put(
-          "http://localhost:8888/api/v1/invoice/receiving/" + invoiceNo,
+          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/receiving/" +
+            invoiceNo,
           newprogramInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         //console.log(response.data);

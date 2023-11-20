@@ -5,13 +5,13 @@
 
 */
 -- DropForeignKey
-ALTER TABLE `invoice` DROP FOREIGN KEY `Invoice_billID_fkey`;
+ALTER TABLE `Invoice` DROP FOREIGN KEY `Invoice_billID_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `invoice` DROP FOREIGN KEY `Invoice_firmID_fkey`;
+ALTER TABLE `Invoice` DROP FOREIGN KEY `Invoice_firmID_fkey`;
 
 -- DropTable
-DROP TABLE `invoice`;
+DROP TABLE `Invoice`;
 
 -- CreateTable
 CREATE TABLE `Invoice` (
