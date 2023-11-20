@@ -13,12 +13,13 @@ const LoginForm = () => {
   const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
-    if (
-      e.target.name === "phone" &&
-      !(
+    if(e.target.name === "phone" && e.target.value === '+') {}
+    else if (
+      e.target.name === "phone" && !(
         typeof Number(e.target.value) === "number" &&
         !Number.isNaN(Number(e.target.value))
-      )
+      ) 
+      
     )
       return;
     setUser({ ...user, [e.target.name]: e.target.value });
