@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, Space, message } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +35,7 @@ const LoginForm = () => {
       //alert(JSON.stringify(user));
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/login",
+          backendURL + "api/v1/auth/login",
           user,
           { withCredentials: true }
         );

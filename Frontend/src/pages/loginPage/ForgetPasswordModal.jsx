@@ -3,6 +3,7 @@ import axios from "axios";
 import Countdown from "react-countdown";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import backendURL from "../../components/urlProvider";
 
 const ForgetPasswordModal = (props) => {
   const { isModalOpen, setIsModalOpen } = props;
@@ -25,7 +26,7 @@ const ForgetPasswordModal = (props) => {
     setLoading(true);
     try {
       await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/updatepassword",
+        backendURL + "api/v1/auth/updatepassword",
         { password: values.confirm },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
@@ -45,7 +46,7 @@ const ForgetPasswordModal = (props) => {
 
     try {
       await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/validateotp",
+        backendURL + "api/v1/auth/validateotp",
         { otp: parseInt(modalInput) },
         {
           headers: { Authorization: localStorage.getItem("otptoken") },
@@ -67,7 +68,7 @@ const ForgetPasswordModal = (props) => {
 
     try {
       const response = await axios.post(
-        "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/forgotpassword",
+        backendURL + "api/v1/auth/forgotpassword",
         {
           email: modalInput,
           withCredentials: true,

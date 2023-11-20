@@ -2,6 +2,7 @@ import NavBar from "../../components/navBar/NavBar";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import LightIconButton from "../../components/light_button/LightIconButton";
 import LightIconButtonStyled from "../../components/light_button/LightIconButtonStyled";
+import backendURL from "../../components/urlProvider";
 import { useParams } from "react-router-dom";
 import { message } from "antd";
 import {
@@ -30,7 +31,7 @@ export default function FirmProfilePage(props) {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            backendURL + "api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

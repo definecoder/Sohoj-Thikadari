@@ -4,6 +4,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import "./MovementRegisterPage.css";
 
 import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
+import backendURL from "../../components/urlProvider";
 // import DarkButton from "../../components/darkButton/DarkButton";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
@@ -28,7 +29,7 @@ export default function MovementRegisterPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            backendURL + "api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -39,7 +40,7 @@ export default function MovementRegisterPage() {
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/all/" +
+            backendURL + "api/v1/invoice/all/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

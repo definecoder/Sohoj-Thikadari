@@ -9,6 +9,7 @@ import axios from "axios";
 import "./AddBillHeadings.css";
 import NavBar from "../../components/navBar/NavBar";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 
 export default function AddBillHeadings() {
   var done = false;
@@ -56,7 +57,7 @@ export default function AddBillHeadings() {
         try {
           done = true;
           const response = await axios.post(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills",
+            backendURL + "api/v1/bills",
             { firmID: firmId, ...newFirmInfo },
             {
               headers: { Authorization: localStorage.getItem("token") },

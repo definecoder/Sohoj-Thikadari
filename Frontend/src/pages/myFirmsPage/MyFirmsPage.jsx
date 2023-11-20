@@ -5,6 +5,7 @@ import "./MyFirmsPage.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 
 export default function MyFirmsPage() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function MyFirmsPage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/firms",
+          backendURL + "api/v1/firms",
           {
             headers: { Authorization: localStorage.getItem("token") },
             withCredentials: true,

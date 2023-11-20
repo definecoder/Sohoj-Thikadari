@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 import { message } from "antd";
 
 export default function RunningProgramsPage() {
@@ -29,7 +30,7 @@ export default function RunningProgramsPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            backendURL + "api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -52,7 +53,7 @@ export default function RunningProgramsPage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/running/" +
+          backendURL + "api/v1/invoice/running/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

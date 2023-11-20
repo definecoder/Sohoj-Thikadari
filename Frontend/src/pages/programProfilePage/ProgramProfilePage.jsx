@@ -5,6 +5,7 @@ import "./ProgramProfilePage.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 import { message } from "antd";
 
 function convertDate(date) {
@@ -30,7 +31,7 @@ export default function ProgramProfilePage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            backendURL + "api/v1/firms/" +
               invoiceData.firmID,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -53,7 +54,7 @@ export default function ProgramProfilePage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/" +
+          backendURL + "api/v1/invoice/" +
             invoiceNo,
           {
             headers: { Authorization: localStorage.getItem("token") },

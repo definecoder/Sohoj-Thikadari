@@ -4,6 +4,7 @@ import "./AddGovBillCard.css";
 import { Button, Input, DatePicker, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import backendURL from "../urlProvider";
 
 export default function AddGovBillCard({
   billNo,
@@ -31,7 +32,7 @@ export default function AddGovBillCard({
       try {
         onClick(true);
         const response = await axios.put(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+          backendURL + "api/v1/bills/govtBills/" +
             firmId,
           cardData,
           {

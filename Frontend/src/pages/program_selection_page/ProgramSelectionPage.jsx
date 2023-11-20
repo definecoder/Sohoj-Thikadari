@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 
 export default function FirmProfilePage() {
   let { firmId } = useParams();
@@ -17,7 +18,7 @@ export default function FirmProfilePage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/sending/" +
+          backendURL + "api/v1/invoice/sending/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

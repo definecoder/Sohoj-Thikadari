@@ -1,5 +1,6 @@
 import "./BillProgramSelectionPage.css";
 import NavBar from "../../components/navBar/NavBar";
+import backendURL from "../../components/urlProvider";
 import ProgramSelectionCard from "../../components/ProgramSelectionCard/ProgramSelectionCard";
 import DarkButton from "../../components/darkButton/DarkButton";
 import { Row, Col, message } from "antd";
@@ -52,7 +53,7 @@ export default function BillProgramSelectionPage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/invoice/forbill/" +
+          backendURL + "api/v1/invoice/forbill/" +
             firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },

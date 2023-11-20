@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/navBar/NavBar";
+import backendURL from "../../components/urlProvider";
 import recentProgramList from "./recentProgramList";
 
 import "./HomePage.css";
@@ -29,7 +30,7 @@ export default function HomePage() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/users/dashboard",
+          backendURL + "api/v1/users/dashboard",
           {
             headers: { Authorization: localStorage.getItem("token") },
             withCredentials: true,

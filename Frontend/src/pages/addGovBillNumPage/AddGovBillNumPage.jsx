@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { Spin, message } from "antd";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 
 export default function AddGovBillNumPage() {
   var done = false;
@@ -30,7 +31,7 @@ export default function AddGovBillNumPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/govtBills/" +
+            backendURL + "api/v1/bills/govtBills/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },

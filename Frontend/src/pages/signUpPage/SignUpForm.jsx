@@ -5,6 +5,7 @@ import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
+import backendURL from "../../components/urlProvider";
 
 const signupForm = () => {
   /// fOR MODAL
@@ -79,7 +80,7 @@ const signupForm = () => {
 
       try {
         const response = await axios.post(
-          "https://sohoj-thikadari-production.up.railway.app/api/v1/auth/register",
+          backendURL + "api/v1/auth/register",
           retVal,
           { withCredentials: true }
         );

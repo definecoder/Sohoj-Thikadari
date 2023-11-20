@@ -3,6 +3,7 @@ import NavBar from "../../components/navBar/NavBar";
 import "./MyBillsPage.css";
 
 import FirmInfo from "../../components/firm_info/FirmInfo";
+import backendURL from "../../components/urlProvider";
 import { Row, Col } from "antd";
 
 import BillCard from "../../components/bill_card/BillCard";
@@ -26,7 +27,7 @@ export default function MyBillsPage() {
         try {
           done = true;
           const response = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/firms/" +
+            backendURL + "api/v1/firms/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
@@ -37,7 +38,7 @@ export default function MyBillsPage() {
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "https://sohoj-thikadari-production.up.railway.app/api/v1/bills/all/" +
+            backendURL + "api/v1/bills/all/" +
               firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
