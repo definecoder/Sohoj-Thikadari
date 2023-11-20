@@ -13,12 +13,13 @@ const LoginForm = () => {
   const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
-    if (
-      e.target.name === "phone" &&
-      !(
+    if(e.target.name === "phone" && e.target.value === '+') {}
+    else if (
+      e.target.name === "phone" && !(
         typeof Number(e.target.value) === "number" &&
         !Number.isNaN(Number(e.target.value))
-      )
+      ) 
+      
     )
       return;
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -26,8 +27,8 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.phone) message.success("ফোন নম্বর দিন");
-    else if (!user.password) message.success("পাসওয়ার্ড দিন");
+    if (!user.phone) message.info("ফোন নম্বর দিন");
+    else if (!user.password) message.info("পাসওয়ার্ড দিন");
     else {
       //console.log("hello");
       //alert(JSON.stringify(user));

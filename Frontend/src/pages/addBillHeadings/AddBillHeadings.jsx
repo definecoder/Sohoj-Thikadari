@@ -51,6 +51,7 @@ export default function AddBillHeadings() {
       //console.log(newFirmInfo);
       //alert(JSON.stringify(newFirmInfo));
 
+
       if (!done)
         try {
           done = true;
@@ -71,6 +72,7 @@ export default function AddBillHeadings() {
           message.error(error);
           done = false;
         }
+
     }
   };
 

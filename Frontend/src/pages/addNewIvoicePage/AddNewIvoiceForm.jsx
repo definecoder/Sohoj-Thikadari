@@ -82,7 +82,8 @@ export default function AddNewInvoiceFrom() {
             withCredentials: true,
           }
         );
-        console.log(response.data);
+        //console.log(response.data);
+        message.success("আপনার ইনভয়েস যুক্ত হয়েছে")
         navigate("/firm/" + firmId, {
           state: {},
         });

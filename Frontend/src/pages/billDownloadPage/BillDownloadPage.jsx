@@ -34,7 +34,7 @@ export default function BillDownloadPage() {
 
           <PDFDownloadLink
             document={<BillPDF billID={billID} />}
-            fileName="মুভমেন্ট রেজিস্টার.pdf"
+            fileName="বিল.pdf"
           >
             {({ loading }) =>
               loading ? (

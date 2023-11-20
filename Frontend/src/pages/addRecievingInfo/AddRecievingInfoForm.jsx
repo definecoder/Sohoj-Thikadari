@@ -70,7 +70,7 @@ export default function AddRecievingInfoForm() {
         newprogramInfo.receivingGrossQuantity
       );
       newprogramInfo.shortage = parseFloat(
-        newprogramInfo.receivingGrossQuantity
+        newprogramInfo.shortage
       );
 
       try {
@@ -83,7 +83,8 @@ export default function AddRecievingInfoForm() {
             withCredentials: true,
           }
         );
-        console.log(response.data);
+        //console.log(response.data);
+        message.success("প্রাপ্তির তথ্য যুক্ত হয়েছে")
         navigate("/firm/" + firmId, {
           state: {},
         });

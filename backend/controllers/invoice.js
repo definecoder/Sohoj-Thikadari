@@ -9,7 +9,7 @@ const addSendingInfo = asyncWrapper(async (req, res) => {
     })
     res.status(StatusCodes.OK).json(newInvoice)
 
-}, { msg: 'Couldn\'t add Sending Info' })
+}, { msg: 'ইনভয়েস নাম্বারটি আগেই ব্যবহৃত হয়েছে' })
 
 const updateReceivingInfo = asyncWrapper(async (req, res) => {
 
