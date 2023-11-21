@@ -73,7 +73,7 @@ const signupForm = () => {
     else {
       const retVal = {
         username: user.username,
-        phone: "+880" + user.phone,
+        phone: "+88" + user.phone,
         email: user.email,
         password: user.password,
       };
@@ -156,7 +156,7 @@ const signupForm = () => {
               name="phone"
               value={user.phone}
               onChange={handleChange}
-              addonBefore="+880"
+              addonBefore="+88"
             />
             {/* <Input
               size="large"

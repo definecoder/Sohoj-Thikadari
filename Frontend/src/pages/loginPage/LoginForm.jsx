@@ -14,13 +14,13 @@ const LoginForm = () => {
   const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
-    if(e.target.name === "phone" && e.target.value === '+') {}
-    else if (
-      e.target.name === "phone" && !(
+    if (e.target.name === "phone" && e.target.value === "+") {
+    } else if (
+      e.target.name === "phone" &&
+      !(
         typeof Number(e.target.value) === "number" &&
         !Number.isNaN(Number(e.target.value))
-      ) 
-      
+      )
     )
       return;
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -33,13 +33,14 @@ const LoginForm = () => {
     else {
       //console.log("hello");
       //alert(JSON.stringify(user));
+      const filter = { password: user.password, phone: "+88" + user.phone };
       try {
         const response = await axios.post(
           backendURL + "api/v1/auth/login",
-          user,
+          filter,
           { withCredentials: true }
         );
-        console.log(response);
+        //console.log(response);
         localStorage.setItem("token", "Bearer " + response.data.token);
 
         message.success("Congratulations! Login Successful");
@@ -83,6 +84,7 @@ const LoginForm = () => {
               name="phone"
               value={user.phone}
               onChange={handleChange}
+              addonBefore="+88"
             />
           </Space>
         </div>

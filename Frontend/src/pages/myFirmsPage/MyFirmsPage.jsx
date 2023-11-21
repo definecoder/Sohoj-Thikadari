@@ -56,7 +56,8 @@ export default function MyFirmsPage() {
                 indicator={
                   <LoadingOutlined
                     style={{
-                      fontSize: 24,
+                      fontSize: 150,
+                      color: "black",
                     }}
                     spin
                   />
