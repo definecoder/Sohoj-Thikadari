@@ -1,8 +1,8 @@
 import LandingPage from "../pages/landingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "../pages/loginPage/loginPage";
+import LoginPage from "../pages/loginPage/LoginPage";
 import SignUpPage from "../pages/signUpPage/SignUpPage";
-import HomePage from "../pages/homePage/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import FirmProfilePage from "../pages/FirmProfilePage/FirmProfilePage";
 import MyFirmsPage from "../pages/myFirmsPage/MyFirmsPage";
 import AddNewFirmPage from "../pages/addNewFirmPage/AddNewFirmPage";
