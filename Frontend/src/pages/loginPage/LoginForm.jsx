@@ -14,8 +14,9 @@ const LoginForm = () => {
   const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
-    if (e.target.name === "phone" && e.target.value === "+") {
-    } else if (
+    // if (e.target.name === "phone" && e.target.value === "+") {
+    // } else 
+    if (
       e.target.name === "phone" &&
       !(
         typeof Number(e.target.value) === "number" &&
