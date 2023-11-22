@@ -11,12 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 
 export default function BillProgramSelectionPage() {
   let { firmId } = useParams();
   const navigate = useNavigate();
   const [selectList, setSelectList] = useState(Array(0).fill(false));
   const [billProgramList, setBillProgramList] = useState([]);
+  const [spinning, setSpinning] = useState(true);
 
   function handleClick(index) {
     const changedSelectList = selectList.slice();
@@ -64,6 +68,7 @@ export default function BillProgramSelectionPage() {
         //console.log(res.data.Invoice);
         setBillProgramList(res.data.Invoice);
         setSelectList(Array(billProgramList.length).fill(false));
+        setSpinning(false);
         //console.log(selectList);
       } catch (error) {
         console.log(error);
@@ -86,7 +91,19 @@ export default function BillProgramSelectionPage() {
     <>
       <NavBar />
 
-      {billProgramList.length == 0 ? (
+      {spinning === true ? (
+              <Spin style={{width: "100%", height: "70vh", display: "flex", justifyContent:"center", alignItems:"center"}}
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 150,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : billProgramList.length == 0 ? (
         renderEmptyBill()
       ) : (
         <div className="bps-main-wrapper">

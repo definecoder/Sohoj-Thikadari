@@ -4,8 +4,25 @@ import "./LandingPage.css";
 import DarkButton from "../../components/darkButton/DarkButton";
 import landingLogo from "../../assets/appLogo.png";
 import landingAiLogo from "../../assets/landingAiLogo.jpeg";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      console.log("Window width changed:", window.innerWidth);      
+      if(window.innerWidth < 1020) {
+        navigate("/mobile");
+      }
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <>
     <div className="landingPageCanvas">

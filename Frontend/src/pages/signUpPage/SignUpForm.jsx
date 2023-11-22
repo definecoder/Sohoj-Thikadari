@@ -62,7 +62,7 @@ const signupForm = () => {
     else if (user.username.length < 4)
       message.error("ইউজারনেম নুন্যতম ৪ অক্ষরের হতে হবে");
     else if (!user.phone) message.error("ফোন নম্বর দিন");
-    else if (user.phone.length !== 10) message.error("ফোন নম্বর সঠিক নয়");
+    else if (user.phone.length !== 11) message.error("ফোন নম্বর সঠিক নয়");
     else if (!user.email) message.error("ইমেইল দিন");
     else if (!emailRegex.test(user.email)) message.error("ইমেইল সঠিক নয়");
     else if (!user.password) message.error("পাসওয়ার্ড দিন");
@@ -73,7 +73,7 @@ const signupForm = () => {
     else {
       const retVal = {
         username: user.username,
-        phone: "+880" + user.phone,
+        phone: "+88" + user.phone,
         email: user.email,
         password: user.password,
       };
@@ -156,7 +156,7 @@ const signupForm = () => {
               name="phone"
               value={user.phone}
               onChange={handleChange}
-              addonBefore="+880"
+              addonBefore="+88"
             />
             {/* <Input
               size="large"

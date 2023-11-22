@@ -12,6 +12,8 @@ import UserStatusCard from "./UserStatusCard";
 import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function HomePage() {
   // getting uid from login or signup :v
@@ -25,17 +27,16 @@ export default function HomePage() {
   const [firmCount, setFirmCount] = useState(0);
   const [username, setUsername] = useState(null);
   const [newsData, setNewsData] = useState(null);
+  const [spinning, setSpinning] = useState(true);
 
   useEffect(() => {
+    setSpinning(true);
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          backendURL + "api/v1/users/dashboard",
-          {
-            headers: { Authorization: localStorage.getItem("token") },
-            withCredentials: true,
-          }
-        );
+        const res = await axios.get(backendURL + "api/v1/users/dashboard", {
+          headers: { Authorization: localStorage.getItem("token") },
+          withCredentials: true,
+        });
         console.log(localStorage.getItem("token"));
         console.log(res);
         setHomepageProgramList(res.data.Invoice);
@@ -44,6 +45,7 @@ export default function HomePage() {
         setFirmCount(res.data.firmCount);
         setUsername(res.data.username);
         setNewsData(res.data.newsData);
+        setSpinning(false);
         // setInvoiceCount(res.data.)
       } catch (error) {
         alert(error.response.data.msg);
@@ -59,7 +61,19 @@ export default function HomePage() {
         <div className="home-news-canvas">
           <div className="home-news-title">সাম্প্রতিক সংবাদসমুহ</div>
           <div className="news-card-container">
-            {newsData ? (
+            {spinning === true ? (
+              <Spin
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 70,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : newsData ? (
               newsData.map((singleNews) => {
                 return (
                   <NewsCard
@@ -79,7 +93,23 @@ export default function HomePage() {
             <div className="home-welcome-section">
               <marquee behavior="alternate" direction="left">
                 সহজ ঠিকাদারিতে স্বাগতম{" "}
-                <span className="home-username">{username}</span>
+                <span className="home-username">
+                  {spinning === true ? (
+                    <Spin
+                      indicator={
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 30,
+                            color: "black",
+                          }}
+                          spin
+                        />
+                      }
+                    />
+                  ) : (
+                    username
+                  )}
+                </span>
               </marquee>
             </div>
             {/* <div className="home-profile-info-section">
@@ -108,7 +138,19 @@ export default function HomePage() {
                 সাম্প্রতিক প্রোগ্রাম সমুহ
               </div>
               <div className="home-recent-program-cards-container">
-                {homepageProgramList.length != 0 ? (
+                {spinning === true ? (
+                  <Spin
+                    indicator={
+                      <LoadingOutlined
+                        style={{
+                          fontSize: 150,
+                          color: "black",
+                        }}
+                        spin
+                      />
+                    }
+                  />
+                ) : homepageProgramList.length != 0 ? (
                   homepageProgramList.map((program) => {
                     return (
                       <RecentProgramInfoCard
@@ -125,9 +167,66 @@ export default function HomePage() {
               </div>
             </div>
             <div className="home-user-status-canvas">
-              <UserStatusCard title={"মোট প্রোগ্রাম"} number={invoiceCount} />
-              <UserStatusCard title={"মোট বিল"} number={billCount} />
-              <UserStatusCard title={"মোট ফার্ম"} number={firmCount} />
+              <UserStatusCard
+                title={"মোট প্রোগ্রাম"}
+                number={
+                  spinning === true ? (
+                    <Spin
+                      indicator={
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 30,
+                            color: "black",
+                          }}
+                          spin
+                        />
+                      }
+                    />
+                  ) : (
+                    invoiceCount
+                  )
+                }
+              />
+              <UserStatusCard
+                title={"মোট বিল"}
+                number={
+                  spinning === true ? (
+                    <Spin
+                      indicator={
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 30,
+                            color: "black",
+                          }}
+                          spin
+                        />
+                      }
+                    />
+                  ) : (
+                    billCount
+                  )
+                }
+              />
+              <UserStatusCard
+                title={"মোট ফার্ম"}
+                number={
+                  spinning === true ? (
+                    <Spin
+                      indicator={
+                        <LoadingOutlined
+                          style={{
+                            fontSize: 30,
+                            color: "black",
+                          }}
+                          spin
+                        />
+                      }
+                    />
+                  ) : (
+                    firmCount
+                  )
+                }
+              />
             </div>
           </div>
         </div>

@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
 import backendURL from "../../components/urlProvider";
 import { message } from "antd";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 
 function convertDate(date) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -177,7 +180,18 @@ export default function ProgramProfilePage() {
           </div>
         </div>
       ) : (
-        <h1> LOADING</h1>
+        <Spin style={{width: "100%", height:"70vh", display: "flex", justifyContent:"center", alignItems:"center"}}
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 150,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+
       )}
     </>
   );
