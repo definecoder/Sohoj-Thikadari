@@ -79,19 +79,19 @@ function PdfFile({ list, firmInfo }) {
     programDate: "সূচি তারিখ", //
     programQuantity: "পরিমাণ", //
     invoiceNo: "ইনভয়েস নং", //
-    sendingDate: "প্রেরণের তাং", //
+    sendingDate: "প্রেরণের তারিখ", //
     sendingPoint: "প্রেরক কেন্দ্র", //
     receivingPoint: "প্রাপক কেন্দ্র", //
-    receivingDate: "প্রাপ্তির তাং", //
+    receivingDate: "প্রাপ্তির তারিখ", //
     commodity: "পণ্য", //
     sendingGrossQuantity: "মোট প্রেরণ ", //
     receivingGrossQuantity: "মোট প্রাপ্ত ", //
     shortage: "ঘাটতি", //
     truckNo: "ট্রাক নং", //
     billNo: "বিল নং", //
-    billDate: "বিল তাং", //
+    billDate: "বিল তারিখ", //
     govtBillNo: "সরকারি বিল নং", //
-    govtBillDate: "সরকারি বিল তাং", //
+    govtBillDate: "সরকারি বিল তারিখ", //
   };
 
   const tmp = [heading, ...list];
@@ -140,7 +140,7 @@ function PdfFile({ list, firmInfo }) {
   const values = updatedJSON;
 
   function splitTextIntoChunks(text) {
-    const maxChunkLength = 10; // Adjust this value based on your needs
+    const maxChunkLength = 16; // Adjust this value based on your needs
     const chunks = [];
     for (let i = 0; i < text?.toString().length; i += maxChunkLength) {
       chunks.push(text?.toString().substr(i, maxChunkLength));

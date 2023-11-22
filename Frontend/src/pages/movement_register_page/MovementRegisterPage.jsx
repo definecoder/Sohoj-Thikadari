@@ -4,6 +4,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import "./MovementRegisterPage.css";
 
 import RecentProgramInfoCard from "../../components/RecentProgramInfoCard/RecentProgramInfoCard";
+import backendURL from "../../components/urlProvider";
 // import DarkButton from "../../components/darkButton/DarkButton";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import { Row, Col } from "antd";
@@ -13,6 +14,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function MovementRegisterPage() {
   // getting uid from login or signup :v
@@ -22,27 +25,32 @@ export default function MovementRegisterPage() {
 
   const [firmInfo, setFirmInfo] = useState(null);
   const [invoiceList, setInvoiceList] = useState([]);
+  const [spinning, setSpinning] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!done)
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/firms/" + firmId,
+            backendURL + "api/v1/firms/" + firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
           setFirmInfo(response.data);
 
           const response2 = await axios.get(
-            "http://localhost:8888/api/v1/invoice/all/" + firmId,
+            backendURL + "api/v1/invoice/all/" + firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
           setInvoiceList(response2.data);
+          setSpinning(false);
         } catch (error) {
           message.error(error.response.data.msg);
           done = false;
@@ -89,27 +97,65 @@ export default function MovementRegisterPage() {
             </div>
           </div>
           <div className="mr-header-right">
-            <FirmInfo
-              firmName={firmInfo?.name}
-              firmAddress={firmInfo?.address}
-              ProprietorName={firmInfo?.proprietor}
-            />
+            {spinning === true ? (
+              <Spin
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 150,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : (
+              <FirmInfo
+                firmName={firmInfo?.name}
+                firmAddress={firmInfo?.address}
+                ProprietorName={firmInfo?.proprietor}
+              />
+            )}
           </div>
         </div>
         <div className="mr-body">
           <Row>
-            {invoiceList.length == 0
-              ? emptyMovementReg()
-              : invoiceList.map((program, index) => {
-                  return (
-                    <Col className="mr-col" span={12} key={index}>
-                      <RecentProgramInfoCard
-                        {...program}
-                        key={program.programId}
-                      />
-                    </Col>
-                  );
-                })}
+            {spinning === true ? (
+              <Spin
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 150,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : invoiceList.length == 0 ? (
+              emptyMovementReg()
+            ) : (
+              invoiceList.map((program, index) => {
+                return (
+                  <Col className="mr-col" span={12} key={index}>
+                    <RecentProgramInfoCard
+                      {...program}
+                      key={program.programId}
+                    />
+                  </Col>
+                );
+              })
+            )}
           </Row>
         </div>
       </div>

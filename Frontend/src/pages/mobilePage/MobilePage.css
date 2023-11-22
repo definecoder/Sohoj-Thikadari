@@ -1,0 +1,34 @@
+.mobile-page-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+}
+
+.LandingLogoMobile {
+    width: 50%;
+}
+
+.mobile-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5vh;
+}
+
+.mobile-sorry-text {    
+    font-size: 16px;
+    font-style: italic;
+    padding: 5vw;
+    word-spacing: 1px;
+    line-height: 25px;
+}
+
+.mobile-footer {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5vh;
+}

@@ -1,8 +1,8 @@
 import LandingPage from "../pages/landingPage/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "../pages/loginPage/loginPage";
+import LoginPage from "../pages/loginPage/LoginPage";
 import SignUpPage from "../pages/signUpPage/SignUpPage";
-import HomePage from "../pages/homePage/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import FirmProfilePage from "../pages/FirmProfilePage/FirmProfilePage";
 import MyFirmsPage from "../pages/myFirmsPage/MyFirmsPage";
 import AddNewFirmPage from "../pages/addNewFirmPage/AddNewFirmPage";
@@ -19,8 +19,10 @@ import ProgramProfilePage from "../pages/programProfilePage/ProgramProfilePage";
 import RunningProgramsPage from "../pages/running_programs_page/RunningProgramsPage";
 import MyBillsPage from "../pages/my_bills_page/MyBillsPage";
 import MovementRegisterPage from "../pages/movement_register_page/MovementRegisterPage";
+import MobilePage from "../pages/mobilePage/MobilePage";
 
-function RoutesLib() {
+function RoutesLib() {     
+                 
   return (
     <>
     <div className="wrapper">
@@ -40,6 +42,7 @@ function RoutesLib() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/mobile" element={<MobilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />

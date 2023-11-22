@@ -2,8 +2,11 @@ import NavBar from "../../components/navBar/NavBar";
 import FirmInfo from "../../components/firm_info/FirmInfo";
 import LightIconButton from "../../components/light_button/LightIconButton";
 import LightIconButtonStyled from "../../components/light_button/LightIconButtonStyled";
+import backendURL from "../../components/urlProvider";
 import { useParams } from "react-router-dom";
-import {message} from 'antd';
+import { message } from "antd";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import {
   PlusSquareOutlined,
   FileDoneOutlined,
@@ -20,6 +23,7 @@ import axios from "axios";
 
 export default function FirmProfilePage(props) {
   let { firmId } = useParams();
+  const [spinning, setSpinning] = useState(true);
 
   let done = false;
   const [firmInfo, setFirmInfo] = useState(null);
@@ -30,13 +34,15 @@ export default function FirmProfilePage(props) {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/firms/" + firmId,
+            backendURL + "api/v1/firms/" + firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
           setFirmInfo(response.data);
+          setSpinning(false);
 
           // setInvoiceCount(res.data.)
         } catch (error) {
@@ -53,11 +59,25 @@ export default function FirmProfilePage(props) {
       <div className="fp-main-wrapper">
         <div className="fp-left-section-wrapper">
           <div className="fp-firm-info-wrapper">
-            <FirmInfo
-              firmName={firmInfo?.name}
-              firmAddress={firmInfo?.address}
-              ProprietorName={firmInfo?.proprietor}
-            />
+            {spinning === true ? (
+              <Spin
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 120,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : (
+              <FirmInfo
+                firmName={firmInfo?.name}
+                firmAddress={firmInfo?.address}
+                ProprietorName={firmInfo?.proprietor}
+              />
+            )}
           </div>
           <div className="fp-left-btn-wrapper">
             <LightIconButtonStyled

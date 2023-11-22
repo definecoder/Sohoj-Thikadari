@@ -1,7 +1,7 @@
 import BackButton from "../../components/back_button/BackButton";
 import NavBar from "../../components/navBar/NavBar";
 import AddNewInvoiceFrom from "./AddNewIvoiceForm";
-import "./addNewIvoicePage.css";
+import "./AddNewIvoicePage.css";
 import { useLocation } from "react-router-dom";
 
 export default function AddNewIvoicePage() {    

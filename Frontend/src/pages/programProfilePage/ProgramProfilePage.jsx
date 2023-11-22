@@ -5,7 +5,11 @@ import "./ProgramProfilePage.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 import { message } from "antd";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 
 function convertDate(date) {
   const options = { year: "numeric", month: "numeric", day: "numeric" };
@@ -30,9 +34,11 @@ export default function ProgramProfilePage() {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/firms/" + invoiceData.firmID,
+            backendURL + "api/v1/firms/" +
+              invoiceData.firmID,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -51,9 +57,11 @@ export default function ProgramProfilePage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8888/api/v1/invoice/" + invoiceNo,
+          backendURL + "api/v1/invoice/" +
+            invoiceNo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
 
@@ -131,7 +139,7 @@ export default function ProgramProfilePage() {
             </div>
           </div>
           <div className="program-profile-right-section">
-            <div className="program-profile-right-section-1">              
+            <div className="program-profile-right-section-1">
               <BackButton />
               <FirmInfo
                 firmName={firmInfo?.name}
@@ -149,7 +157,7 @@ export default function ProgramProfilePage() {
                 </span>
                 <span className="pp-invoice-card-3">
                   প্রোগ্রাম নং : <b>{invoiceData.programNo}</b>
-                </span>                
+                </span>
                 <span className="pp-invoice-card-4">
                   প্রোগ্রামের তারিখঃ{" "}
                   <b>{convertDate(invoiceData.programDate)}</b>
@@ -172,7 +180,18 @@ export default function ProgramProfilePage() {
           </div>
         </div>
       ) : (
-        <h1> LOADING</h1>
+        <Spin style={{width: "100%", height:"70vh", display: "flex", justifyContent:"center", alignItems:"center"}}
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 150,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+
       )}
     </>
   );

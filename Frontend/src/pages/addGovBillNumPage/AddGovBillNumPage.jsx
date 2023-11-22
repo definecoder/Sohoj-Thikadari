@@ -7,7 +7,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Spin, message } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
 
 export default function AddGovBillNumPage() {
   var done = false;
@@ -30,9 +32,10 @@ export default function AddGovBillNumPage() {
         try {
           done = true;
           const response = await axios.get(
-            "http://localhost:8888/api/v1/bills/govtBills/" + firmId,
+            backendURL + "api/v1/bills/govtBills/" + firmId,
             {
               headers: { Authorization: localStorage.getItem("token") },
+              withCredentials: true,
             }
           );
 
@@ -57,10 +60,28 @@ export default function AddGovBillNumPage() {
       <NavBar />
       <div className="gov-bill-num-add-page-canvas">
         <div className="add-gov-bill-num-page-title">
-          <BackButton /> সরকারি বিল নম্বর দিন</div>
+          <BackButton /> সরকারি বিল নম্বর দিন
+        </div>
         <div className="main-content-gov-bill-add">
           {isLoading ? (
-            <Spin />
+            <Spin
+              style={{
+                width: "100%",
+                height: "70vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              indicator={
+                <LoadingOutlined
+                  style={{
+                    fontSize: 150,
+                    color: "black",
+                  }}
+                  spin
+                />
+              }
+            />
           ) : pendingGovBills.length !== 0 ? (
             pendingGovBills.map((bill, indx) => {
               return (
@@ -76,8 +97,16 @@ export default function AddGovBillNumPage() {
               );
             })
           ) : (
-            <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100vw", paddingTop:"100px"}}>
-            <br /> <br />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100vw",
+                paddingTop: "100px",
+              }}
+            >
+              <br /> <br />
               <h1>
                 <i>সরকারি নাম্বার দেওয়ার মত বিল নেই</i>
               </h1>

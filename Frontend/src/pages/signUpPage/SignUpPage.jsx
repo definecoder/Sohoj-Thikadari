@@ -4,9 +4,22 @@ import SignUpForm from "./SignUpForm";
 
 import "./SignUpPage.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function SignUpPage() {        
   const navigate = useNavigate();
+  useEffect(() => {
+    const handleWindowResize = () => {
+      console.log("Window width changed:", window.innerWidth);      
+      if(window.innerWidth < 1020) {
+        navigate("/mobile");
+      }
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
     return (
       <>
         <div className="signupCanvas">

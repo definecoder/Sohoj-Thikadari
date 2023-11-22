@@ -12,6 +12,7 @@ import { Dropdown, message, Space } from "antd";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import backendURL from "../urlProvider";
 
 export default function FirmsDropDown() {
   const navigate = useNavigate();
@@ -21,9 +22,13 @@ export default function FirmsDropDown() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8888/api/v1/firms", {
-          headers: { Authorization: localStorage.getItem("token") },
-        });
+        const res = await axios.get(
+          backendURL + "api/v1/firms",
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
+          }
+        );
 
         const tmp = res.data[0].Firm.map((item) => ({
           key: item.id,
@@ -51,7 +56,12 @@ export default function FirmsDropDown() {
           onClick,
         }}
       >
-        <a onClick={(e) => {e.preventDefault(); navigate("/firms");}}>
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/firms");
+          }}
+        >
           <Space>
             <div style={{ fontSize: "1.6rem" }}>ফার্মসমূহ</div>
             <DownCircleOutlined style={{ fontSize: "1.9rem" }} />

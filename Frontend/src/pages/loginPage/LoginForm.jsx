@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, Space, message } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,8 @@ const LoginForm = () => {
   const [setPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
+    // if (e.target.name === "phone" && e.target.value === "+") {
+    // } else 
     if (
       e.target.name === "phone" &&
       !(
@@ -26,17 +29,19 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.phone) message.success("ফোন নম্বর দিন");
-    else if (!user.password) message.success("পাসওয়ার্ড দিন");
+    if (!user.phone) message.info("ফোন নম্বর দিন");
+    else if (!user.password) message.info("পাসওয়ার্ড দিন");
     else {
       //console.log("hello");
       //alert(JSON.stringify(user));
+      const filter = { password: user.password, phone: "+88" + user.phone };
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/auth/login",
-          user
+          backendURL + "api/v1/auth/login",
+          filter,
+          { withCredentials: true }
         );
-        console.log(response);
+        //console.log(response);
         localStorage.setItem("token", "Bearer " + response.data.token);
 
         message.success("Congratulations! Login Successful");
@@ -80,6 +85,7 @@ const LoginForm = () => {
               name="phone"
               value={user.phone}
               onChange={handleChange}
+              addonBefore="+88"
             />
           </Space>
         </div>

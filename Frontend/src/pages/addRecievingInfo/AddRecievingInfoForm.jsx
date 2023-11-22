@@ -1,4 +1,5 @@
 import DarkButton from "../../components/darkButton/DarkButton";
+import backendURL from "../../components/urlProvider";
 import { useState } from "react";
 import { Input, DatePicker, Space, Select } from "antd";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
@@ -70,18 +71,21 @@ export default function AddRecievingInfoForm() {
         newprogramInfo.receivingGrossQuantity
       );
       newprogramInfo.shortage = parseFloat(
-        newprogramInfo.receivingGrossQuantity
+        newprogramInfo.shortage
       );
 
       try {
         const response = await axios.put(
-          "http://localhost:8888/api/v1/invoice/receiving/" + invoiceNo,
+          backendURL + "api/v1/invoice/receiving/" +
+            invoiceNo,
           newprogramInfo,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
-        console.log(response.data);
+        //console.log(response.data);
+        message.success("প্রাপ্তির তথ্য যুক্ত হয়েছে")
         navigate("/firm/" + firmId, {
           state: {},
         });

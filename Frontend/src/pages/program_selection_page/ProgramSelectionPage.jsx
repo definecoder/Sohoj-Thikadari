@@ -7,24 +7,30 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BackButton from "../../components/back_button/BackButton";
+import backendURL from "../../components/urlProvider";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function FirmProfilePage() {
   let { firmId } = useParams();
+  const [spinning, setSpinning] = useState(true);
 
-  const [sendingPrograms, setSendingPrograms] = useState([...programList]);
+  const [sendingPrograms, setSendingPrograms] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8888/api/v1/invoice/sending/" + firmId,
+          backendURL + "api/v1/invoice/sending/" + firmId,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         // console.log(localStorage.getItem('token'));
         //console.log(res.data.Invoice);
         setSendingPrograms(res.data.Invoice);
+        setSpinning(false);
         //console.log(sendingPrograms);
       } catch (error) {}
     };
@@ -51,7 +57,24 @@ export default function FirmProfilePage() {
           <BackButton />
           প্রোগ্রাম নির্বাচন করুন
         </div>
-        {sendingPrograms.length == 0 ? empyFirmList() : () => {}}
+        {spinning === true ? (
+          <Spin
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+            indicator={
+              <LoadingOutlined
+                style={{
+                  fontSize: 150,
+                  color: "black",
+                }}
+                spin
+              />
+            }
+          />
+        ) : sendingPrograms.length == 0 ? (
+          empyFirmList()
+        ) : (
+          () => {}
+        )}
         <div className="ps-grid-wrapper">
           {sendingPrograms.map((program) => {
             return (

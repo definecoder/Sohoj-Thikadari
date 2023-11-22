@@ -6,6 +6,7 @@ import BengaliFont from "./SolaimanLipi_29-05-06.ttf";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import backendURL from  "../urlProvider"
 
 Font.register({
   family: "SolaimanLipi",
@@ -87,23 +88,25 @@ function BillPDF(billID) {
     sendingPoint: "প্রেরক কেন্দ্র",
     receivingPoint: "প্রাপক কেন্দ্র",
     commodity: "পণ্য",
-    sendingNetQuantity: "প্রেরিত বস্তা",
-    sendingGrossQuantity: "মোট প্রেরণ ",
-    receivingNetQuantity: "প্রাপ্ত বস্তা",
-    receivingGrossQuantity: "মোট প্রাপ্ত ",
+    sendingNetSlack: "প্রেরিত বস্তা",
+    sendingNetQuantity: "মোট প্রেরণ ",
+    receivingNetSlack: "প্রাপ্ত বস্তা",
+    receivingNetQuantity: "মোট প্রাপ্ত ",
     shortage: "ঘাটতি",
     distance: "দূরত্ব",
     pricePerTon: "টনপ্রতি দর",
-    amount:  "টাকার পরিমান",
+    amount: "টাকার পরিমান",
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8888/api/v1/bills/" + billID.billID,
+          backendURL + "api/v1/bills/" +
+            billID.billID,
           {
             headers: { Authorization: localStorage.getItem("token") },
+            withCredentials: true,
           }
         );
         console.log(res);
@@ -115,23 +118,29 @@ function BillPDF(billID) {
           if (i != 0) {
             updatedJSON.push({
               programNo: tmp[i].programNo,
-              programDate: new Date(tmp[i].programDate).toLocaleDateString("bn-BD", options),
+              programDate: new Date(tmp[i].programDate).toLocaleDateString(
+                "bn-BD",
+                options
+              ),
               invoiceNo: tmp[i].invoiceNo,
-              sendingDate: new Date(tmp[i].sendingDate).toLocaleDateString("bn-BD", options),
+              sendingDate: new Date(tmp[i].sendingDate).toLocaleDateString(
+                "bn-BD",
+                options
+              ),
               sendingPoint: tmp[i].sendingPoint,
               receivingPoint: tmp[i].receivingPoint,
               commodity: tmp[i].commodity,
+              sendingNetSlack: tmp[i].sendingNetSlack,
               sendingNetQuantity: tmp[i].sendingNetQuantity,
-              sendingGrossQuantity: tmp[i].sendingGrossQuantity,
+              receivingNetSlack: tmp[i].receivingNetSlack,
               receivingNetQuantity: tmp[i].receivingNetQuantity,
-              receivingGrossQuantity: tmp[i].receivingGrossQuantity,
               shortage: tmp[i].shortage,
               distance: tmp[i].distance,
               pricePerTon: tmp[i].pricePerTon,
               amount: tmp[i].invoiceAmount,
             });
           } else updatedJSON.push(tmp[i]);
-        }        
+        }
         setValues(updatedJSON);
         console.log(updatedJSON);
         //console.log(values);
@@ -148,8 +157,6 @@ function BillPDF(billID) {
     }
     return chunks;
   }
-  
-  
 
   return (
     <Document>
@@ -165,7 +172,7 @@ function BillPDF(billID) {
           <View style={styles.namebox}>
             <Text style={styles.description}>
               {" "}
-              বিল নংঃ {data.billNo} তারিখঃ {data.date}
+              বিল নংঃ {data.billNo} তারিখঃ {new Date(data.date).toLocaleDateString("bn-BD", options)}
             </Text>
             <Text style={styles.description}> বরাবরঃ {data.submittedTo}</Text>
           </View>
@@ -192,9 +199,12 @@ function BillPDF(billID) {
               </View>
             ))}
           </View>
-          <View style={styles.headerbox}>            
+          <View style={styles.headerbox}>
             <Text>{"\n"}</Text>
-            <Text><Text style={{fontSize: "30px"}}>মোট বিল: &nbsp; ৳</Text> {data.amount}  </Text>
+            <Text>
+              <Text style={{ fontSize: "30px" }}>মোট বিল: &nbsp; ৳</Text>{" "}
+              {data.amount}{" "}
+            </Text>
           </View>
         </View>
       </Page>
