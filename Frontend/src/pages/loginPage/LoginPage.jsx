@@ -4,12 +4,25 @@ import LandingAiLogo from "../../assets/landingAiLogo.jpeg";
 import AppLogo from "../../assets/appLogo.png";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ForgetPasswordModal from "./ForgetPasswordModal";
 
 function LoginPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      console.log("Window width changed:", window.innerWidth);      
+      if(window.innerWidth < 1020) {
+        navigate("/mobile");
+      }
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   return (
     <>
