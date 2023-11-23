@@ -39,7 +39,7 @@ export default function AddNewFirmForm() {
     else if (!newFirmInfo.proprietor) message.error("প্রোপ্রাইটর এর নাম দিন");
     else if (!newFirmInfo.tradeLicense) message.error("ট্রেড লাইসেন্স দিন");
     else if (!newFirmInfo.phone) message.error("ফোন নম্বর দিন");
-    else if (newFirmInfo.phone.length != 10) message.error("ফোন নম্বর সঠিক নয়");
+    else if (newFirmInfo.phone.length != 11) message.error("ফোন নম্বর সঠিক নয়");
     else if (!newFirmInfo.email) message.error("ইমেইল দিন");
     else if (!emailRegex.test(newFirmInfo.email))
       message.error("ইমেইল সঠিক নয়");
@@ -60,7 +60,7 @@ export default function AddNewFirmForm() {
           }
         );
         console.log(response.data);
-        message.success("আপনার ফার্ম যুক্ত হয়েছে")
+        message.success("আপনার ফার্ম যুক্ত হয়েছে");
       } catch (error) {
         console.log(error);
         message.error(error);
