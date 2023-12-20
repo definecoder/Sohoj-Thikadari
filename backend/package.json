@@ -7,7 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "build":"npx prisma generate && npx prisma migrate deploy",
+    "build":"npm install",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "npx prisma migrate dev --name init --create-only": "npx prisma migrate dev --name init --create-only --schema=./database/Schema.prisma"
