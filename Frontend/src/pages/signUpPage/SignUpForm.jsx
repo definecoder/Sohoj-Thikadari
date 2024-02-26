@@ -1,17 +1,19 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import { useState } from "react";
-import { Input, Space, Button } from "antd";
+import { Input, Space, Button, Spin } from "antd";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
 import backendURL from "../../components/urlProvider";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const signupForm = () => {
   /// fOR MODAL
   const [modalText, setModalText] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [modalRoute, setModalRoute] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -58,6 +60,7 @@ const signupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     if (!user.username) message.error("ইউজারনেম দিন");
     else if (user.username.length < 4)
       message.error("ইউজারনেম নুন্যতম ৪ অক্ষরের হতে হবে");
@@ -91,15 +94,20 @@ const signupForm = () => {
         setModalTitle("Your registrations is successfull");
         setModalRoute("/home");
         showModal();
+        setIsLoading(false);
       } catch (error) {
         setModalText(error.response.data.msg);
         setModalTitle("An Error Occured");
         setModalRoute(null);
         showModal();
 
+        setIsLoading(false);
+
         //alert(error);
       }
+      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -228,12 +236,29 @@ const signupForm = () => {
         </div>
 
         <div className="registerbtn">
-          <DarkButton
-            buttonText="রেজিস্টার করুন"
-            onClick={() => {}}
-            routePath="forbidden"
-            type="submit"
-          />
+          {!isLoading ? (
+            <DarkButton
+              buttonText="প্রবেশ করুন"
+              onClick={() => {}}
+              routePath="forbidden"
+              type="submit"
+            />
+          ) : (
+            <>
+              <Spin
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 70,
+                      color: "black",
+                    }}
+                    spin
+                  />
+                }
+              />
+              <div>It will take few minutes for the first time Signing up</div>
+            </>
+          )}
         </div>
       </form>
     </div>

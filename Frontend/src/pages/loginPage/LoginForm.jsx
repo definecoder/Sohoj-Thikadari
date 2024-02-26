@@ -1,9 +1,10 @@
 import DarkButton from "../../components/darkButton/DarkButton";
 import backendURL from "../../components/urlProvider";
 import { useState } from "react";
-import { Input, Space, message } from "antd";
+import { Input, Space, Spin, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -12,10 +13,11 @@ const LoginForm = () => {
     password: "",
   });
   const [setPasswordVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     // if (e.target.name === "phone" && e.target.value === "+") {
-    // } else 
+    // } else
     if (
       e.target.name === "phone" &&
       !(
@@ -29,6 +31,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     if (!user.phone) message.info("ফোন নম্বর দিন");
     else if (!user.password) message.info("পাসওয়ার্ড দিন");
     else {
@@ -51,6 +54,8 @@ const LoginForm = () => {
           },
         });
 
+        setIsLoading(false);
+
         // setModalText(`Congratulations! Press OK to go to home page`);
 
         // setModalTitle("Your login is successfull");
@@ -64,8 +69,11 @@ const LoginForm = () => {
         // showModal();
 
         //alert(error);
+        setIsLoading(false);
       }
+      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -110,12 +118,35 @@ const LoginForm = () => {
           </Space>
         </div>
 
-        <DarkButton
+        {!isLoading ? (
+          <DarkButton
+            buttonText="প্রবেশ করুন"
+            onClick={() => {}}
+            routePath="forbidden"
+            type="submit"
+          />
+        ) : (
+          <>
+            <Spin
+              indicator={
+                <LoadingOutlined
+                  style={{
+                    fontSize: 70,
+                    color: "black",
+                  }}
+                  spin
+                />
+              }
+            />
+            <div>It will take few minutes for the first time login</div>
+          </>
+        )}
+        {/* <DarkButton
           buttonText="প্রবেশ করুন"
           onClick={() => {}}
           routePath="forbidden"
           type="submit"
-        />
+        /> */}
       </form>
     </div>
   );
